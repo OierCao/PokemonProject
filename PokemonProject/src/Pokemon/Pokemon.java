@@ -16,6 +16,7 @@ public class Pokemon {
 		this.mota = pMota;
 		
 	}
+	
 	public void estatistikakKalkulatu() {
 		Random r=new Random();
 		this.atk = 11 + r.nextInt(1, 7);

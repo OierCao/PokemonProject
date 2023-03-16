@@ -7,7 +7,10 @@ public class PokemonKatalogoa {
 
 	private PokemonKatalogoa() {
 		lista = new PokemonZerrenda();
-		Pokemon p1= new Pokemon();
+		Pokemon p1= new Pokemon("Charmander", "Fire");
+		Pokemon p2= new Pokemon("Bulbasuar", "Grass");
+		Pokemon p3= new Pokemon("Squirtle", "Water");
+		Pokemon p4= new Pokemon("Pikachu", "Electric");
 	}
 
 	public static PokemonKatalogoa getPK() {
