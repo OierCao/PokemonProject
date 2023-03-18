@@ -1,42 +1,37 @@
 package Pokemon;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Bot extends Jokalari {
+	int sakonera;
 
-	public Bot() {
-		// TODO - implement Bot.Bot
-		throw new UnsupportedOperationException();
+	public Bot(int pSakonera) {
+		this.sakonera=pSakonera;
 	}
+	
+	
+	public void jolastu(JokalariZerrenda pJZ) {
+		for (Pokemon p : this.getTalde().getEzAhulduak()) {
+			Jokalaria erasoJ = getJokalaria(pJZ);
+			Pokemon erasoPok = getAtkPok(erasoJ.getTalde().getEzAhulduak());
+			MugimenduKudeatzailea.eraso(this,p,erasoJ,erasoPok);
+			
+					
+			
+		}
+		
 
-	/**
-	 * 
-	 * @param listaJokalari
-	 */
-	private void jokoaEbaluatu(ArrayList<Jokalari> listaJokalari) {
-		// TODO - implement Bot.jokoaEbaluatu
-		throw new UnsupportedOperationException();
 	}
-
-	/**
-	 * 
-	 * @param listaJokalari
-	 * @param sakonera
-	 * @param simulazioBalioa
-	 * @param maximizatu
-	 */
-	private int minimax(ArrayList<Jokalari> listaJokalari, int sakonera, int simulazioBalioa, boolean maximizatu) {
-		// TODO - implement Bot.minimax
-		throw new UnsupportedOperationException();
+	
+	
+	
+	private Jokalaria getJokalaria(pJZ) {
+		PJZ.getRandom();	
 	}
-
-	/**
-	 * 
-	 * @param sakonera
-	 */
-	public ArrayList<Integer> mugimendua(int sakonera) {
-		// TODO - implement Bot.mugimendua
-		throw new UnsupportedOperationException();
+	
+	private Pokemon getAtkPok(PokemonZerrenda pZ) {
+		pZ.getRandom();
 	}
 
 }
