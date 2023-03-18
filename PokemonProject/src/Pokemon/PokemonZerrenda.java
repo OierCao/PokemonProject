@@ -1,35 +1,49 @@
 package Pokemon;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+
 public class PokemonZerrenda {
 
 	private ArrayList<Pokemon> lista;
 
 	public PokemonZerrenda() {
-		// TODO - implement PokemonZerrenda.PokemonZerrenda
-		throw new UnsupportedOperationException();
+		lista = new ArrayList<Pokemon>();
 	}
 
 	private Iterator<Pokemon> getIter() {
-		// TODO - implement PokemonZerrenda.getIter
-		throw new UnsupportedOperationException();
+		return lista.iterator();
+	}
+	
+	public Pokemon bilatuPokemon(String pIzena) {
+		Iterator<Pokemon> itr = getIter();
+		boolean aurk = false;
+		Pokemon p = null;
+		while (itr.hasNext() && !aurk) {
+			p = itr.next();
+			if(p.getIzena().equals(pIzena)) {
+				aurk = true;
+			}
+		}
+		if (aurk) {
+			return p;
+		}
+		else {
+			return null;
+		}
 	}
 
-	/**
-	 * 
-	 * @param pPok
-	 */
 	public void addPokemon(Pokemon pPok) {
-		// TODO - implement PokemonZerrenda.addPokemon
-		throw new UnsupportedOperationException();
+		lista.add(pPok);
 	}
 
-	/**
-	 * 
-	 * @param pPok
-	 */
 	public Pokemon removePokemon(Pokemon pPok) {
-		// TODO - implement PokemonZerrenda.removePokemon
-		throw new UnsupportedOperationException();
+		try {
+			lista.remove(pPok);
+		}
+		catch(Exception e) {System.out.println ("Ez da aurkitu pokemona.");}
+		return pPok;
 	}
 
 }

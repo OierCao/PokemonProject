@@ -17,6 +17,10 @@ public class Pokemon {
 		
 	}
 	
+	public String getIzena() {
+		return izena;
+	}
+	
 	public void estatistikakKalkulatu() {
 		Random r=new Random();
 		this.atk = 11 + r.nextInt(1, 7);

@@ -1,5 +1,7 @@
 package Pokemon;
 
+import java.util.ArrayList;
+
 public class Bot extends Jokalari {
 
 	public Bot() {
