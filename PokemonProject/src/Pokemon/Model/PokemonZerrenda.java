@@ -1,4 +1,4 @@
-package Pokemon;
+package Pokemon.Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,15 +9,43 @@ public class PokemonZerrenda {
 
 	private ArrayList<Pokemon> lista;
 
+	//BUILDER
 	public PokemonZerrenda() {
 		lista = new ArrayList<Pokemon>();
 	}
 
+	//SET/GET
 	private Iterator<Pokemon> getIter() {
 		return lista.iterator();
 	}
 	
+	public PokemonZerrenda getEzAhulduak(){
+		PokemonZerrenda pArray = new PokemonZerrenda();
+		Iterator<Pokemon> itr = getIter();
+		while (itr.hasNext()) {
+			 Pokemon p = itr.next();
+			 if (!p.getAhulduta()) pArray.addPokemon(p);
+		} 
+		return pArray;	
+	}
 	
+	public ArrayList<Pokemon> getLista(){
+		return this.lista;
+	}
+
+	public Pokemon getRandomEzAhulduta() {
+		PokemonZerrenda pZ = getEzAhulduak();
+		Pokemon p = null;
+		int rand;
+		boolean aurkitua=false;
+		Random r=new Random();
+		rand = r.nextInt(1, pZ.lista.size());
+		p = this.lista.get(rand);
+		return p;
+	}
+	
+	
+	//ADD/REMOVE
 	public void addPokemon(Pokemon pPok) {
 		lista.add(pPok);
 	}
@@ -31,6 +59,11 @@ public class PokemonZerrenda {
 	}
 	
 	
+	
+	
+	
+	
+	//EXTRAS
 	public Pokemon bilatuPokemon(String pIzena) {
 		Iterator<Pokemon> itr = getIter();
 		boolean aurk = false;
@@ -60,16 +93,19 @@ public class PokemonZerrenda {
 		return ahuldutak;	
 	}
 	
-	public PokemonZerrenda getEzAhulduak(){
-		PokemonZerrenda pArray = new PokemonZerrenda();
-		int i;
+
+	//SCREEN
+	public void pokemonakEguneratu() {
 		Iterator<Pokemon> itr = getIter();
 		while (itr.hasNext()) {
 			 Pokemon p = itr.next();
-			 if (!p.getAhulduta()) pArray.addPokemon(p);
+			 p.eguneratuEgoera();
 		} 
-		return pArray;	
 	}
+
+	
+	
+	
 	
 	/*
 	public Pokemon getXPokemon(Pokemon pPok) {
@@ -85,25 +121,5 @@ public class PokemonZerrenda {
 		return p;	
 	}
 	*/
-	
-	public Pokemon getRandom() {
-		Pokemon p;
-		int rand;
-		Random r=new Random();
-		rand = r.nextInt(1, this.lista.size());
-		p = this.lista.get(rand);
-		return p;
-	}
-	
-	
-	
-	public void pokemonakEguneratu() {
-		Iterator<Pokemon> itr = getIter();
-		while (itr.hasNext()) {
-			 Pokemon p = itr.next();
-			 p.eguneratuEgoera();
-		} 
-	}
-
 
 }

@@ -1,0 +1,102 @@
+package Pokemon.Model;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+
+public class JokalariZerrenda {
+	private ArrayList<Jokalari> lista;
+	
+	
+	//BUILDER
+	public JokalariZerrenda() {
+		lista = new ArrayList<Jokalari>();
+	}
+	
+	
+	//ADD/REMOVE
+	public void addJokalari(Jokalari pJokalaria) {
+		this.lista.add(pJokalaria);
+	}
+	public void removeJokalari(Jokalari pJokalaria) {
+		this.lista.remove(pJokalaria);
+	}
+	
+	public void newJokalari(int pMota,int pJokNum,int pPokKop) {
+		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pJokNum);
+	}
+	
+	
+	//SET/GET
+	private Iterator getIter() {
+		return lista.iterator();
+	}
+	
+	public void removeAll() {
+		this.lista.clear();
+	}
+	
+	
+	private JokalariZerrenda getBizirikDaudenak() {
+		JokalariZerrenda pArray = new JokalariZerrenda();;
+		Iterator<Jokalari> itr = getIter();
+		while (itr.hasNext()) {
+			 Jokalari j = itr.next();
+			 if (!j.getBizirik()) pArray.addJokalari(j);
+		} 
+		return pArray;	
+	}
+	
+	
+	public Jokalari getRandomBizirik() {
+		JokalariZerrenda jZ = getBizirikDaudenak();
+		Jokalari j = null;
+		int rand;
+		Random r=new Random();
+		rand = r.nextInt(1, jZ.lista.size());
+		j = this.lista.get(rand);
+		return j;
+	}
+	
+	
+	
+	
+	
+	
+	//EXTRAS 
+	public Jokalari txandaJolastu() {
+		Jokalari jIrabazle = null;
+		Jokalari oraingoJ = null;
+		
+		oraingoJ = this.getRandomBizirik();
+		oraingoJ.jolastu();
+		
+		jIrabazle = irabazlea();
+		
+		 
+		
+		
+		
+		return jIrabazle;
+	}
+	
+	
+	private Jokalari irabazlea() {
+		Iterator<Jokalari> itr = getIter();
+		Jokalari jIrabazle = null;
+		int i = 0;
+		while (itr.hasNext() && i<2) {
+			Jokalari j = itr.next();
+			if (j.getBizirik()) {
+				jIrabazle = j;
+				i++;
+			}
+		}
+		if (i>1) {
+			jIrabazle = null;
+		}
+		return  jIrabazle;
+	}
+	
+
+}

@@ -1,4 +1,4 @@
-package Pokemon;
+package Pokemon.Model;
 
 public class JokalariFactory {
 
@@ -13,13 +13,13 @@ public class JokalariFactory {
 		return nJF;
 	}
 
-	public Jokalari createJokalari(int type) {
+	public Jokalari createJokalari(int type,int pJokNum) {
 		Jokalari j;
 		if (type==1) {
-			j = new Pertsona();
+			j = new Pertsona(pJokNum);
 		}
 		else {
-			j = new Bot();
+			j = new Bot(pJokNum);
 		}
 		return j;
 	}

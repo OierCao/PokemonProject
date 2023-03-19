@@ -1,4 +1,4 @@
-package Pokemon;
+package Pokemon.Model;
 
 import java.util.Random;
 import java.util.Observable;
@@ -66,7 +66,7 @@ public class Pokemon extends Observable{
 	
 	
 	
-	
+	//SCREEN
 	public void eguneratuEgoera() {
 		setChanged();
 	}

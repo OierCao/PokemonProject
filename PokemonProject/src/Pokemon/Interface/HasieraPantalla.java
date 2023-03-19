@@ -1,4 +1,4 @@
-package Pokemon;
+package Pokemon.Interface;
 
 import java.awt.EventQueue;
 

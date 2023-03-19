@@ -1,4 +1,4 @@
-package Pokemon;
+package Pokemon.Model;
 
 public class PokemonKatalogoa {
 
