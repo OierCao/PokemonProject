@@ -29,6 +29,7 @@ public class Bot extends Jokalari {
 
 	}
 	
+	
 	private Jokalari getJokalaria(JokalariZerrenda pJZ) {
 		return pJZ.getRandomBizirik();
 

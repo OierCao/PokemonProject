@@ -20,6 +20,7 @@ public class PokemonKatalogoa {
 		lista.addPokemon(p4);
 	}
 
+	
 	public static PokemonKatalogoa getPK() {
 		if (nPK==null) {
 			nPK = new PokemonKatalogoa();

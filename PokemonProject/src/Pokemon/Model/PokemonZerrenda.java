@@ -73,6 +73,7 @@ public class PokemonZerrenda {
 	
 	
 	
+	
 	//EXTRAS
 	public Pokemon bilatuPokemon(String pIzena) {
 		Iterator<Pokemon> itr = getIter();

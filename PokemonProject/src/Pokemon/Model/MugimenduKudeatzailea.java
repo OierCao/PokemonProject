@@ -24,6 +24,7 @@ public class MugimenduKudeatzailea {
 	}
 	
 	
+	
 	//SET/GET
 	public void setJokErasotzaile(Jokalari pJErasotzaile) {
 		jokErasotzaile = pJErasotzaile;

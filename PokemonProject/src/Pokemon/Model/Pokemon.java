@@ -21,6 +21,7 @@ public class Pokemon extends Observable{
 	}
 	
 	
+	
 	//SET/GET
 	public String getIzena() {
 		return izena;

@@ -30,6 +30,7 @@ public class Jokalari {
 		return this.talde;
 	}
 	
+	
 
 	
 	//EXTRAS

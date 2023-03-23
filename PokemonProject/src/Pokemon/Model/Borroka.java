@@ -18,6 +18,7 @@ public class Borroka extends Observable{
 	
 	
 	
+	
 	//EXTRAS
 	public void hasieraketak(int perKop, int botKop, int pokKop) {
 		JokalariKatalogoa JK = JokalariKatalogoa.getJK();

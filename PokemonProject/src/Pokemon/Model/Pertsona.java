@@ -20,6 +20,7 @@ public class Pertsona extends Jokalari {
 	
 	
 	
+	
 	//EXTRAS
 	public void jolastu() {
 		this.jolasten = true;
