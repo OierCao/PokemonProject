@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Pokemon.Model.Borroka;
+
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.GridBagLayout;
@@ -24,11 +27,16 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Font;
 
 public class HasieraPantalla extends JFrame {
+	private Kontroladore kontroladore=null;
+	private static HasieraPantalla HasPantalla;
+	
 	private JPanel panelRight;
 	private JPanel panelImg;
 	private JLabel ImgHas;
@@ -43,8 +51,8 @@ public class HasieraPantalla extends JFrame {
 	private JPanel panelBottons;
 	private JLabel Hutsik1;
 	private JTextField PlayerKopText;
-	private JButton btnNewButton;
-	private JButton btnNewButton_1;
+	private JButton ReadmeButton;
+	private JButton PlayButton;
 
 	/**
 	 * Launch the application.
@@ -219,8 +227,8 @@ public class HasieraPantalla extends JFrame {
 			panelBottons = new JPanel();
 			panelBottons.setLayout(null);
 			panelBottons.setBackground(Color.WHITE);
-			panelBottons.add(getBtnNewButton());
-			panelBottons.add(getBtnNewButton_1());
+			panelBottons.add(getReadmeButton());
+			panelBottons.add(getPlayButton());
 		}
 		return panelBottons;
 	}
@@ -238,19 +246,42 @@ public class HasieraPantalla extends JFrame {
 		}
 		return PlayerKopText;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("Readme");
-			btnNewButton.setBounds(50, 48, 100, 21);
+	private JButton getReadmeButton() {
+		if (ReadmeButton == null) {
+			ReadmeButton = new JButton("Readme");
+			ReadmeButton.setBounds(50, 48, 100, 21);
+			ReadmeButton.addActionListener(getControlador());
 		}
-		return btnNewButton;
+		return ReadmeButton;
 	}
-	private JButton getBtnNewButton_1() {
-		if (btnNewButton_1 == null) {
-			btnNewButton_1 = new JButton("PLAY!");
-			btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-			btnNewButton_1.setBounds(50, 79, 100, 33);
+	private JButton getPlayButton() {
+		if (PlayButton == null) {
+			PlayButton = new JButton("PLAY!");
+			PlayButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+			PlayButton.setBounds(50, 79, 100, 33);
+			PlayButton.addActionListener(getControlador());
 		}
-		return btnNewButton_1;
+		return PlayButton;
 	}
+	
+	private Kontroladore getControlador() {
+		if (kontroladore == null) {
+			kontroladore = new Kontroladore();
+		}
+		return kontroladore;
+	}
+	
+	private class Kontroladore implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().equals(PlayButton)) {
+				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()));
+				/*Borroka.getBorroka().partida();
+				HasieraPantalla.HasPantalla.setVisible(false);*/
+			}
+			else if(e.getSource().equals(ReadmeButton)){
+				new ReadMe().setVisible(true);
+			}
+		}
+	} 
 }

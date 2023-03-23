@@ -29,9 +29,9 @@ public class Pokemon extends Observable{
 	
 	public void estatistikakKalkulatu() {
 		Random r=new Random();
-		this.atk = 11 + r.nextInt(1, 7);
-		this.def = 3 + r.nextInt(1, 4);
-		this.hp = 200 + r.nextInt(1, 20);
+		this.atk = 11 + r.nextInt(6) + 1;
+		this.def = 3 + r.nextInt(3) + 1;
+		this.hp = 200 + r.nextInt(19) + 1;
 	}
 	
 	public int getAtk(){

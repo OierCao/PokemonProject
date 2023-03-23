@@ -54,7 +54,7 @@ public class JokalariZerrenda {
 		Jokalari j = null;
 		int rand;
 		Random r=new Random();
-		rand = r.nextInt(1, jZ.lista.size());
+		rand = r.nextInt(jZ.lista.size()-1);
 		j = this.lista.get(rand);
 		return j;
 	}
