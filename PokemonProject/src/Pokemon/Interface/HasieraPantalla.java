@@ -29,10 +29,10 @@ import java.awt.Color;
 import java.awt.Font;
 
 public class HasieraPantalla extends JFrame {
-	private JPanel panel;
-	private JPanel panel_1;
+	private JPanel panelRight;
+	private JPanel panelImg;
 	private JLabel ImgHas;
-	private JPanel panel_2_1;
+	private JPanel panelInfo;
 	private JLabel PlayerKopLabel;
 	private JLabel BotKopLabel;
 	private JTextField BotKopText;
@@ -40,7 +40,7 @@ public class HasieraPantalla extends JFrame {
 	private JTextField PokemonKopText;
 	private JLabel MillisLabel;
 	private JTextField MillisText;
-	private JPanel panel_4_1;
+	private JPanel panelBottons;
 	private JLabel Hutsik1;
 	private JTextField PlayerKopText;
 	private JButton btnNewButton;
@@ -68,27 +68,27 @@ public class HasieraPantalla extends JFrame {
 	public HasieraPantalla() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 649, 348);
-		getContentPane().add(getPanel(), BorderLayout.EAST);
-		getContentPane().add(getPanel_1(), BorderLayout.CENTER);
+		getContentPane().add(getPanelRight(), BorderLayout.EAST);
+		getContentPane().add(getPanelImg(), BorderLayout.CENTER);
 	}
-	private JPanel getPanel() {
-		if (panel == null) {
-			panel = new JPanel();
-			panel.setPreferredSize(new Dimension(200, 362));
-			panel.setLayout(new GridLayout(0, 1, 0, 0));
-			panel.add(getPanel_2_1());
-			panel.add(getPanel_4_1());
+	private JPanel getPanelRight() {
+		if (panelRight == null) {
+			panelRight = new JPanel();
+			panelRight.setPreferredSize(new Dimension(200, 362));
+			panelRight.setLayout(new GridLayout(0, 1, 0, 0));
+			panelRight.add(getPanelInfo());
+			panelRight.add(getPanelBottons());
 		}
-		return panel;
+		return panelRight;
 	}
-	private JPanel getPanel_1() {
-		if (panel_1 == null) {
-			panel_1 = new JPanel();
-			panel_1.setBackground(SystemColor.text);
-			panel_1.setLayout(null);
-			panel_1.add(getImgHas());
+	private JPanel getPanelImg() {
+		if (panelImg == null) {
+			panelImg = new JPanel();
+			panelImg.setBackground(SystemColor.text);
+			panelImg.setLayout(null);
+			panelImg.add(getImgHas());
 		}
-		return panel_1;
+		return panelImg;
 	}
 	private JLabel getImgHas() {
 		if (ImgHas == null) {
@@ -99,71 +99,71 @@ public class HasieraPantalla extends JFrame {
 		}
 		return ImgHas;
 	}
-	private JPanel getPanel_2_1() {
-		if (panel_2_1 == null) {
-			panel_2_1 = new JPanel();
-			panel_2_1.setBackground(Color.WHITE);
-			GridBagLayout gbl_panel_2_1 = new GridBagLayout();
-			gbl_panel_2_1.columnWidths = new int[]{2, 0, 0};
-			gbl_panel_2_1.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
-			gbl_panel_2_1.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-			gbl_panel_2_1.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			panel_2_1.setLayout(gbl_panel_2_1);
+	private JPanel getPanelInfo() {
+		if (panelInfo == null) {
+			panelInfo = new JPanel();
+			panelInfo.setBackground(Color.WHITE);
+			GridBagLayout gbl_panelInfo = new GridBagLayout();
+			gbl_panelInfo.columnWidths = new int[]{2, 0, 0};
+			gbl_panelInfo.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+			gbl_panelInfo.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+			gbl_panelInfo.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			panelInfo.setLayout(gbl_panelInfo);
 			GridBagConstraints gbc_Hutsik1 = new GridBagConstraints();
 			gbc_Hutsik1.insets = new Insets(0, 0, 5, 5);
 			gbc_Hutsik1.gridx = 0;
 			gbc_Hutsik1.gridy = 0;
-			panel_2_1.add(getHutsik1(), gbc_Hutsik1);
+			panelInfo.add(getHutsik1(), gbc_Hutsik1);
 			GridBagConstraints gbc_PlayerKopLabel = new GridBagConstraints();
 			gbc_PlayerKopLabel.anchor = GridBagConstraints.EAST;
 			gbc_PlayerKopLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_PlayerKopLabel.gridx = 0;
 			gbc_PlayerKopLabel.gridy = 1;
-			panel_2_1.add(getPlayerKopLabel(), gbc_PlayerKopLabel);
+			panelInfo.add(getPlayerKopLabel(), gbc_PlayerKopLabel);
 			GridBagConstraints gbc_PlayerKopText = new GridBagConstraints();
 			gbc_PlayerKopText.insets = new Insets(0, 0, 5, 0);
 			gbc_PlayerKopText.fill = GridBagConstraints.HORIZONTAL;
 			gbc_PlayerKopText.gridx = 1;
 			gbc_PlayerKopText.gridy = 1;
-			panel_2_1.add(getPlayerKopText(), gbc_PlayerKopText);
+			panelInfo.add(getPlayerKopText(), gbc_PlayerKopText);
 			GridBagConstraints gbc_BotKopLabel = new GridBagConstraints();
 			gbc_BotKopLabel.anchor = GridBagConstraints.EAST;
 			gbc_BotKopLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_BotKopLabel.gridx = 0;
 			gbc_BotKopLabel.gridy = 2;
-			panel_2_1.add(getBotKopLabel(), gbc_BotKopLabel);
+			panelInfo.add(getBotKopLabel(), gbc_BotKopLabel);
 			GridBagConstraints gbc_BotKopText = new GridBagConstraints();
 			gbc_BotKopText.fill = GridBagConstraints.HORIZONTAL;
 			gbc_BotKopText.insets = new Insets(0, 0, 5, 0);
 			gbc_BotKopText.gridx = 1;
 			gbc_BotKopText.gridy = 2;
-			panel_2_1.add(getBotKopText(), gbc_BotKopText);
+			panelInfo.add(getBotKopText(), gbc_BotKopText);
 			GridBagConstraints gbc_PokemonKopLabel = new GridBagConstraints();
 			gbc_PokemonKopLabel.anchor = GridBagConstraints.EAST;
 			gbc_PokemonKopLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_PokemonKopLabel.gridx = 0;
 			gbc_PokemonKopLabel.gridy = 3;
-			panel_2_1.add(getPokemonKopLabel(), gbc_PokemonKopLabel);
+			panelInfo.add(getPokemonKopLabel(), gbc_PokemonKopLabel);
 			GridBagConstraints gbc_PokemonKopText = new GridBagConstraints();
 			gbc_PokemonKopText.fill = GridBagConstraints.HORIZONTAL;
 			gbc_PokemonKopText.insets = new Insets(0, 0, 5, 0);
 			gbc_PokemonKopText.gridx = 1;
 			gbc_PokemonKopText.gridy = 3;
-			panel_2_1.add(getPokemonKopText(), gbc_PokemonKopText);
+			panelInfo.add(getPokemonKopText(), gbc_PokemonKopText);
 			GridBagConstraints gbc_MillisLabel = new GridBagConstraints();
 			gbc_MillisLabel.anchor = GridBagConstraints.EAST;
 			gbc_MillisLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_MillisLabel.gridx = 0;
 			gbc_MillisLabel.gridy = 4;
-			panel_2_1.add(getMillisLabel(), gbc_MillisLabel);
+			panelInfo.add(getMillisLabel(), gbc_MillisLabel);
 			GridBagConstraints gbc_MillisText = new GridBagConstraints();
 			gbc_MillisText.insets = new Insets(0, 0, 5, 0);
 			gbc_MillisText.fill = GridBagConstraints.HORIZONTAL;
 			gbc_MillisText.gridx = 1;
 			gbc_MillisText.gridy = 4;
-			panel_2_1.add(getMillisText(), gbc_MillisText);
+			panelInfo.add(getMillisText(), gbc_MillisText);
 		}
-		return panel_2_1;
+		return panelInfo;
 	}
 	private JLabel getPlayerKopLabel() {
 		if (PlayerKopLabel == null) {
@@ -214,15 +214,15 @@ public class HasieraPantalla extends JFrame {
 		}
 		return MillisText;
 	}
-	private JPanel getPanel_4_1() {
-		if (panel_4_1 == null) {
-			panel_4_1 = new JPanel();
-			panel_4_1.setLayout(null);
-			panel_4_1.setBackground(Color.WHITE);
-			panel_4_1.add(getBtnNewButton());
-			panel_4_1.add(getBtnNewButton_1());
+	private JPanel getPanelBottons() {
+		if (panelBottons == null) {
+			panelBottons = new JPanel();
+			panelBottons.setLayout(null);
+			panelBottons.setBackground(Color.WHITE);
+			panelBottons.add(getBtnNewButton());
+			panelBottons.add(getBtnNewButton_1());
 		}
-		return panel_4_1;
+		return panelBottons;
 	}
 	private JLabel getHutsik1() {
 		if (Hutsik1 == null) {
