@@ -12,6 +12,7 @@ public class Pertsona extends Jokalari {
 	}
 	
 	
+	
 	//SET/GET
 	public boolean getJolasten() {
 		return this.jolasten;

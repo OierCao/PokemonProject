@@ -56,6 +56,7 @@ public class PokemonZerrenda {
 	}
 	
 	
+	
 	//ADD/REMOVE
 	public void addPokemon(Pokemon pPok) {
 		lista.add(pPok);

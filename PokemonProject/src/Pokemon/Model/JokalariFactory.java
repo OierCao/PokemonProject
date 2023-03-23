@@ -24,4 +24,5 @@ public class JokalariFactory {
 		return j;
 	}
 
+	
 }

@@ -12,6 +12,7 @@ public class Pokemon extends Observable{
 	private String mota;
 	private boolean ahulduta;
 
+	
 	//BUILDER
 	public Pokemon(String pIzena, String pMota) {
 		this.izena = pIzena;

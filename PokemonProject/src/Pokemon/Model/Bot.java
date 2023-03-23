@@ -38,4 +38,5 @@ public class Bot extends Jokalari {
 		return pZ.getRandomEzAhulduta();
 	}
 
+	
 }

@@ -61,4 +61,5 @@ public class Borroka extends Observable{
 		
 	}
 	
+	
 }

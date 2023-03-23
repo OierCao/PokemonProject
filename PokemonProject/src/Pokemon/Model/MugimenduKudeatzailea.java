@@ -10,6 +10,7 @@ public class MugimenduKudeatzailea {
 	private Pokemon pokErasotua;
 	
 	
+	
 	//BUILDER
 	private MugimenduKudeatzailea() {
 		setNull();

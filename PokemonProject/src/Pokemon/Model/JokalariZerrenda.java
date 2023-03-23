@@ -64,6 +64,7 @@ public class JokalariZerrenda {
 	
 	
 	
+	
 	//EXTRAS 
 	public Jokalari txandaJolastu() {
 		Jokalari jIrabazle = null;
