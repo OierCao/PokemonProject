@@ -1,7 +1,7 @@
 package Pokemon.Model;
 
 public class MugimenduKudeatzailea {
-	private static MugimenduKudeatzailea nMK;
+	private static MugimenduKudeatzailea nMK = null;
 	//erasotzaile
 	private Jokalari jokErasotzaile;
 	private Pokemon pokErasotzaile;
@@ -50,7 +50,9 @@ public class MugimenduKudeatzailea {
 	public void eraso() {
 		int erasoAtk= pokErasotzaile.getAtk();
 		pokErasotua.atakeaKudeatu(erasoAtk);
-		
+		jokErasotua.eguneratuEgoera();
+		//JokalariKatalogoa.getJK().getLista().irabazlea()
+		setNull();
 	}
 	
 	

@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 public class Bot extends Jokalari {
 
-	public Bot(int pJokNum) {
-		super();
+	public Bot(int pJokNum,int pPokKop) {
+		super(pPokKop);
 		izena = "this.getClass().getName()" + pJokNum;
 	}
 	

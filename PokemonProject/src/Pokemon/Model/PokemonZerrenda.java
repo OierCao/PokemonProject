@@ -19,6 +19,21 @@ public class PokemonZerrenda {
 		return lista.iterator();
 	}
 	
+	public ArrayList<Pokemon> getLista(){
+		return this.lista;
+	}
+	
+	public PokemonZerrenda getXRandom(int pKop) {
+		PokemonZerrenda pArray = new PokemonZerrenda();
+		int i=0;
+		Iterator<Pokemon> itr = getIter();
+		while (itr.hasNext() && i<pKop) {
+			 Pokemon p = itr.next();
+			 pArray.addPokemon(p);
+		} 
+		return pArray;	
+	}
+	
 	public PokemonZerrenda getEzAhulduak(){
 		PokemonZerrenda pArray = new PokemonZerrenda();
 		Iterator<Pokemon> itr = getIter();
@@ -27,10 +42,6 @@ public class PokemonZerrenda {
 			 if (!p.getAhulduta()) pArray.addPokemon(p);
 		} 
 		return pArray;	
-	}
-	
-	public ArrayList<Pokemon> getLista(){
-		return this.lista;
 	}
 
 	public Pokemon getRandomEzAhulduta() {
@@ -61,8 +72,6 @@ public class PokemonZerrenda {
 	
 	
 	
-	
-	
 	//EXTRAS
 	public Pokemon bilatuPokemon(String pIzena) {
 		Iterator<Pokemon> itr = getIter();
@@ -80,6 +89,19 @@ public class PokemonZerrenda {
 		else {
 			return null;
 		}
+	}
+	
+	public boolean pokemonaDago(Pokemon pPok) {
+		Iterator<Pokemon> itr = getIter();
+		boolean aurk = false;
+		Pokemon p = null;
+		while (itr.hasNext() && !aurk) {
+			p = itr.next();
+			if(p.equals(pPok)) {
+				aurk = true;
+			}
+		}
+		return aurk;
 	}
 	
 	

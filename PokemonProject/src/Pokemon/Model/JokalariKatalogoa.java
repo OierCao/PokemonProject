@@ -1,7 +1,7 @@
 package Pokemon.Model;
 
 public class JokalariKatalogoa {
-	private static JokalariKatalogoa nJK;
+	private static JokalariKatalogoa nJK = null;
 	private JokalariZerrenda lista;
 	
 	//BUILDER
@@ -17,8 +17,9 @@ public class JokalariKatalogoa {
 	}
 	
 	//ADD/REMOVE
-	public void newJokalari(int pMota,int pJokNum,int pPokKop) {
-		this.lista.newJokalari(pMota,pJokNum,pPokKop);
+	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop) {
+		Jokalari newJokalari = this.lista.newJokalari(pMota,pJokNum,pPokKop);
+		return newJokalari;
 	}
 	
 	

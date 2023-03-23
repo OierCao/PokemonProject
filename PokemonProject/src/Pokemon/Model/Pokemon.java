@@ -12,14 +12,15 @@ public class Pokemon extends Observable{
 	private String mota;
 	private boolean ahulduta;
 
+	//BUILDER
 	public Pokemon(String pIzena, String pMota) {
 		this.izena = pIzena;
 		this.mota = pMota;
 		estatistikakKalkulatu();
-
-
 	}
 	
+	
+	//SET/GET
 	public String getIzena() {
 		return izena;
 	}
@@ -31,15 +32,17 @@ public class Pokemon extends Observable{
 		this.hp = 200 + r.nextInt(1, 20);
 	}
 	
-	
 	public int getAtk(){
 		return this.atk;
 	}
 
 	
+	
+	//EXTRAS
 	public void atakeaKudeatu(int pAtk) {
 		int mina = minaKalkulatu(pAtk);
 		hpKudeatu(mina);
+		
 		eguneratuEgoera();
 	}
 	

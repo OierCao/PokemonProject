@@ -3,8 +3,9 @@ package Pokemon.Model;
 public class PokemonKatalogoa {
 
 	private PokemonZerrenda lista;
-	private static PokemonKatalogoa nPK;
+	private static PokemonKatalogoa nPK = null;
 
+	//BUILDER
 	private PokemonKatalogoa() {
 		lista = new PokemonZerrenda();
 		Pokemon p1= new Pokemon("Charmander", "Fire");
@@ -23,6 +24,12 @@ public class PokemonKatalogoa {
 			nPK = new PokemonKatalogoa();
 		}
 		return nPK;
+	}
+	
+	
+	//SET/GET
+	public PokemonZerrenda getLista() {
+		return this.lista;
 	}
 
 	

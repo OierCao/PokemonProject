@@ -22,8 +22,9 @@ public class JokalariZerrenda {
 		this.lista.remove(pJokalaria);
 	}
 	
-	public void newJokalari(int pMota,int pJokNum,int pPokKop) {
-		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pJokNum);
+	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop) {
+		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pJokNum,pPokKop);
+		return newJokalari;
 	}
 	
 	
@@ -76,12 +77,11 @@ public class JokalariZerrenda {
 		 
 		
 		
-		
 		return jIrabazle;
 	}
 	
 	
-	private Jokalari irabazlea() {
+	public Jokalari irabazlea() {
 		Iterator<Jokalari> itr = getIter();
 		Jokalari jIrabazle = null;
 		int i = 0;
@@ -96,6 +96,23 @@ public class JokalariZerrenda {
 			jIrabazle = null;
 		}
 		return  jIrabazle;
+	}
+	
+	
+	public Jokalari norDagoJolasten() {
+		Iterator<Jokalari> itr = getIter();
+		Jokalari jJolasten = null;
+		boolean aurkitua=false;
+		while (itr.hasNext() && !aurkitua) {
+			Jokalari j = itr.next();
+			if (j instanceof Pertsona) {
+				if ( ((Pertsona) j).getJolasten() ) { 
+					jJolasten=j;
+					aurkitua=true;
+					}
+			}
+		}
+		return  jJolasten;
 	}
 	
 

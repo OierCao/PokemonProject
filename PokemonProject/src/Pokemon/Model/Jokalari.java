@@ -6,10 +6,18 @@ public class Jokalari {
 	private PokemonZerrenda talde;
 	private boolean bizirik;
 	
-	public Jokalari() {
+	//BUILDER
+	public Jokalari(int pPokKop) {
 		bizirik = true;
-		
+		talde = randomTaldeLortu(pPokKop);
 	}
+	
+	private PokemonZerrenda randomTaldeLortu(int pKop) {
+		PokemonKatalogoa PK = PokemonKatalogoa.getPK();
+		PokemonZerrenda randomTalde = PK.getLista().getXRandom(pKop);
+		return randomTalde;
+	}
+	
 	
 	//SET/GET
 	public boolean getBizirik() {
@@ -27,8 +35,12 @@ public class Jokalari {
 	//EXTRAS
 	public void jolastu() {}
 	
+	public boolean pokemonaDu(Pokemon pPok) {
+		return this.talde.pokemonaDago(pPok);
+	}
 	
-	protected void eguneratuErasotua(Jokalari pJokalari) {
+	
+	protected void eguneratuErasotua(Jokalari pJokalari) { //beste jokalari baten egoera eguneratu
 		pJokalari.eguneratuEgoera();
 	}
 	
