@@ -37,7 +37,15 @@ public class Pokemon extends Observable{
 	public int getAtk(){
 		return this.atk;
 	}
-
+	public int getDef(){
+		return this.def;
+	}
+	public int getHP(){
+		return this.hp;
+	}
+	public String getMota(){
+		return this.mota;
+	}
 	
 	
 	//EXTRAS

@@ -190,6 +190,7 @@ public class HasieraPantalla extends JFrame {
 	private JTextField getBotKopText() {
 		if (BotKopText == null) {
 			BotKopText = new JTextField();
+			BotKopText.setText("1");
 			BotKopText.setColumns(10);
 		}
 		return BotKopText;
@@ -204,6 +205,7 @@ public class HasieraPantalla extends JFrame {
 	private JTextField getPokemonKopText() {
 		if (PokemonKopText == null) {
 			PokemonKopText = new JTextField();
+			PokemonKopText.setText("3");
 			PokemonKopText.setColumns(10);
 		}
 		return PokemonKopText;
@@ -218,6 +220,7 @@ public class HasieraPantalla extends JFrame {
 	private JTextField getMillisText() {
 		if (MillisText == null) {
 			MillisText = new JTextField();
+			MillisText.setText("200");
 			MillisText.setColumns(10);
 		}
 		return MillisText;
@@ -242,6 +245,7 @@ public class HasieraPantalla extends JFrame {
 	private JTextField getPlayerKopText() {
 		if (PlayerKopText == null) {
 			PlayerKopText = new JTextField();
+			PlayerKopText.setText("1");
 			PlayerKopText.setColumns(10);
 		}
 		return PlayerKopText;

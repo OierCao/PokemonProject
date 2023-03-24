@@ -11,9 +11,9 @@ import javax.swing.border.EmptyBorder;
 
 public class ReadMe extends JFrame {
 	private static ReadMe frame = null;
-  private JPanel contentPane;
+  private JPanel readMePanel;
   
-  private JTextPane txtpnFreeallAllVersus;
+  private JTextPane readMeText;
   
   public static void main(String[] args) {
     EventQueue.invokeLater(new Runnable() {
@@ -29,27 +29,38 @@ public class ReadMe extends JFrame {
   }
   
   public ReadMe() {
-    setFont(new Font("Ubuntu Mono", 0, 12));
-    setBackground(Color.LIGHT_GRAY);
+    setFont(new Font("Centaur", Font.PLAIN, 12));
+    setBackground(Color.WHITE);
     setTitle("readMe");
-    setBounds(100, 100, 428, 586);
-    this.contentPane = new JPanel();
-    this.contentPane.setBackground(Color.LIGHT_GRAY);
-    this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-    this.contentPane.setLayout(new BorderLayout(0, 0));
-    setContentPane(this.contentPane);
-    this.contentPane.add(getTxtpnFreeallAllVersus(), "Center");
+    setBounds(200, 200,616, 453);
+    this.readMePanel = new JPanel();
+    this.readMePanel.setBackground(Color.WHITE);
+    this.readMePanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+    this.readMePanel.setLayout(new BorderLayout(0, 0));
+    setContentPane(this.readMePanel);
+    this.readMePanel.add(getReadMeText(), "Center");
   }
   
-  private JTextPane getTxtpnFreeallAllVersus() {
-    if (this.txtpnFreeallAllVersus == null) {
-      this.txtpnFreeallAllVersus = new JTextPane();
-      this.txtpnFreeallAllVersus.setFont(new Font("Liberation Sans", 0, 12));
-      this.txtpnFreeallAllVersus.setForeground(Color.DARK_GRAY);
-      this.txtpnFreeallAllVersus.setBackground(Color.WHITE);
-      this.txtpnFreeallAllVersus.setText(" PoK-Battle Arena-\n\n* free4all: all versus all game\n  * (x) players using (y) pokeach\n* pokeMons stats and types are assigned at random\n  * pokeMon types and effects\n\t* fire extra damage to grass/bug\n\t* grass extra damage to rock/water\n\t* water extra damage to fire/rock\n\t* electric extra damage to water/flying\n\t* bug extra damage to grass/phychic\n\t* psychic extra damage to fighting\n\t* fighting extra damage to rock\n\t* rock extra damage to electric/bug/fire\n\t* ghost extra damage to ghost/psychic\n\t* dragon extra damage to dragon\n\t* flying extra damage to bug/fighting/grass\n\n  * stats\n\t* att: base damage with normal attack (10-13)\n\t* def: base defense (5-9)\n\t* health: pokhealth (80-100)\n\n* wait until your turn (random across players)\n   there is a posibility to play 2,3,4 turns in a row\n   each turn you can:\n   * attack foreach of your pokeMon\n\t* damage = att*effect - def\n* evolutions\n  * your pokwill evolve at health %50 and %20 repectively\n\t   each evolution step will boost pokstats\n* charged attack\n  * pokemon will perform a charged attack when itrecieves a\n\t   determined amount of attacks \n  * when charged, pokwill gain +100 att +100 def until it\n\t   performs the charged attack\n* all attacks are executed at the moment\n* once you are done click on g@! and wait until your next turn\n\n\n");
+  private JTextPane getReadMeText() {
+    if (this.readMeText == null) {
+      this.readMeText = new JTextPane();
+      this.readMeText.setFont(new Font("Cambria", Font.PLAIN, 15));
+      this.readMeText.setForeground(Color.DARK_GRAY);
+      this.readMeText.setBackground(Color.WHITE);
+      this.readMeText.setText("Ongi etorri gure jokura!\n\n"
+      		+ "Hasteko jakin beharreko batzuk:\n\n"
+      		+ "·Jokalari bakoitzaren pokemonak eta hauen atributuak ausaz aukeratuko dira.\n"
+      		+ "·Pokemonen atributuak:\n"
+      		+ "	·Bizia: 200-220\n"
+      		+ "	·Eraso: 12-18\n"
+      		+ "	·Defentsa: 4-7\n"
+      		+ "·Pokemon moten abantailak:\n"
+      		+ "	·Sua min gehiago belarrari\n"
+      		+ "	·Ura min gehiago suari\n"
+      		+ "	·Elektrikoa min gehiago urari\n"
+      		+ "	·Belarra min gehiago elektrikoari\n");
     } 
-    return this.txtpnFreeallAllVersus;
+    return this.readMeText;
   }
 }
 

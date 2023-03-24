@@ -26,7 +26,7 @@ public class Jokalari {
 	private void setBizirik(boolean pBizirik) {
 		this.bizirik = pBizirik;
 	}
-	protected PokemonZerrenda getTalde() {
+	public PokemonZerrenda getTalde() {
 		return this.talde;
 	}
 	
