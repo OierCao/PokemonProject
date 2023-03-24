@@ -20,13 +20,13 @@ public class Borroka extends Observable{
 	
 	
 	//EXTRAS
-	public void hasieraketak(int perKop, int botKop, int pokKop) {
+	public void hasieraketak(int perKop, int botKop, int pokKop, int pDelayms) {
 		JokalariKatalogoa JK = JokalariKatalogoa.getJK();
 		int iPer = 0; 
 		int iBot = 0;
 		//pertsona (1)
 		while (iPer<=perKop) {
-			Jokalari j = JK.newJokalari(1,iPer,pokKop);
+			Jokalari j = JK.newJokalari(1,iPer,pokKop,pDelayms);
 			JK.getLista().addJokalari(j);
 			eguneratuBorrokaScreen();
 			iPer++;	
@@ -34,7 +34,7 @@ public class Borroka extends Observable{
 		}
 		//bot (2)
 		while (iBot<=botKop) {
-			Jokalari j = JK.newJokalari(2,iBot,pokKop);
+			Jokalari j = JK.newJokalari(2,iBot,pokKop,pDelayms);
 			JK.getLista().addJokalari(j);
 			eguneratuBorrokaScreen();
 			iBot++;	

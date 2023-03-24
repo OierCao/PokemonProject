@@ -279,7 +279,7 @@ public class HasieraPantalla extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(PlayButton)) {
-				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()));
+				Borroka.getBorroka().hasieraketak( Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
 				/*Borroka.getBorroka().partida();
 				HasieraPantalla.HasPantalla.setVisible(false);*/
 			}

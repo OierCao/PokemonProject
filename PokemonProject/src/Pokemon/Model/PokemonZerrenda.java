@@ -23,6 +23,10 @@ public class PokemonZerrenda {
 		return this.lista;
 	}
 	
+	public int getPokKop() {
+		return this.lista.size();
+	}
+	
 	public PokemonZerrenda getXRandom(int pKop) {
 		PokemonZerrenda pArray = new PokemonZerrenda();
 		int i=0;

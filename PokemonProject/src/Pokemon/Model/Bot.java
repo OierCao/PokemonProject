@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Bot extends Jokalari {
+	int delayms;
 
-	public Bot(int pJokNum,int pPokKop) {
+	public Bot(int pJokNum,int pPokKop,int pDelayms) {
 		super(pPokKop);
+		delayms=pDelayms;
 		izena = "this.getClass().getName()" + pJokNum;
 	}
 	
