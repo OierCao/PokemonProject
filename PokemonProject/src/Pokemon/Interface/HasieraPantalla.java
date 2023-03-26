@@ -280,10 +280,10 @@ public class HasieraPantalla extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(PlayButton)) {
 				Borroka.getBorroka().hasieraketak( Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
-				/*Borroka.getBorroka().partida();
-				HasieraPantalla.HasPantalla.setVisible(false);*/
+				Borroka.getBorroka().partida();
+				HasieraPantalla.HasPantalla.setVisible(false);
 			}
-			else if(e.getSource().equals(ReadmeButton)){
+			else {
 				new ReadMe().setVisible(true);
 			}
 		}

@@ -29,14 +29,16 @@ public class JokalariZerrenda {
 	
 	
 	//SET/GET
-	private Iterator getIter() {
+	private Iterator<Jokalari> getIter() {
 		return lista.iterator();
 	}
 	
 	public void removeAll() {
 		this.lista.clear();
 	}
-	
+	public ArrayList<Jokalari> getLista(){
+		return lista;
+	}
 	
 	private JokalariZerrenda getBizirikDaudenak() {
 		JokalariZerrenda pArray = new JokalariZerrenda();;
@@ -54,15 +56,10 @@ public class JokalariZerrenda {
 		Jokalari j = null;
 		int rand;
 		Random r=new Random();
-		rand = r.nextInt(jZ.lista.size()-1);
+		rand = r.nextInt(lista.size()-1);
 		j = this.lista.get(rand);
 		return j;
 	}
-	
-	
-	
-	
-	
 	
 	
 	
@@ -71,13 +68,10 @@ public class JokalariZerrenda {
 		Jokalari jIrabazle = null;
 		Jokalari oraingoJ = null;
 		
-		oraingoJ = this.getRandomBizirik();
+		oraingoJ = getRandomBizirik();
 		oraingoJ.jolastu();
 		
 		jIrabazle = irabazlea();
-		
-		 
-		
 		
 		return jIrabazle;
 	}

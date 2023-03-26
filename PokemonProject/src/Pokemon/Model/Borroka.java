@@ -53,7 +53,7 @@ public class Borroka extends Observable{
 		JK.reset();
 		
 	}
-	
+
 	
 	//SCREEN
 	private void eguneratuBorrokaScreen() { //actualizar la pantalla porque hay un nuevo jugador

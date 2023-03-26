@@ -10,11 +10,15 @@ public class Jokalari {
 	public Jokalari(int pPokKop) {
 		bizirik = true;
 		talde = randomTaldeLortu(pPokKop);
+		for (Pokemon p: talde.getLista()) {
+			p.estatistikakKalkulatu();
+		}
 	}
 	
 	private PokemonZerrenda randomTaldeLortu(int pKop) {
 		PokemonKatalogoa PK = PokemonKatalogoa.getPK();
 		PokemonZerrenda randomTalde = PK.getLista().getXRandom(pKop);
+	
 		return randomTalde;
 	}
 	
@@ -28,6 +32,9 @@ public class Jokalari {
 	}
 	public PokemonZerrenda getTalde() {
 		return this.talde;
+	}
+	public String getIzena() {
+		return izena;
 	}
 	
 	

@@ -30,10 +30,10 @@ public class PokemonZerrenda {
 	public PokemonZerrenda getXRandom(int pKop) {
 		PokemonZerrenda pArray = new PokemonZerrenda();
 		int i=0;
-		Iterator<Pokemon> itr = getIter();
-		while (itr.hasNext() && i<pKop) {
-			 Pokemon p = itr.next();
-			 pArray.addPokemon(p);
+		Random r = new Random();
+		while (i<pKop) {
+			 pArray.addPokemon(lista.get(r.nextInt(lista.size())));
+			 i++;
 		} 
 		return pArray;	
 	}

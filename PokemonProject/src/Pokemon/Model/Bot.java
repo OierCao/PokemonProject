@@ -9,7 +9,7 @@ public class Bot extends Jokalari {
 	public Bot(int pJokNum,int pPokKop,int pDelayms) {
 		super(pPokKop);
 		delayms=pDelayms;
-		izena = "this.getClass().getName()" + pJokNum;
+		izena = this.getClass().getName() + pJokNum;
 	}
 	
 	

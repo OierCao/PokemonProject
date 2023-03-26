@@ -17,7 +17,7 @@ public class Pokemon extends Observable{
 	public Pokemon(String pIzena, String pMota) {
 		this.izena = pIzena;
 		this.mota = pMota;
-		estatistikakKalkulatu();
+		this.ahulduta=false;
 	}
 	
 	
