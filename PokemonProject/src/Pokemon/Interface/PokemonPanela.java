@@ -13,32 +13,34 @@ import Pokemon.Model.PokemonKatalogoa;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.GridLayout;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
-public class PokemonPanela extends JPanel {
+public class PokemonPanela extends JPanel implements Observer{
 	private JProgressBar healthBar;
 	private JLabel pokeSprite;
 	private JTextPane pokeInfoPanel;
 
 	private Jokalari jok;
 	private Pokemon pok;
-	private int maxHP;
 
 	/**
 	 * Create the panel.
 	 */
 	public PokemonPanela(Jokalari pJok, Pokemon pPok) {
+		jok=pJok;
+		pok=pPok;
+		
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
 		add(getHealthBar(), BorderLayout.SOUTH);
 		add(getPokeSprite(), BorderLayout.CENTER);
-		add(getTextPane_1(), BorderLayout.NORTH);
-		jok=pJok;
-		pok=pPok;
-		maxHP=pok.getHP();
+		add(getPokeInfoPanel(), BorderLayout.NORTH);
 	}
 
 	private JProgressBar getHealthBar() {
@@ -53,7 +55,7 @@ public class PokemonPanela extends JPanel {
 		    return this.healthBar;
 	}
 
-	private JTextPane getTextPane_1() {
+	private JTextPane getPokeInfoPanel() {
 		if (pokeInfoPanel == null) {
 			pokeInfoPanel = new JTextPane();
 			pokeInfoPanel.setBounds(0, 0, 100, 100);
@@ -61,7 +63,7 @@ public class PokemonPanela extends JPanel {
 			pokeInfoPanel.setBackground(Color.WHITE);
 			pokeInfoPanel.setText("\nEraso: " + pok.getAtk() + "" +  "\n"
 					+ "Defentsa: " + pok.getDef() + "\n"
-					+ "Bizaia: " + pok.getHP() + "/" + maxHP + "\n"
+					+ "Bizia: " + pok.getHP() + "/" + pok.getMaxHP() + "\n"
 					+ "Mota: " + pok.getMota());
 		}
 		return pokeInfoPanel;
@@ -72,9 +74,27 @@ public class PokemonPanela extends JPanel {
 			pokeSprite = new JLabel("");
 			pokeSprite.setHorizontalAlignment(SwingConstants.CENTER);
 			pokeSprite.setBackground(Color.WHITE);
-			String pokemon = "/Images/0bulbasaur.png";
+			System.out.println(pok.getIzena());
+			String pokemon = "/Images/0" + pok.getIzena() + ".png";
 			pokeSprite.setIcon(new ImageIcon(PokemonPanela.class.getResource(pokemon)));
 		}
 		return pokeSprite;
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		Pokemon p = (Pokemon)arg1;
+		pokeInfoPanel.setText("\nEraso: " + pok.getAtk() + "" +  "\n"
+				+ "Defentsa: " + pok.getDef() + "\n"
+				+ "Bizia: " + pok.getHP() + "/" + pok.getMaxHP() + "\n"
+				+ "Mota: " + pok.getMota());
+		int bizia = (int) (pok.getHP()*100)/pok.getMaxHP();
+		healthBar.setValue(bizia);
+		if (bizia <= 50) {
+			this.healthBar.setForeground(Color.ORANGE);
+		}   
+		if (bizia <= 15) {
+			this.healthBar.setForeground(Color.RED);
+		}
 	}
 }

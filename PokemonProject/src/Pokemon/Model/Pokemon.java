@@ -8,6 +8,7 @@ public class Pokemon extends Observable{
 	private int atk;
 	private int def;
 	private int hp;
+	private int maxHP;
 	private String izena;
 	private String mota;
 	private boolean ahulduta;
@@ -32,6 +33,7 @@ public class Pokemon extends Observable{
 		this.atk = 11 + r.nextInt(6) + 1;
 		this.def = 3 + r.nextInt(3) + 1;
 		this.hp = 200 + r.nextInt(19) + 1;
+		this.maxHP = this.hp;
 	}
 	
 	public int getAtk(){
@@ -45,6 +47,9 @@ public class Pokemon extends Observable{
 	}
 	public String getMota(){
 		return this.mota;
+	}
+	public int getMaxHP() {
+		return this.maxHP;
 	}
 	
 	
@@ -82,6 +87,7 @@ public class Pokemon extends Observable{
 	//SCREEN
 	public void eguneratuEgoera() {
 		setChanged();
+		notifyObservers(this);
 	}
 	
 

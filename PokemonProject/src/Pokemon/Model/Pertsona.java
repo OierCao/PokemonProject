@@ -1,29 +1,22 @@
 package Pokemon.Model;
 
 public class Pertsona extends Jokalari {
-	boolean jolasten;
 	
 	//BUILDER
 	public Pertsona(int pJokNum,int pPokKop)
 	{
 		super(pPokKop);
 		izena = this.getClass().getName() + pJokNum;
-		this.jolasten=false;
 	}
 	
 	
 	
 	//SET/GET
-	public boolean getJolasten() {
-		return this.jolasten;
-	}
-	
-	
-	
+		
 	
 	//EXTRAS
 	public void jolastu() {
-		this.jolasten = true;
+		setTxanda(true);
 		Jokalari erasotua = null;
 		//LOOP mugimendu guztiak
 		//{
@@ -38,7 +31,7 @@ public class Pertsona extends Jokalari {
 		
 		//}
 		
-		this.jolasten = false;
+		setTxanda(false);
 	}
 	
 	

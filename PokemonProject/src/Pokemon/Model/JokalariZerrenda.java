@@ -102,13 +102,22 @@ public class JokalariZerrenda {
 		while (itr.hasNext() && !aurkitua) {
 			Jokalari j = itr.next();
 			if (j instanceof Pertsona) {
-				if ( ((Pertsona) j).getJolasten() ) { 
+				if (j.getTxanda() ) { 
 					jJolasten=j;
 					aurkitua=true;
 					}
 			}
 		}
 		return  jJolasten;
+	}
+
+
+	public void jokalariakEguneratu() {
+		Iterator<Jokalari> itr = getIter();
+		while (itr.hasNext()) {
+			 Jokalari j = itr.next();
+			 j.eguneratuEgoera();
+		}
 	}
 	
 

@@ -32,7 +32,8 @@ public class PokemonZerrenda {
 		int i=0;
 		Random r = new Random();
 		while (i<pKop) {
-			 pArray.addPokemon(lista.get(r.nextInt(lista.size())));
+			 Pokemon aux = lista.get(r.nextInt(lista.size()));
+			 pArray.addPokemon(new Pokemon(aux.getIzena(),aux.getMota()));
 			 i++;
 		} 
 		return pArray;	

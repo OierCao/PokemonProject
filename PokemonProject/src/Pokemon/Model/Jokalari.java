@@ -1,14 +1,18 @@
 	package Pokemon.Model;
 
-public class Jokalari {
+import java.util.Observable;
+
+public class Jokalari extends Observable{
 
 	protected String izena;
 	private PokemonZerrenda talde;
 	private boolean bizirik;
+	private boolean txanda;
 	
 	//BUILDER
 	public Jokalari(int pPokKop) {
 		bizirik = true;
+		txanda=false;
 		talde = randomTaldeLortu(pPokKop);
 		for (Pokemon p: talde.getLista()) {
 			p.estatistikakKalkulatu();
@@ -36,6 +40,12 @@ public class Jokalari {
 	public String getIzena() {
 		return izena;
 	}
+	public boolean getTxanda() {
+		return this.txanda;
+	}
+	protected void setTxanda(boolean b) {
+		this.txanda=b;
+	}
 	
 	
 
@@ -56,6 +66,9 @@ public class Jokalari {
 		if (this.talde.guztiakAhulduta() == true) {
 			setBizirik(false);
 		}
+		System.out.println("Player");
+		setChanged();
+		notifyObservers(this);
 	}
 	
 	

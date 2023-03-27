@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Pokemon.Model.Borroka;
+import Pokemon.Model.Jokalari;
+import Pokemon.Model.JokalariKatalogoa;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -30,12 +32,13 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
 import java.awt.Color;
 import java.awt.Font;
 
-public class HasieraPantalla extends JFrame {
+public class HasieraPantalla extends JFrame implements Observer {
 	private Kontroladore kontroladore=null;
-	private static HasieraPantalla HasPantalla;
 	
 	private JPanel panelRight;
 	private JPanel panelImg;
@@ -78,7 +81,9 @@ public class HasieraPantalla extends JFrame {
 		setBounds(100, 100, 649, 348);
 		getContentPane().add(getPanelRight(), BorderLayout.EAST);
 		getContentPane().add(getPanelImg(), BorderLayout.CENTER);
+		Borroka.getBorroka().addObserver(this);
 	}
+	
 	private JPanel getPanelRight() {
 		if (panelRight == null) {
 			panelRight = new JPanel();
@@ -268,6 +273,8 @@ public class HasieraPantalla extends JFrame {
 		return PlayButton;
 	}
 	
+	
+	
 	private Kontroladore getControlador() {
 		if (kontroladore == null) {
 			kontroladore = new Kontroladore();
@@ -279,13 +286,26 @@ public class HasieraPantalla extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(PlayButton)) {
-				Borroka.getBorroka().hasieraketak( Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
+				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
+				setVisible(false);
 				Borroka.getBorroka().partida();
-				HasieraPantalla.HasPantalla.setVisible(false);
 			}
 			else {
 				new ReadMe().setVisible(true);
 			}
 		}
-	} 
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		Jokalari j = (Jokalari)arg1;
+		System.out.println("Buenas Noches");
+		JokalariPanela jp = new JokalariPanela(j);
+		j.addObserver(jp);
+		for (int i = 0; i < Integer.parseInt(PokemonKopText.getText()); i++) {
+		      j.getTalde().getLista().get(i).addObserver((Observer)jp.getPokeTeamPanel().getComponent(i));
+		      j.eguneratuTaldea();
+		   }
+		jp.setVisible(true);
+	}
 }
