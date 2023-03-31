@@ -10,10 +10,10 @@ public class PokemonKatalogoa {
 	//BUILDER
 	private PokemonKatalogoa() {
 		lista = new PokemonZerrenda();
-		Pokemon p1= new Pokemon("charmander", "Fire");
-		Pokemon p2= new Pokemon("bulbasaur", "Grass");
-		Pokemon p3= new Pokemon("squirtle", "Water");
-		Pokemon p4= new Pokemon("pikachu", "Electric");
+		Pokemon p1= new Pokemon("Charmander", "Fire");
+		Pokemon p2= new Pokemon("Bulbasaur", "Grass");
+		Pokemon p3= new Pokemon("Squirtle", "Water");
+		Pokemon p4= new Pokemon("Pikachu", "Electric");
 		
 		
 		lista.addPokemon(p1);
@@ -35,6 +35,5 @@ public class PokemonKatalogoa {
 	public PokemonZerrenda getLista() {
 		return this.lista;
 	}
-
 	
 }

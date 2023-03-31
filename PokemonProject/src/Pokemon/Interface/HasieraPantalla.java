@@ -82,6 +82,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 		getContentPane().add(getPanelRight(), BorderLayout.EAST);
 		getContentPane().add(getPanelImg(), BorderLayout.CENTER);
 		Borroka.getBorroka().addObserver(this);
+		setTitle("Hasiera Pantalla");
 	}
 	
 	private JPanel getPanelRight() {
@@ -288,7 +289,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 			if(e.getSource().equals(PlayButton)) {
 				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
 				setVisible(false);
-				Borroka.getBorroka().partida();
+				//Borroka.getBorroka().partida();
 			}
 			else {
 				new ReadMe().setVisible(true);
@@ -298,14 +299,12 @@ public class HasieraPantalla extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Jokalari j = (Jokalari)arg1;
-		System.out.println("Buenas Noches");
-		JokalariPanela jp = new JokalariPanela(j);
-		j.addObserver(jp);
+		JokalariPanela jp = new JokalariPanela((int)arg1);
+		JokalariKatalogoa.getJK().getJokPos((int)arg1).addObserver(jp);
 		for (int i = 0; i < Integer.parseInt(PokemonKopText.getText()); i++) {
-		      j.getTalde().getLista().get(i).addObserver((Observer)jp.getPokeTeamPanel().getComponent(i));
-		      j.eguneratuTaldea();
-		   }
+			JokalariKatalogoa.getJK().getJokPos((int)arg1).getTalde().get(i).addObserver((Observer)jp.getPokePanelak().get(i));
+			JokalariKatalogoa.getJK().getJokPos((int)arg1).eguneratuTaldea();
+		}
 		jp.setVisible(true);
 	}
 }

@@ -32,6 +32,14 @@ public class JokalariKatalogoa {
 		this.lista.removeAll();
 	}
 	
+	public Jokalari getJokPos(int i) {
+		return lista.getJoklaraiPos(i);
+	}
+	
+	public int getPos(Jokalari jok) {
+		return lista.getPos(jok);
+	}
+	
 	
 	
 	//EXTRAS

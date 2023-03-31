@@ -6,7 +6,7 @@ public class Pertsona extends Jokalari {
 	public Pertsona(int pJokNum,int pPokKop)
 	{
 		super(pPokKop);
-		izena = this.getClass().getName() + pJokNum;
+		izena = "Pertsona" + pJokNum;
 	}
 	
 	
@@ -16,7 +16,6 @@ public class Pertsona extends Jokalari {
 	
 	//EXTRAS
 	public void jolastu() {
-		setTxanda(true);
 		Jokalari erasotua = null;
 		//LOOP mugimendu guztiak
 		//{

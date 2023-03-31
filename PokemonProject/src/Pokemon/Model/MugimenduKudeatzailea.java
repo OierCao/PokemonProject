@@ -51,10 +51,22 @@ public class MugimenduKudeatzailea {
 	//EXTRAS
 	public void eraso() {
 		int erasoAtk= pokErasotzaile.getAtk();
-		pokErasotua.atakeaKudeatu(erasoAtk);
+		boolean eraginkor = false;
+		if(pokErasotzaile.getMota().equals("Fire") && pokErasotua.getMota().equals("Grass")) {
+			eraginkor =true;
+		}
+		else if(pokErasotzaile.getMota().equals("Water") && pokErasotua.getMota().equals("Fire")) {
+			eraginkor =true;
+		}
+		else if(pokErasotzaile.getMota().equals("Electric") && pokErasotua.getMota().equals("Water")) {
+			eraginkor =true;
+		}
+		else if(pokErasotzaile.getMota().equals("Grass") && pokErasotua.getMota().equals("Electric")) {
+			eraginkor =true;
+		}
+		
+		pokErasotua.atakeaKudeatu(erasoAtk, eraginkor);
 		jokErasotua.eguneratuEgoera();
-		//JokalariKatalogoa.getJK().getLista().irabazlea()
-		setNull();
 	}
 	
 	

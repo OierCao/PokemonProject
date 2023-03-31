@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import Pokemon.Model.Borroka;
 import Pokemon.Model.Jokalari;
+import Pokemon.Model.JokalariKatalogoa;
+import Pokemon.Model.JokalariZerrenda;
 import Pokemon.Model.Pokemon;
 
 import java.awt.BorderLayout;
@@ -23,11 +25,14 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.CardLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class JokalariPanela extends JFrame implements Observer{
 
+	private Kontroladore kontroladore=null;
 	private ArrayList<PokemonPanela> pokemonPanelak;
-	private Jokalari jok;
+	private int jokPos;
 	
 	private JPanel contentPane;
 	private JPanel trainerPanel;
@@ -42,7 +47,7 @@ public class JokalariPanela extends JFrame implements Observer{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JokalariPanela frame = new JokalariPanela(null);
+					JokalariPanela frame = new JokalariPanela(0);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,9 +59,9 @@ public class JokalariPanela extends JFrame implements Observer{
 	/**
 	 * Create the frame.
 	 */
-	public JokalariPanela(Jokalari pJok) {
+	public JokalariPanela(int pJokPos) {
 		
-		jok=pJok;
+		jokPos=pJokPos;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -70,14 +75,20 @@ public class JokalariPanela extends JFrame implements Observer{
 		contentPane.add(getPokeTeamPanel(), BorderLayout.CENTER);
 		
 		pokemonPanelak = new ArrayList<PokemonPanela>();
-		System.out.println("Que aproveche");
-		for (Pokemon p: jok.getTalde().getLista()) {
-			System.out.println(p.getIzena());
-			PokemonPanela PP = new PokemonPanela(jok, p);
+		int i=0;
+		for (Pokemon p: JokalariKatalogoa.getJK().getJokPos(pJokPos).getTalde()) {
+			PokemonPanela PP = new PokemonPanela(jokPos, i);
 			pokemonPanelak.add(PP);
 			getPokeTeamPanel().add(PP);
+			p.addObserver(PP);
+			i++;
 		}
+		setTitle(JokalariKatalogoa.getJK().getJokPos(pJokPos).getIzena());
 	}
+	public ArrayList<PokemonPanela> getPokePanelak(){
+		return pokemonPanelak;
+	}
+	
 	private JPanel getTrainerPanel() {
 		if (trainerPanel == null) {
 			trainerPanel = new JPanel();
@@ -102,25 +113,43 @@ public class JokalariPanela extends JFrame implements Observer{
 		}
 		return trainerSprite;
 	}
+	
+	private Kontroladore getControlador() {
+		if (kontroladore == null) {
+			kontroladore = new Kontroladore();
+		}
+		return kontroladore;
+	}
+	
+	private class Kontroladore implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource().equals(skipButton)) {
+				Borroka.getBorroka().txandaKalkulatu();
+			}
+		}
+	}
 
 	@Override
-	public void update(Observable o, Object arg) {
-		Jokalari j = (Jokalari)arg;
-		System.out.println("Ha llegado");
+	public void update(Observable arg0, Object arg) {
 		if (Borroka.getBorroka().getIrabazale()==null) {
-			if (!j.getBizirik()) {
-				skipButton.setText("Defeated");
+			if (!((Jokalari)arg0).getBizirik()) {
+				skipButton.setText("Defeated.");
+				skipButton.setBackground(Color.RED);
 			}
-			else if (j.getTxanda()) {
+			else if (((Jokalari)arg0).getTxanda()) {
 				skipButton.setText("Jokatu!");
+				skipButton.setBackground(Color.GREEN);
 			}
 			else {
-				skipButton.setText("Wait");
+				skipButton.setText("Wait.");
+				skipButton.setBackground(Color.YELLOW);
 			}
 		}
 		else {
-			if (Borroka.getBorroka().getIrabazale().equals(j)) {
+			if (Borroka.getBorroka().getIrabazale().equals(((Jokalari)arg0))) {
 				skipButton.setText("Irabazlea!!!");
+				skipButton.setBackground(Color.MAGENTA);
 			}
 		}
 		
@@ -129,7 +158,7 @@ public class JokalariPanela extends JFrame implements Observer{
 	public JPanel getPokeTeamPanel() {
 		if (pokeTeamPanel == null) {
 			pokeTeamPanel = new JPanel();
-			pokeTeamPanel.setLayout(new GridLayout(1, jok.getTalde().getPokKop() , 0, 0));  //(w,x,y,z) w=rows, x=collums, y=hgap, z=ygap,
+			pokeTeamPanel.setLayout(new GridLayout(1, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().size() , 0, 0));  //(w,x,y,z) w=rows, x=collums, y=hgap, z=ygap,
 		}
 		return pokeTeamPanel;
 	}

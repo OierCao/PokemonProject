@@ -9,15 +9,15 @@ public class Bot extends Jokalari {
 	public Bot(int pJokNum,int pPokKop,int pDelayms) {
 		super(pPokKop);
 		delayms=pDelayms;
-		izena = this.getClass().getName() + pJokNum;
+		izena = "Bot" + pJokNum;
 	}
 	
 	
 	public void jolastu(JokalariZerrenda pJZ) {
 		MugimenduKudeatzailea MK = MugimenduKudeatzailea.getMK();
-		for (Pokemon p : this.getTalde().getEzAhulduak().getLista()) {
+		for (Pokemon p : getPokemonak().getEzAhulduak().getLista()) {
 			Jokalari erasoJ = getJokalaria(pJZ);
-			Pokemon erasoPok = getAtkPok(erasoJ.getTalde().getEzAhulduak());
+			Pokemon erasoPok = getAtkPok(erasoJ.getPokemonak().getEzAhulduak());
 			
 			MK.setJokErasotzaile(this);
 			MK.setPokErasotzaile(p);
@@ -27,8 +27,6 @@ public class Bot extends Jokalari {
 			
 			MK.eraso();	
 		}
-		
-
 	}
 	
 	

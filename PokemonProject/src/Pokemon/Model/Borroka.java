@@ -1,10 +1,12 @@
 package Pokemon.Model;
 import java.util.Observable;
+import java.util.Random;
 
 
 public class Borroka extends Observable{
 	private static Borroka nB = null;
 	private Jokalari irabazle=null;
+	private int txanda;
 	
 	
 	//BUILDER
@@ -33,17 +35,23 @@ public class Borroka extends Observable{
 		while (iPer<perKop) {
 			Jokalari j = JK.newJokalari(1,iPer,pokKop,pDelayms);
 			JK.getLista().addJokalari(j);
-			eguneratuBorrokaScreen(j);
+			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
 			iPer++;	
 		}
 		//bot (2)
 		while (iBot<botKop) {
 			Jokalari j = JK.newJokalari(2,iBot,pokKop,pDelayms);
 			JK.getLista().addJokalari(j);
-			eguneratuBorrokaScreen(j);
+			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
 			iBot++;	
 		}
 		
+	}
+	
+	public void txandaKalkulatu() {
+		Random r = new Random();
+		txanda = r.nextInt(JokalariKatalogoa.getJK().getLista().jokalariKop()-1);
+		JokalariKatalogoa.getJK().getJokPos(txanda).setTxanda(true);
 	}
 	
 	
@@ -61,10 +69,9 @@ public class Borroka extends Observable{
 
 	
 	//SCREEN
-	private void eguneratuBorrokaScreen(Jokalari j) { //actualizar la pantalla porque hay un nuevo jugador
+	private void eguneratuBorrokaScreen(int pJokPos) { //actualizar la pantalla porque hay un nuevo jugador
 		setChanged();
-		System.out.println("Buenos Dias");
-		notifyObservers(j);
+		notifyObservers(pJokPos);
 		
 	}
 	

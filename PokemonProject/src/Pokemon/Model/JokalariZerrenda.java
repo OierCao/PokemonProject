@@ -61,6 +61,30 @@ public class JokalariZerrenda {
 		return j;
 	}
 	
+	public int getPos(Jokalari pJok) {
+		Iterator<Jokalari> itr = getIter();
+		boolean aurkitua=false;
+		Jokalari j;
+		int pos=0;
+		while (itr.hasNext() && !aurkitua) {
+			j = itr.next();
+			if (j.equals(pJok)) {
+				aurkitua=true;
+			}
+			else {
+				pos++;
+			}
+		}
+		return pos;
+	}
+	public Jokalari getJoklaraiPos(int i) {
+		return lista.get(i);
+	}
+	
+	public int jokalariKop() {
+		return lista.size();
+	}
+	
 	
 	
 	//EXTRAS 

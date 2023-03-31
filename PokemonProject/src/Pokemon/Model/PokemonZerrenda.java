@@ -23,10 +23,6 @@ public class PokemonZerrenda {
 		return this.lista;
 	}
 	
-	public int getPokKop() {
-		return this.lista.size();
-	}
-	
 	public PokemonZerrenda getXRandom(int pKop) {
 		PokemonZerrenda pArray = new PokemonZerrenda();
 		int i=0;
@@ -53,11 +49,27 @@ public class PokemonZerrenda {
 		PokemonZerrenda pZ = getEzAhulduak();
 		Pokemon p = null;
 		int rand;
-		boolean aurkitua=false;
 		Random r=new Random();
 		rand = r.nextInt(pZ.lista.size()-1);
 		p = this.lista.get(rand);
 		return p;
+	}
+	
+	public int getPos(Pokemon pPok) {
+		Iterator<Pokemon> itr = getIter();
+		boolean aurkitua=false;
+		Pokemon p;
+		int pos=0;
+		while (itr.hasNext() && !aurkitua) {
+			p = itr.next();
+			if (p.equals(pPok)) {
+				aurkitua=true;
+			}
+			else {
+				pos++;
+			}
+		}
+		return pos;
 	}
 	
 	

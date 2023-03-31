@@ -39,6 +39,7 @@ public class ReadMe extends JFrame {
     this.readMePanel.setLayout(new BorderLayout(0, 0));
     setContentPane(this.readMePanel);
     this.readMePanel.add(getReadMeText(), "Center");
+    setTitle("ReadMe");
   }
   
   private JTextPane getReadMeText() {

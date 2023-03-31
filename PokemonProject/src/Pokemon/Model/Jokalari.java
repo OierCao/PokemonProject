@@ -1,11 +1,12 @@
 	package Pokemon.Model;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 public class Jokalari extends Observable{
 
 	protected String izena;
-	private PokemonZerrenda talde;
+	protected PokemonZerrenda talde;
 	private boolean bizirik;
 	private boolean txanda;
 	
@@ -34,8 +35,11 @@ public class Jokalari extends Observable{
 	private void setBizirik(boolean pBizirik) {
 		this.bizirik = pBizirik;
 	}
-	public PokemonZerrenda getTalde() {
+	public PokemonZerrenda getPokemonak() {
 		return this.talde;
+	}
+	public ArrayList<Pokemon> getTalde() {
+		return this.talde.getLista();
 	}
 	public String getIzena() {
 		return izena;
@@ -46,6 +50,7 @@ public class Jokalari extends Observable{
 	protected void setTxanda(boolean b) {
 		this.txanda=b;
 	}
+	
 	
 	
 
@@ -63,12 +68,20 @@ public class Jokalari extends Observable{
 	}
 	
 	public void eguneratuEgoera() {	
-		if (this.talde.guztiakAhulduta() == true) {
+		if (talde.guztiakAhulduta()) {
 			setBizirik(false);
 		}
-		System.out.println("Player");
 		setChanged();
-		notifyObservers(this);
+		notifyObservers();
+	}
+	
+	public String txanda(){
+		if (txanda) {
+			return "Jokatu!";
+		}
+		else {
+			return "Itxaron";
+		}
 	}
 	
 	

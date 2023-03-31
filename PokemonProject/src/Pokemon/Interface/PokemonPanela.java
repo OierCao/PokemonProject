@@ -6,13 +6,20 @@ import java.awt.BorderLayout;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
+import Pokemon.Model.Borroka;
 import Pokemon.Model.Jokalari;
+import Pokemon.Model.JokalariKatalogoa;
 import Pokemon.Model.Pokemon;
 import Pokemon.Model.PokemonKatalogoa;
+import Pokemon.Model.MugimenduKudeatzailea;
 
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -25,16 +32,17 @@ public class PokemonPanela extends JPanel implements Observer{
 	private JProgressBar healthBar;
 	private JLabel pokeSprite;
 	private JTextPane pokeInfoPanel;
+	private Sagua sagua=null;
 
-	private Jokalari jok;
-	private Pokemon pok;
+	private int jokPos;
+	private int pokPos;
 
 	/**
 	 * Create the panel.
 	 */
-	public PokemonPanela(Jokalari pJok, Pokemon pPok) {
-		jok=pJok;
-		pok=pPok;
+	public PokemonPanela(int pJokPos, int pPokPos) {
+		jokPos=pJokPos;
+		pokPos=pPokPos;
 		
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout(0, 0));
@@ -61,10 +69,10 @@ public class PokemonPanela extends JPanel implements Observer{
 			pokeInfoPanel.setBounds(0, 0, 100, 100);
 			pokeInfoPanel.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			pokeInfoPanel.setBackground(Color.WHITE);
-			pokeInfoPanel.setText("\nEraso: " + pok.getAtk() + "" +  "\n"
-					+ "Defentsa: " + pok.getDef() + "\n"
-					+ "Bizia: " + pok.getHP() + "/" + pok.getMaxHP() + "\n"
-					+ "Mota: " + pok.getMota());
+			pokeInfoPanel.setText("\nEraso: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAtk() + "" +  "\n"
+					+ "Defentsa: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getDef() + "\n"
+					+ "Bizia: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getHP() + "/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMaxHP() + "\n"
+					+ "Mota: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota());
 		}
 		return pokeInfoPanel;
 	}
@@ -74,21 +82,52 @@ public class PokemonPanela extends JPanel implements Observer{
 			pokeSprite = new JLabel("");
 			pokeSprite.setHorizontalAlignment(SwingConstants.CENTER);
 			pokeSprite.setBackground(Color.WHITE);
-			System.out.println(pok.getIzena());
-			String pokemon = "/Images/0" + pok.getIzena() + ".png";
+			String pokemon = "/Images/0" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena().toLowerCase() + ".png";
 			pokeSprite.setIcon(new ImageIcon(PokemonPanela.class.getResource(pokemon)));
+			pokeSprite.addMouseListener(getSagua());
 		}
 		return pokeSprite;
+	}
+	
+	private Sagua getSagua() {
+		if (sagua == null) {
+			sagua = new Sagua();
+		}
+		return sagua;
+	}
+	
+	private class Sagua implements MouseListener {
+		
+		public void mouseClicked(MouseEvent e) {
+			if (e.getSource().equals(getPokeSprite()) && getPokeSprite().isEnabled() && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda()) {
+				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
+				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
+				System.out.println("setAttackPlayer " + JokalariKatalogoa.getJK().getJokPos(jokPos).getIzena() + " setAttackPoke " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
+			}
+			else if(getPokeSprite().isEnabled() && !JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda()) {
+				MugimenduKudeatzailea.getMK().setJokErasotua(JokalariKatalogoa.getJK().getJokPos(jokPos));
+				MugimenduKudeatzailea.getMK().setPokErasotua(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
+				MugimenduKudeatzailea.getMK().eraso();
+				System.out.println("setDefenderPlayer " + JokalariKatalogoa.getJK().getJokPos(jokPos).getIzena() + " setDefenderPoke " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
+			}
+		}
+
+		public void mouseEntered(MouseEvent e) {	}
+
+		public void mouseExited(MouseEvent e) {		}
+
+		public void mousePressed(MouseEvent e) {	}
+
+		public void mouseReleased(MouseEvent e) {	}
 	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		Pokemon p = (Pokemon)arg1;
-		pokeInfoPanel.setText("\nEraso: " + pok.getAtk() + "" +  "\n"
-				+ "Defentsa: " + pok.getDef() + "\n"
-				+ "Bizia: " + pok.getHP() + "/" + pok.getMaxHP() + "\n"
-				+ "Mota: " + pok.getMota());
-		int bizia = (int) (pok.getHP()*100)/pok.getMaxHP();
+		pokeInfoPanel.setText("\nEraso: " + ((Pokemon)arg0).getAtk() + "" +  "\n"
+				+ "Defentsa: " + ((Pokemon)arg0).getDef() + "\n"
+				+ "Bizia: " + ((Pokemon)arg0).getHP() + "/" + ((Pokemon)arg0).getMaxHP() + "\n"
+				+ "Mota: " + ((Pokemon)arg0).getMota());
+		int bizia = (int) (((Pokemon)arg0).getHP()*100)/((Pokemon)arg0).getMaxHP();
 		healthBar.setValue(bizia);
 		if (bizia <= 50) {
 			this.healthBar.setForeground(Color.ORANGE);

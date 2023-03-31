@@ -54,23 +54,31 @@ public class Pokemon extends Observable{
 	
 	
 	//EXTRAS
-	public void atakeaKudeatu(int pAtk) {
-		int mina = minaKalkulatu(pAtk);
+	public void atakeaKudeatu(int pAtk, boolean pEraginkor) {
+		int mina = minaKalkulatu(pAtk, pEraginkor);
 		hpKudeatu(mina);
-		
 		eguneratuEgoera();
 	}
 	
 	
-	private int minaKalkulatu(int pAtk) {
-		int mina = pAtk - this.def;
+	private int minaKalkulatu(int pAtk, boolean pEraginkor) {
+		int mina;
+		if(pEraginkor) {
+			mina = pAtk * 2 - this.def;
+		}
+		else {
+			mina = pAtk - this.def;
+		}
+		
 		if (mina < 0) mina = 0;
 		return mina;
 	}
 	
 	private void hpKudeatu(int pMina) {
 		this.hp = this.hp - pMina;
-		if (this.hp <= 0) setAhulduta(true);
+		if (this.hp <= 0) {
+			setAhulduta(true);
+		}
 	}
 	
 	public boolean getAhulduta(){
