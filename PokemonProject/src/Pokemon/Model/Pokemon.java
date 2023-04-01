@@ -95,7 +95,7 @@ public class Pokemon extends Observable{
 	//SCREEN
 	public void eguneratuEgoera() {
 		setChanged();
-		notifyObservers(this);
+		notifyObservers();
 	}
 	
 
