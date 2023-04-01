@@ -50,6 +50,7 @@ public class MugimenduKudeatzailea {
 	
 	//EXTRAS
 	public void eraso() {
+		System.out.println("erasoa egingo da");
 		int erasoAtk= pokErasotzaile.getAtk();
 		boolean eraginkor = false;
 		if(pokErasotzaile.getMota().equals("Fire") && pokErasotua.getMota().equals("Grass")) {
@@ -66,7 +67,11 @@ public class MugimenduKudeatzailea {
 		}
 		
 		pokErasotua.atakeaKudeatu(erasoAtk, eraginkor);
+		System.out.println("erasoa kudeatu da");
+		
 		jokErasotua.eguneratuEgoera();
+		
+		System.out.println("jokalariaren egoera eguneratu da");
 	}
 	
 	

@@ -50,7 +50,7 @@ public class PokemonZerrenda {
 		Pokemon p = null;
 		int rand;
 		Random r=new Random();
-		rand = r.nextInt(pZ.lista.size()-1);
+		rand = r.nextInt(pZ.lista.size());
 		p = this.lista.get(rand);
 		return p;
 	}

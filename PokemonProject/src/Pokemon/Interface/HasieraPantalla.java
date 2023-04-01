@@ -289,7 +289,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 			if(e.getSource().equals(PlayButton)) {
 				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
 				setVisible(false);
-				//Borroka.getBorroka().partida();
+				Borroka.getBorroka().partida();
 			}
 			else {
 				new ReadMe().setVisible(true);

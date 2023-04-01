@@ -49,6 +49,8 @@ public class Jokalari extends Observable{
 	}
 	protected void setTxanda(boolean b) {
 		this.txanda=b;
+		setChanged();
+		notifyObservers();
 	}
 	
 	

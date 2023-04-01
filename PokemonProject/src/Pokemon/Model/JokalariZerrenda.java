@@ -45,7 +45,9 @@ public class JokalariZerrenda {
 		Iterator<Jokalari> itr = getIter();
 		while (itr.hasNext()) {
 			 Jokalari j = itr.next();
-			 if (!j.getBizirik()) pArray.addJokalari(j);
+			 if (j.getBizirik()) {
+				 pArray.addJokalari(j);
+			 }
 		} 
 		return pArray;	
 	}
@@ -56,8 +58,20 @@ public class JokalariZerrenda {
 		Jokalari j = null;
 		int rand;
 		Random r=new Random();
-		rand = r.nextInt(lista.size()-1);
-		j = this.lista.get(rand);
+		rand = r.nextInt(jZ.lista.size());
+		j = jZ.lista.get(rand);
+		return j;
+	}
+	
+	public Jokalari getBesteRandomBizirik(Jokalari pJok) {
+		Jokalari j = null;
+		boolean aurkitua=false;
+		while (!aurkitua) {
+			j = this.getRandomBizirik();
+			if (!j.equals(pJok)) {
+			aurkitua=true;
+		}
+		}
 		return j;
 	}
 	
@@ -89,11 +103,19 @@ public class JokalariZerrenda {
 	
 	//EXTRAS 
 	public Jokalari txandaJolastu() {
+		System.out.println("txanda jolasten \n");
 		Jokalari jIrabazle = null;
 		Jokalari oraingoJ = null;
 		
 		oraingoJ = getRandomBizirik();
+		System.out.println(oraingoJ.getIzena() + "-ren txanda \n");
+		oraingoJ.setTxanda(true);
 		oraingoJ.jolastu();
+		if (oraingoJ instanceof Pertsona) {
+			//gelditu
+			System.out.println("Pertsona naiz");
+		}
+		oraingoJ.setTxanda(false);
 		
 		jIrabazle = irabazlea();
 		

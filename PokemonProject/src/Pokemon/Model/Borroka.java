@@ -62,7 +62,8 @@ public class Borroka extends Observable{
 			JK.getLista().jokalariakEguneratu();
 			irabazle = JK.getLista().txandaJolastu();
 		}
-		
+		irabazle.eguneratuEgoera();
+		System.out.println("\n\n Irabazlea " + irabazle.getIzena() +"da");
 		JK.reset();
 		
 	}
