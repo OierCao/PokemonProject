@@ -88,6 +88,14 @@ public class JokalariPanela extends JFrame implements Observer{
 		return pokemonPanelak;
 	}
 	
+	public JPanel getPokeTeamPanel() {
+		if (pokeTeamPanel == null) {
+			pokeTeamPanel = new JPanel();
+			pokeTeamPanel.setLayout(new GridLayout(1, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().size() , 0, 0));  //(w,x,y,z) w=rows, x=collums, y=hgap, z=ygap,
+		}
+		return pokeTeamPanel;
+	}
+	
 	private JPanel getTrainerPanel() {
 		if (trainerPanel == null) {
 			trainerPanel = new JPanel();
@@ -101,7 +109,7 @@ public class JokalariPanela extends JFrame implements Observer{
 	private JButton getSkipButton() {
 		if (skipButton == null) {
 			skipButton = new JButton("");
-			skipButton.addActionListener(getControlador());
+			skipButton.addActionListener(getKontroladore());
 		}
 		return skipButton;
 	}
@@ -112,13 +120,6 @@ public class JokalariPanela extends JFrame implements Observer{
 			trainerSprite.setIcon(new ImageIcon(JokalariPanela.class.getResource("/Images/trainer" + r.nextInt(5) + ".png")));
 		}
 		return trainerSprite;
-	}
-	
-	private Kontroladore getControlador() {
-		if (kontroladore == null) {
-			kontroladore = new Kontroladore();
-		}
-		return kontroladore;
 	}
 	
 	private class Kontroladore implements ActionListener {
@@ -132,7 +133,15 @@ public class JokalariPanela extends JFrame implements Observer{
 			}
 		}
 	}
+	
+	private Kontroladore getKontroladore() {
+		if (kontroladore == null) {
+			kontroladore = new Kontroladore();
+		}
+		return kontroladore;
+	}
 
+	//Eguneraketa
 	@Override
 	public void update(Observable arg0, Object arg) {
 		if (Borroka.getBorroka().getIrabazale()==null) {
@@ -158,11 +167,5 @@ public class JokalariPanela extends JFrame implements Observer{
 		
 		
 	}
-	public JPanel getPokeTeamPanel() {
-		if (pokeTeamPanel == null) {
-			pokeTeamPanel = new JPanel();
-			pokeTeamPanel.setLayout(new GridLayout(1, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().size() , 0, 0));  //(w,x,y,z) w=rows, x=collums, y=hgap, z=ygap,
-		}
-		return pokeTeamPanel;
-	}
+	
 }

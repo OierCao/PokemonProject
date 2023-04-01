@@ -32,7 +32,7 @@ public class ReadMe extends JFrame {
     setFont(new Font("Centaur", Font.PLAIN, 12));
     setBackground(Color.WHITE);
     setTitle("readMe");
-    setBounds(200, 200,616, 453);
+    setBounds(200, 200,559, 326);
     this.readMePanel = new JPanel();
     this.readMePanel.setBackground(Color.WHITE);
     this.readMePanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,7 +59,8 @@ public class ReadMe extends JFrame {
       		+ "	·Sua min gehiago belarrari\n"
       		+ "	·Ura min gehiago suari\n"
       		+ "	·Elektrikoa min gehiago urari\n"
-      		+ "	·Belarra min gehiago elektrikoari\n");
+      		+ "	·Belarra min gehiago elektrikoari");
+      this.readMeText.setEditable(false);
     } 
     return this.readMeText;
   }

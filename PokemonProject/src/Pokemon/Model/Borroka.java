@@ -1,18 +1,16 @@
 package Pokemon.Model;
+
 import java.util.Observable;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 public class Borroka extends Observable{
 	private static Borroka nB = null;
 	private Jokalari irabazle=null;
-	private int txanda;
 	private int millis;
 	private Timer timer;
 	
-	//BUILDER
+	//Singleton patroia
 	private Borroka() {
 	}
 	
@@ -23,6 +21,7 @@ public class Borroka extends Observable{
 		return nB;
 	}
 	
+	//Getter eta Setter
 	public Jokalari getIrabazale() {
 		return irabazle;
 	}
@@ -32,7 +31,7 @@ public class Borroka extends Observable{
 	
 	
 	
-	//EXTRAS
+	//Beste metodoak
 	public void hasieraketak(int perKop, int botKop, int pokKop, int pDelayms) {
 		millis=pDelayms;
 		JokalariKatalogoa.getJK();
@@ -54,13 +53,6 @@ public class Borroka extends Observable{
 		}
 		
 	}
-	
-	public void txandaKalkulatu() {
-		Random r = new Random();
-		txanda = r.nextInt(JokalariKatalogoa.getJK().getLista().jokalariKop()-1);
-		JokalariKatalogoa.getJK().getJokPos(txanda).setTxanda(true);
-	}
-	
 	
 	public void partida() {
 		long l=0;
@@ -90,7 +82,7 @@ public class Borroka extends Observable{
 	}
 
 	
-	//SCREEN
+	//Pantalla eguneratu
 	private void eguneratuBorrokaScreen(int pJokPos) { //actualizar la pantalla porque hay un nuevo jugador
 		setChanged();
 		notifyObservers(pJokPos);

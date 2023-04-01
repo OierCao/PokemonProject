@@ -82,13 +82,13 @@ public class PokemonPanela extends JPanel implements Observer{
 		return pokeSprite;
 	}
 	
-	private Sagua getSagua() {
-		if (sagua == null) {
-			sagua = new Sagua();
+	public void aktibatuSprite() {
+		if(!JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAhulduta()) {
+			pokeSprite.setEnabled(true);
 		}
-		return sagua;
 	}
 	
+	//Sagua
 	private class Sagua implements MouseListener {
 		
 		public void mouseClicked(MouseEvent e) {
@@ -112,7 +112,15 @@ public class PokemonPanela extends JPanel implements Observer{
 
 		public void mouseReleased(MouseEvent e) {	}
 	}
+	
+	private Sagua getSagua() {
+		if (sagua == null) {
+			sagua = new Sagua();
+		}
+		return sagua;
+	}
 
+	//Eguneraketa
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		pokeInfoPanel.setText("\nEraso: " + ((Pokemon)arg0).getAtk() + "" +  "\n"
@@ -129,12 +137,6 @@ public class PokemonPanela extends JPanel implements Observer{
 		}
 		if (bizia==0) {
 			pokeSprite.setEnabled(false);
-		}
-	}
-	
-	public void aktibatuSprite() {
-		if(!JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAhulduta()) {
-			pokeSprite.setEnabled(true);
 		}
 	}
 }

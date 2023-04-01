@@ -10,7 +10,7 @@ public class Jokalari extends Observable{
 	private boolean bizirik;
 	private boolean txanda;
 	
-	//BUILDER
+	//Eraikitzaile
 	public Jokalari(int pPokKop) {
 		bizirik = true;
 		txanda=false;
@@ -53,22 +53,9 @@ public class Jokalari extends Observable{
 		notifyObservers();
 	}
 	
-	
-	
-
-	
-	//EXTRAS
+	//Beste metodoak
 	public void jolastu() {}
-	
-	public boolean pokemonaDu(Pokemon pPok) {
-		return this.talde.pokemonaDago(pPok);
-	}
-	
-	
-	protected void eguneratuErasotua(Jokalari pJokalari) { //beste jokalari baten egoera eguneratu
-		pJokalari.eguneratuEgoera();
-	}
-	
+
 	public void eguneratuEgoera() {	
 		if (talde.guztiakAhulduta()) {
 			setBizirik(false);
@@ -76,16 +63,6 @@ public class Jokalari extends Observable{
 		setChanged();
 		notifyObservers();
 	}
-	
-	public String txanda(){
-		if (txanda) {
-			return "Jokatu!";
-		}
-		else {
-			return "Itxaron";
-		}
-	}
-	
 	
 	//SCREEN
 	public void eguneratuTaldea(){

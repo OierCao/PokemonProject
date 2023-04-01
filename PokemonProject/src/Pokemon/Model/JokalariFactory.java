@@ -4,6 +4,7 @@ public class JokalariFactory {
 
 	private static JokalariFactory nJF=null;
 
+	//Factory patroia
 	private JokalariFactory() {}
 
 	public static JokalariFactory getJF() {
@@ -12,7 +13,7 @@ public class JokalariFactory {
 		}
 		return nJF;
 	}
-
+	
 	public Jokalari createJokalari(int type,int pJokNum, int pPokKop) {
 		Jokalari j;
 		if (type==1) {
@@ -22,8 +23,5 @@ public class JokalariFactory {
 			j = new Bot(pJokNum,pPokKop);
 		}
 		return j;
-	}
-
-	
-	
+	}	
 }

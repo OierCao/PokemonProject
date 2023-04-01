@@ -5,7 +5,7 @@ public class PokemonKatalogoa {
 	private PokemonZerrenda lista;
 	private static PokemonKatalogoa nPK = null;
 
-	//BUILDER
+	//Singleton patroia
 	private PokemonKatalogoa() {
 		lista = new PokemonZerrenda();
 		Pokemon p1= new Pokemon("Charmander", "Fire");
@@ -29,7 +29,7 @@ public class PokemonKatalogoa {
 	}
 	
 	
-	//SET/GET
+	//Setter eta getter
 	public PokemonZerrenda getLista() {
 		return this.lista;
 	}

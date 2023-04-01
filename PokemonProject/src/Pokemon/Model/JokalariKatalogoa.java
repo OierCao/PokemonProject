@@ -4,7 +4,7 @@ public class JokalariKatalogoa {
 	private static JokalariKatalogoa nJK = null;
 	private JokalariZerrenda lista;
 	
-	//BUILDER
+	//Singleton patroia
 	private JokalariKatalogoa() {
 		this.lista = new JokalariZerrenda();
 	}
@@ -16,14 +16,14 @@ public class JokalariKatalogoa {
 		return nJK;	
 	}
 	
-	//ADD/REMOVE
+	//Jokalariak eratu
 	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop) {
 		Jokalari newJokalari = this.lista.newJokalari(pMota,pJokNum,pPokKop);
 		return newJokalari;
 	}
 	
 	
-	//SET/GET
+	//Setter eta Getter
 	public JokalariZerrenda getLista() {
 		return this.lista;
 	}
@@ -32,15 +32,11 @@ public class JokalariKatalogoa {
 		this.lista.removeAll();
 	}
 	
-	public Jokalari getJokPos(int i) {
+	public Jokalari getJokPos(int i) { //i posizioan dagoen jokalaria bueltatu
 		return lista.getJoklaraiPos(i);
 	}
 	
-	public int getPos(Jokalari jok) {
+	public int getPos(Jokalari jok) {//jok Jokalariaren posizioa bueltatu
 		return lista.getPos(jok);
 	}
-	
-	
-	
-	//EXTRAS
 }

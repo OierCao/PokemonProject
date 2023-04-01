@@ -8,19 +8,33 @@ public class PokemonZerrenda {
 
 	private ArrayList<Pokemon> lista;
 
-	//BUILDER
+	//Eraikitzailea
 	public PokemonZerrenda() {
 		lista = new ArrayList<Pokemon>();
 	}
 
 	//SET/GET
-	private Iterator<Pokemon> getIter() {
-		return lista.iterator();
+	public ArrayList<Pokemon> getLista(){return this.lista;}
+	
+	private Iterator<Pokemon> getIter() {return lista.iterator();}
+	
+	public int getPos(Pokemon pPok) {//pPok Pokemonaren posizioa buletatu
+		Iterator<Pokemon> itr = getIter();
+		boolean aurkitua=false;
+		Pokemon p;
+		int pos=0;
+		while (itr.hasNext() && !aurkitua) {
+			p = itr.next();
+			if (p.equals(pPok)) {
+				aurkitua=true;
+			}
+			else {
+				pos++;
+			}
+		}
+		return pos;
 	}
 	
-	public ArrayList<Pokemon> getLista(){
-		return this.lista;
-	}
 	
 	public PokemonZerrenda getXRandom(int pKop) {
 		PokemonZerrenda pArray = new PokemonZerrenda();
@@ -52,28 +66,9 @@ public class PokemonZerrenda {
 		rand = r.nextInt(pZ.lista.size());
 		p = this.lista.get(rand);
 		return p;
-	}
+	}	
 	
-	public int getPos(Pokemon pPok) {
-		Iterator<Pokemon> itr = getIter();
-		boolean aurkitua=false;
-		Pokemon p;
-		int pos=0;
-		while (itr.hasNext() && !aurkitua) {
-			p = itr.next();
-			if (p.equals(pPok)) {
-				aurkitua=true;
-			}
-			else {
-				pos++;
-			}
-		}
-		return pos;
-	}
-	
-	
-	
-	//ADD/REMOVE
+	//Pokemonak gehitu eta kendu
 	public void addPokemon(Pokemon pPok) {
 		lista.add(pPok);
 	}
@@ -86,11 +81,17 @@ public class PokemonZerrenda {
 		return pPok;
 	}
 	
-	
-	
-	
-	
-	//EXTRAS
+	//Beste metodoak
+	public boolean guztiakAhulduta() {
+		boolean ahuldutak = true;
+		Iterator<Pokemon> itr = getIter();
+		while (itr.hasNext() && ahuldutak == true) {
+			 Pokemon p = itr.next();
+			 ahuldutak = p.getAhulduta();
+		} 
+		return ahuldutak;	
+	}
+
 	public Pokemon bilatuPokemon(String pIzena) {
 		Iterator<Pokemon> itr = getIter();
 		boolean aurk = false;
@@ -122,19 +123,7 @@ public class PokemonZerrenda {
 		return aurk;
 	}
 	
-	
-	public boolean guztiakAhulduta() {
-		boolean ahuldutak = true;
-		Iterator<Pokemon> itr = getIter();
-		while (itr.hasNext() && ahuldutak == true) {
-			 Pokemon p = itr.next();
-			 ahuldutak = p.getAhulduta();
-		} 
-		return ahuldutak;	
-	}
-	
-
-	//SCREEN
+	//Pantalla
 	public void pokemonakEguneratu() {
 		Iterator<Pokemon> itr = getIter();
 		while (itr.hasNext()) {
@@ -142,24 +131,4 @@ public class PokemonZerrenda {
 			 p.eguneratuEgoera();
 		} 
 	}
-
-	
-	
-	
-	
-	/*
-	public Pokemon getXPokemon(Pokemon pPok) {
-		Pokemon p = null;
-		boolean aurkitua = false;
-		Iterator<Pokemon> itr = getIter();
-		while (itr.hasNext() && !aurkitua) {
-			 p = itr.next();
-			 if (p.equals(pPok)) {
-				 aurkitua=true;
-			 }
-		} 
-		return p;	
-	}
-	*/
-
 }

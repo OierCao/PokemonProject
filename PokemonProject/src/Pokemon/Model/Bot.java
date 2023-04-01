@@ -1,12 +1,24 @@
 package Pokemon.Model;
 
 public class Bot extends Jokalari {
-
+	
+	//Eraikitzaile
 	public Bot(int pJokNum,int pPokKop) {
 		super(pPokKop);
 		izena = "Bot" + pJokNum;
 	}
 	
+	//Getter
+	private Jokalari getJokalaria(JokalariZerrenda pJZ) {
+		return pJZ.getBesteRandomBizirik(this);
+
+	}
+	
+	private Pokemon getAtkPok(PokemonZerrenda pZ) {
+		return pZ.getRandomEzAhulduta();
+	}
+	
+	//Beste metodoak
 	@Override
 	public void jolastu() {
 		System.out.println("Nire izena " + izena + " da eta erasotzeari ekin egingo diot");
@@ -34,17 +46,5 @@ public class Bot extends Jokalari {
 			}
 			
 		}
-	}
-	
-	
-	private Jokalari getJokalaria(JokalariZerrenda pJZ) {
-		return pJZ.getBesteRandomBizirik(this);
-
-	}
-	
-	private Pokemon getAtkPok(PokemonZerrenda pZ) {
-		return pZ.getRandomEzAhulduta();
-	}
-
-	
+	}	
 }

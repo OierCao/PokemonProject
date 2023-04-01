@@ -14,52 +14,44 @@ public class Pokemon extends Observable{
 	private boolean ahulduta;
 
 	
-	//BUILDER
+	//Eraikitzaile
 	public Pokemon(String pIzena, String pMota) {
 		this.izena = pIzena;
 		this.mota = pMota;
 		this.ahulduta=false;
 	}
 	
-	
-	
-	//SET/GET
-	public String getIzena() {
-		return izena;
-	}
-	
+	//Setter eta getter
 	public void estatistikakKalkulatu() {
 		Random r=new Random();
 		this.atk = 11 + r.nextInt(6) + 1;
 		this.def = 3 + r.nextInt(3) + 1;
-		this.hp = 50 + r.nextInt(19) + 1;
+		this.hp = 200 + r.nextInt(19) + 1;
 		this.maxHP = this.hp;
 	}
 	
-	public int getAtk(){
-		return this.atk;
-	}
-	public int getDef(){
-		return this.def;
-	}
-	public int getHP(){
-		return this.hp;
-	}
-	public String getMota(){
-		return this.mota;
-	}
-	public int getMaxHP() {
-		return this.maxHP;
-	}
+	public String getIzena() {return izena;}
 	
+	public int getAtk(){return this.atk;}
 	
-	//EXTRAS
+	public int getDef(){return this.def;}
+	
+	public int getHP(){return this.hp;}
+	
+	public String getMota(){return this.mota;}
+	
+	public int getMaxHP() {return this.maxHP;}
+	
+	public boolean getAhulduta(){return this.ahulduta;}
+	
+	private void setAhulduta(boolean pAhulduta) {this.ahulduta = pAhulduta;}
+
+	//Beste metodoak
 	public void atakeaKudeatu(int pAtk, boolean pEraginkor) {
 		int mina = minaKalkulatu(pAtk, pEraginkor);
 		hpKudeatu(mina);
 		eguneratuEgoera();
 	}
-	
 	
 	private int minaKalkulatu(int pAtk, boolean pEraginkor) {
 		int mina;
@@ -82,18 +74,7 @@ public class Pokemon extends Observable{
 		}
 	}
 	
-	public boolean getAhulduta(){
-		return this.ahulduta;
-	}
-	
-	private void setAhulduta(boolean pAhulduta) {
-		this.ahulduta = pAhulduta;
-	}
-	
-	
-	
-	
-	//SCREEN
+	//Pantalla
 	public void eguneratuEgoera() {
 		setChanged();
 		notifyObservers();

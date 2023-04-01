@@ -42,16 +42,14 @@ public class MugimenduKudeatzailea {
 		pokErasotua = pPErasotua;
 	}
 	
-	public void setNull() {
+	private void setNull() {
 		jokErasotua=null;
 		pokErasotua=null;
 		pokErasotzaile=null;
 		jokErasotzaile=null;
 	}
 	
-	
-	
-	//EXTRAS
+	//Beste metodoak
 	public Jokalari eraso() {
 		System.out.println("Erasoa egingo da");
 		int erasoAtk= pokErasotzaile.getAtk();

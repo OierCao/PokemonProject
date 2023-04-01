@@ -252,7 +252,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 		if (ReadmeButton == null) {
 			ReadmeButton = new JButton("Readme");
 			ReadmeButton.setBounds(50, 48, 100, 21);
-			ReadmeButton.addActionListener(getControlador());
+			ReadmeButton.addActionListener(getKontroladore());
 		}
 		return ReadmeButton;
 	}
@@ -261,20 +261,12 @@ public class HasieraPantalla extends JFrame implements Observer {
 			PlayButton = new JButton("PLAY!");
 			PlayButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
 			PlayButton.setBounds(50, 79, 100, 33);
-			PlayButton.addActionListener(getControlador());
+			PlayButton.addActionListener(getKontroladore());
 		}
 		return PlayButton;
 	}
 	
-	
-	
-	private Kontroladore getControlador() {
-		if (kontroladore == null) {
-			kontroladore = new Kontroladore();
-		}
-		return kontroladore;
-	}
-	
+	//Kontroladorea
 	private class Kontroladore implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -288,7 +280,14 @@ public class HasieraPantalla extends JFrame implements Observer {
 			}
 		}
 	}
+	private Kontroladore getKontroladore() {
+		if (kontroladore == null) {
+			kontroladore = new Kontroladore();
+		}
+		return kontroladore;
+	}
 
+	//Eguneraketa
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		JokalariPanela jp = new JokalariPanela((int)arg1);

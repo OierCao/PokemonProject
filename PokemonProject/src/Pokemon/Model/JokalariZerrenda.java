@@ -8,13 +8,13 @@ public class JokalariZerrenda {
 	private ArrayList<Jokalari> lista;
 	
 	
-	//BUILDER
+	//Eraikitzaile
 	public JokalariZerrenda() {
 		lista = new ArrayList<Jokalari>();
 	}
 	
 	
-	//ADD/REMOVE
+	//Jokalariak gehitu eta kendu
 	public void addJokalari(Jokalari pJokalaria) {
 		this.lista.add(pJokalaria);
 	}
@@ -22,22 +22,26 @@ public class JokalariZerrenda {
 		this.lista.remove(pJokalaria);
 	}
 	
+	//Jokalariak sortu
 	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop) {
 		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pJokNum,pPokKop);
 		return newJokalari;
 	}
 	
 	
-	//SET/GET
-	private Iterator<Jokalari> getIter() {
-		return lista.iterator();
+	public ArrayList<Jokalari> getLista(){
+		return lista;
 	}
-	
+
+
 	public void removeAll() {
 		this.lista.clear();
 	}
-	public ArrayList<Jokalari> getLista(){
-		return lista;
+
+
+	//Setter eta getter
+	private Iterator<Jokalari> getIter() {
+		return lista.iterator();
 	}
 	
 	private JokalariZerrenda getBizirikDaudenak() {
@@ -93,30 +97,15 @@ public class JokalariZerrenda {
 	}
 	public Jokalari getJoklaraiPos(int i) {
 		return lista.get(i);
-	}
+	}	
 	
-	public int jokalariKop() {
-		return lista.size();
-	}
-	
-	
-	
-	//EXTRAS 
-	public void txandaJolastu() {
-		setGuztienTxandaFalse();
-		Jokalari oraingoJ = null;
-		
-		oraingoJ = getRandomBizirik();
-		System.out.println(oraingoJ.getIzena() + "-ren txanda \n");
-		oraingoJ.setTxanda(true);
-		oraingoJ.jolastu();
-		if (oraingoJ instanceof Pertsona) {
-			Borroka.getBorroka().timerAmaitu();
-			System.out.println("Pertsona naiz");
+	public void setGuztienTxandaFalse() {
+		for (Jokalari j: JokalariKatalogoa.getJK().getLista().getLista()) {
+			j.setTxanda(false);
 		}
 	}
-	
-	
+
+	//Beste metodoak
 	public Jokalari irabazlea() {
 		Iterator<Jokalari> itr = getIter();
 		Jokalari jIrabazle = null;
@@ -134,36 +123,26 @@ public class JokalariZerrenda {
 		return  jIrabazle;
 	}
 
-	
-	
-	public Jokalari norDagoJolasten() {
-		Iterator<Jokalari> itr = getIter();
-		Jokalari jJolasten = null;
-		boolean aurkitua=false;
-		while (itr.hasNext() && !aurkitua) {
-			Jokalari j = itr.next();
-			if (j instanceof Pertsona) {
-				if (j.getTxanda() ) { 
-					jJolasten=j;
-					aurkitua=true;
-					}
-			}
+	public void txandaJolastu() {
+		setGuztienTxandaFalse();
+		Jokalari oraingoJ = null;
+		
+		oraingoJ = getRandomBizirik();
+		System.out.println(oraingoJ.getIzena() + "-ren txanda \n");
+		oraingoJ.setTxanda(true);
+		oraingoJ.jolastu();
+		if (oraingoJ instanceof Pertsona) {
+			Borroka.getBorroka().timerAmaitu();
+			System.out.println("Pertsona naiz");
 		}
-		return  jJolasten;
 	}
-
-
+	
+	//Pantalla
 	public void jokalariakEguneratu() {
 		Iterator<Jokalari> itr = getIter();
 		while (itr.hasNext()) {
 			 Jokalari j = itr.next();
 			 j.eguneratuEgoera();
-		}
-	}
-	
-	public void setGuztienTxandaFalse() {
-		for (Jokalari j: JokalariKatalogoa.getJK().getLista().getLista()) {
-			j.setTxanda(false);
 		}
 	}
 	
