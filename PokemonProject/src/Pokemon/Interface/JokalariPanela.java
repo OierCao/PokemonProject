@@ -126,8 +126,11 @@ public class JokalariPanela extends JFrame implements Observer{
 	private class Kontroladore implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource().equals(skipButton) && !(JokalariKatalogoa.getJK().getJokPos(jokPos) instanceof Bot)) {
-				Borroka.getBorroka().txandaKalkulatu();
+			if(e.getSource().equals(skipButton) && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda() && !(JokalariKatalogoa.getJK().getJokPos(jokPos) instanceof Bot)) {
+				for(PokemonPanela PP: pokemonPanelak) {
+					PP.aktibatuSprite();
+				}
+				Borroka.getBorroka().partida();
 			}
 		}
 	}

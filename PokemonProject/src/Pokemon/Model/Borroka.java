@@ -1,13 +1,16 @@
 package Pokemon.Model;
 import java.util.Observable;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Borroka extends Observable{
 	private static Borroka nB = null;
 	private Jokalari irabazle=null;
 	private int txanda;
-	private int delay;
+	private int millis;
+	private Timer timer;
 	
 	//BUILDER
 	private Borroka() {
@@ -23,12 +26,15 @@ public class Borroka extends Observable{
 	public Jokalari getIrabazale() {
 		return irabazle;
 	}
+	public void setIrabazle(Jokalari pJok) {
+		irabazle=pJok;
+	}
 	
 	
 	
 	//EXTRAS
 	public void hasieraketak(int perKop, int botKop, int pokKop, int pDelayms) {
-		delay=pDelayms;
+		millis=pDelayms;
 		JokalariKatalogoa.getJK();
 		int iPer = 0; 
 		int iBot = 0;
@@ -57,16 +63,30 @@ public class Borroka extends Observable{
 	
 	
 	public void partida() {
-		JokalariKatalogoa JK = JokalariKatalogoa.getJK();
+		long l=0;
 		irabazle = null;
-		while (irabazle==null) {
-			JK.getLista().jokalariakEguneratu();
-			irabazle = JK.getLista().txandaJolastu();
-		}
-		irabazle.eguneratuEgoera();
-		System.out.println("\n\n Irabazlea " + irabazle.getIzena() +"da");
-		JK.reset();
+		TimerTask txandaJolastu = new TimerTask() {
+			public void run() {
+				if (irabazle==null) {
+					Jokalari jokalari = JokalariKatalogoa.getJK().getLista().txandaJolastu();
+					irabazle = JokalariKatalogoa.getJK().getLista().irabazlea();
+					JokalariKatalogoa.getJK().getLista().jokalariakEguneratu();
+				}
+				else {
+					irabazle.eguneratuEgoera();
+					JokalariKatalogoa.getJK().reset();
+					timerAmaitu();
+				}
+			}
+		};
+		timer = new Timer();
+		timer.scheduleAtFixedRate(txandaJolastu, l, (long)millis);
 		
+	}
+	
+	public void timerAmaitu() {
+		timer.cancel();
+		timer.purge();
 	}
 
 	

@@ -26,6 +26,9 @@ public class MugimenduKudeatzailea {
 	
 	
 	//SET/GET
+	public Pokemon getPokErasotzaile() {
+		return pokErasotzaile;
+	}
 	public void setJokErasotzaile(Jokalari pJErasotzaile) {
 		jokErasotzaile = pJErasotzaile;
 	}
@@ -50,7 +53,7 @@ public class MugimenduKudeatzailea {
 	
 	//EXTRAS
 	public Jokalari eraso() {
-		System.out.println("erasoa egingo da");
+		System.out.println("Erasoa egingo da");
 		int erasoAtk= pokErasotzaile.getAtk();
 		boolean eraginkor = false;
 		if(pokErasotzaile.getMota().equals("Fire") && pokErasotua.getMota().equals("Grass")) {
@@ -67,17 +70,25 @@ public class MugimenduKudeatzailea {
 		}
 		
 		pokErasotua.atakeaKudeatu(erasoAtk, eraginkor);
-		System.out.println("erasoa kudeatu da");
-		System.out.println(pokErasotua.getAhulduta());
-		
+		System.out.println("Erasoa kudeatu da");
+				
 		jokErasotua.eguneratuEgoera();
-		System.out.println(jokErasotua.getBizirik());
-		System.out.println(jokErasotzaile.getBizirik());
-		
-		System.out.println("jokalariaren egoera eguneratu da");
-		
+		jokErasotzaile.eguneratuEgoera();
+				
 		Jokalari irabazlea = JokalariKatalogoa.getJK().getLista().irabazlea();
+		if(jokErasotzaile.equals(irabazlea)) {
+			Borroka.getBorroka().setIrabazle(jokErasotzaile);
+			jokErasotzaile.eguneratuEgoera();
+		}
+		setNull();
 		return irabazlea;
+	}
+
+	public void prestEraso() {
+		if(!(jokErasotzaile==null || jokErasotua==null || pokErasotzaile==null || pokErasotua==null)) {
+			eraso();
+		}
+		
 	}
 	
 	

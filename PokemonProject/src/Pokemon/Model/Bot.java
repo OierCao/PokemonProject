@@ -12,20 +12,20 @@ public class Bot extends Jokalari {
 	
 	@Override
 	public void jolastu() {
-		System.out.println("nire izena" + izena + " da eta erasotzeari ekin egingo diot");
+		System.out.println("Nire izena " + izena + " da eta erasotzeari ekin egingo diot");
 		JokalariZerrenda pJZ = JokalariKatalogoa.getJK().getLista();
 		MugimenduKudeatzailea MK = MugimenduKudeatzailea.getMK();
 		
-		Jokalari irabazlea=null;
+		Jokalari irabazlea=pJZ.irabazlea();
 		
 		for (Pokemon p : getPokemonak().getEzAhulduak().getLista()) {
 			if (irabazlea==null) {
 				Jokalari erasoJ = getJokalaria(pJZ);
 				Pokemon erasoPok = getAtkPok(erasoJ.getPokemonak().getEzAhulduak());
 			
-				System.out.println(p.getIzena() + " \n pokemonarekin hurrengoari erasotuko diot");
+				System.out.println(p.getIzena() + " pokemonarekin hurrengoari erasotuko diot");
 				System.out.println(erasoJ.getIzena() + " jokalariari");
-				System.out.println(erasoPok.getIzena() + "pokemonari");
+				System.out.println(erasoPok.getIzena() + " pokemonari");
 			
 				MK.setJokErasotzaile(this);
 				MK.setPokErasotzaile(p);

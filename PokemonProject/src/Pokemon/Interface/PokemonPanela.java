@@ -99,17 +99,15 @@ public class PokemonPanela extends JPanel implements Observer{
 	private class Sagua implements MouseListener {
 		
 		public void mouseClicked(MouseEvent e) {
-			if (e.getSource().equals(getPokeSprite()) && getPokeSprite().isEnabled() && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda()) {
+			if (e.getSource().equals(getPokeSprite()) && pokeSprite.isEnabled() && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda() && MugimenduKudeatzailea.getMK().getPokErasotzaile()==null) {
 				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
-				System.out.println("setAttackPlayer " + JokalariKatalogoa.getJK().getJokPos(jokPos).getIzena() + " setAttackPoke " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
 				pokeSprite.setEnabled(false);
 			}
 			else if(getPokeSprite().isEnabled() && !JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda()) {
 				MugimenduKudeatzailea.getMK().setJokErasotua(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotua(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
-				MugimenduKudeatzailea.getMK().eraso();
-				System.out.println("setDefenderPlayer " + JokalariKatalogoa.getJK().getJokPos(jokPos).getIzena() + " setDefenderPoke " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
+				MugimenduKudeatzailea.getMK().prestEraso();
 			}
 		}
 
@@ -135,6 +133,15 @@ public class PokemonPanela extends JPanel implements Observer{
 		}   
 		if (bizia <= 15) {
 			this.healthBar.setForeground(Color.RED);
+		}
+		if (bizia==0) {
+			pokeSprite.setEnabled(false);
+		}
+	}
+	
+	public void aktibatuSprite() {
+		if(!JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAhulduta()) {
+			pokeSprite.setEnabled(true);
 		}
 	}
 }

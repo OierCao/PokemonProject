@@ -103,8 +103,7 @@ public class JokalariZerrenda {
 	
 	//EXTRAS 
 	public Jokalari txandaJolastu() {
-		System.out.println("txanda jolasten \n");
-		Jokalari jIrabazle = null;
+		setGuztienTxandaFalse();
 		Jokalari oraingoJ = null;
 		
 		oraingoJ = getRandomBizirik();
@@ -112,14 +111,10 @@ public class JokalariZerrenda {
 		oraingoJ.setTxanda(true);
 		oraingoJ.jolastu();
 		if (oraingoJ instanceof Pertsona) {
-			//gelditu
+			Borroka.getBorroka().timerAmaitu();
 			System.out.println("Pertsona naiz");
 		}
-		oraingoJ.setTxanda(false);
-		System.out.println("Inicio");
-		jIrabazle = irabazlea();
-		System.out.println("Fin");
-		return jIrabazle;
+		return oraingoJ;
 	}
 	
 	
@@ -164,6 +159,12 @@ public class JokalariZerrenda {
 		while (itr.hasNext()) {
 			 Jokalari j = itr.next();
 			 j.eguneratuEgoera();
+		}
+	}
+	
+	public void setGuztienTxandaFalse() {
+		for (Jokalari j: JokalariKatalogoa.getJK().getLista().getLista()) {
+			j.setTxanda(false);
 		}
 	}
 	
