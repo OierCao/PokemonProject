@@ -103,7 +103,7 @@ public class PokemonPanela extends JPanel implements Observer{
 				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
 				System.out.println("setAttackPlayer " + JokalariKatalogoa.getJK().getJokPos(jokPos).getIzena() + " setAttackPoke " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
-				
+				pokeSprite.setEnabled(false);
 			}
 			else if(getPokeSprite().isEnabled() && !JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda()) {
 				MugimenduKudeatzailea.getMK().setJokErasotua(JokalariKatalogoa.getJK().getJokPos(jokPos));

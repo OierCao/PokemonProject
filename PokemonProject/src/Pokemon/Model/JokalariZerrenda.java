@@ -22,8 +22,8 @@ public class JokalariZerrenda {
 		this.lista.remove(pJokalaria);
 	}
 	
-	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop,int pDelayms) {
-		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pJokNum,pPokKop,pDelayms);
+	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop) {
+		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pJokNum,pPokKop);
 		return newJokalari;
 	}
 	
@@ -69,8 +69,8 @@ public class JokalariZerrenda {
 		while (!aurkitua) {
 			j = this.getRandomBizirik();
 			if (!j.equals(pJok)) {
-			aurkitua=true;
-		}
+				aurkitua=true;
+			}
 		}
 		return j;
 	}
@@ -116,9 +116,9 @@ public class JokalariZerrenda {
 			System.out.println("Pertsona naiz");
 		}
 		oraingoJ.setTxanda(false);
-		
+		System.out.println("Inicio");
 		jIrabazle = irabazlea();
-		
+		System.out.println("Fin");
 		return jIrabazle;
 	}
 	
@@ -127,7 +127,7 @@ public class JokalariZerrenda {
 		Iterator<Jokalari> itr = getIter();
 		Jokalari jIrabazle = null;
 		int i = 0;
-		while (itr.hasNext() && i<2) {
+		while ( itr.hasNext() && i<this.lista.size() ) {
 			Jokalari j = itr.next();
 			if (j.getBizirik()) {
 				jIrabazle = j;
@@ -139,6 +139,7 @@ public class JokalariZerrenda {
 		}
 		return  jIrabazle;
 	}
+
 	
 	
 	public Jokalari norDagoJolasten() {

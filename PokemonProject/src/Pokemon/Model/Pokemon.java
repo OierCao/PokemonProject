@@ -77,6 +77,7 @@ public class Pokemon extends Observable{
 	private void hpKudeatu(int pMina) {
 		this.hp = this.hp - pMina;
 		if (this.hp <= 0) {
+			hp=0;
 			setAhulduta(true);
 		}
 	}

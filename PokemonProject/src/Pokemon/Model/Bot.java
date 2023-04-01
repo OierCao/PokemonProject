@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Bot extends Jokalari {
-	int delayms;
 
-	public Bot(int pJokNum,int pPokKop,int pDelayms) {
+	public Bot(int pJokNum,int pPokKop) {
 		super(pPokKop);
-		delayms=pDelayms;
 		izena = "Bot" + pJokNum;
 	}
 	
@@ -17,21 +15,27 @@ public class Bot extends Jokalari {
 		System.out.println("nire izena" + izena + " da eta erasotzeari ekin egingo diot");
 		JokalariZerrenda pJZ = JokalariKatalogoa.getJK().getLista();
 		MugimenduKudeatzailea MK = MugimenduKudeatzailea.getMK();
+		
+		Jokalari irabazlea=null;
+		
 		for (Pokemon p : getPokemonak().getEzAhulduak().getLista()) {
-			Jokalari erasoJ = getJokalaria(pJZ);
-			Pokemon erasoPok = getAtkPok(erasoJ.getPokemonak().getEzAhulduak());
+			if (irabazlea==null) {
+				Jokalari erasoJ = getJokalaria(pJZ);
+				Pokemon erasoPok = getAtkPok(erasoJ.getPokemonak().getEzAhulduak());
 			
-			System.out.println(p.getIzena() + " \n pokemonarekin hurrengoari erasotuko diot");
-			System.out.println(erasoJ.getIzena() + " jokalariari");
-			System.out.println(erasoPok.getIzena() + "pokemonari");
+				System.out.println(p.getIzena() + " \n pokemonarekin hurrengoari erasotuko diot");
+				System.out.println(erasoJ.getIzena() + " jokalariari");
+				System.out.println(erasoPok.getIzena() + "pokemonari");
 			
-			MK.setJokErasotzaile(this);
-			MK.setPokErasotzaile(p);
+				MK.setJokErasotzaile(this);
+				MK.setPokErasotzaile(p);
 			
-			MK.setJokErasotua(erasoJ);
-			MK.setPokErasotua(erasoPok);
+				MK.setJokErasotua(erasoJ);
+				MK.setPokErasotua(erasoPok);
 			
-			MK.eraso();	
+				irabazlea = MK.eraso();	
+			}
+			
 		}
 	}
 	

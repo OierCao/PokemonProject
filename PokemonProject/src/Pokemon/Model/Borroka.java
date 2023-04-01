@@ -7,7 +7,7 @@ public class Borroka extends Observable{
 	private static Borroka nB = null;
 	private Jokalari irabazle=null;
 	private int txanda;
-	
+	private int delay;
 	
 	//BUILDER
 	private Borroka() {
@@ -28,20 +28,21 @@ public class Borroka extends Observable{
 	
 	//EXTRAS
 	public void hasieraketak(int perKop, int botKop, int pokKop, int pDelayms) {
-		JokalariKatalogoa JK = JokalariKatalogoa.getJK();
+		delay=pDelayms;
+		JokalariKatalogoa.getJK();
 		int iPer = 0; 
 		int iBot = 0;
 		//pertsona (1)
 		while (iPer<perKop) {
-			Jokalari j = JK.newJokalari(1,iPer,pokKop,pDelayms);
-			JK.getLista().addJokalari(j);
+			Jokalari j = JokalariKatalogoa.getJK().newJokalari(1,iPer,pokKop);
+			JokalariKatalogoa.getJK().getLista().addJokalari(j);
 			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
 			iPer++;	
 		}
 		//bot (2)
 		while (iBot<botKop) {
-			Jokalari j = JK.newJokalari(2,iBot,pokKop,pDelayms);
-			JK.getLista().addJokalari(j);
+			Jokalari j = JokalariKatalogoa.getJK().newJokalari(2,iBot,pokKop);
+			JokalariKatalogoa.getJK().getLista().addJokalari(j);
 			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
 			iBot++;	
 		}

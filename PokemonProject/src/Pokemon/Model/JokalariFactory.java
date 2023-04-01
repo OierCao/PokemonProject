@@ -13,13 +13,13 @@ public class JokalariFactory {
 		return nJF;
 	}
 
-	public Jokalari createJokalari(int type,int pJokNum, int pPokKop,int pDelayms) {
+	public Jokalari createJokalari(int type,int pJokNum, int pPokKop) {
 		Jokalari j;
 		if (type==1) {
 			j = new Pertsona(pJokNum,pPokKop);
 		}
 		else {
-			j = new Bot(pJokNum,pPokKop,pDelayms);
+			j = new Bot(pJokNum,pPokKop);
 		}
 		return j;
 	}

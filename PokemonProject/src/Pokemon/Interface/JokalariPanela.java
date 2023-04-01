@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Pokemon.Model.Borroka;
+import Pokemon.Model.Bot;
 import Pokemon.Model.Jokalari;
 import Pokemon.Model.JokalariKatalogoa;
 import Pokemon.Model.JokalariZerrenda;
@@ -102,6 +103,7 @@ public class JokalariPanela extends JFrame implements Observer{
 	private JButton getSkipButton() {
 		if (skipButton == null) {
 			skipButton = new JButton("");
+			skipButton.addActionListener(getControlador());
 		}
 		return skipButton;
 	}
@@ -124,7 +126,7 @@ public class JokalariPanela extends JFrame implements Observer{
 	private class Kontroladore implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource().equals(skipButton)) {
+			if(e.getSource().equals(skipButton) && !(JokalariKatalogoa.getJK().getJokPos(jokPos) instanceof Bot)) {
 				Borroka.getBorroka().txandaKalkulatu();
 			}
 		}

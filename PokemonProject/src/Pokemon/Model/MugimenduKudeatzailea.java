@@ -49,7 +49,7 @@ public class MugimenduKudeatzailea {
 	
 	
 	//EXTRAS
-	public void eraso() {
+	public Jokalari eraso() {
 		System.out.println("erasoa egingo da");
 		int erasoAtk= pokErasotzaile.getAtk();
 		boolean eraginkor = false;
@@ -68,10 +68,16 @@ public class MugimenduKudeatzailea {
 		
 		pokErasotua.atakeaKudeatu(erasoAtk, eraginkor);
 		System.out.println("erasoa kudeatu da");
+		System.out.println(pokErasotua.getAhulduta());
 		
 		jokErasotua.eguneratuEgoera();
+		System.out.println(jokErasotua.getBizirik());
+		System.out.println(jokErasotzaile.getBizirik());
 		
 		System.out.println("jokalariaren egoera eguneratu da");
+		
+		Jokalari irabazlea = JokalariKatalogoa.getJK().getLista().irabazlea();
+		return irabazlea;
 	}
 	
 	
