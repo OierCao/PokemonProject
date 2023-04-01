@@ -4,14 +4,11 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import Pokemon.Model.Borroka;
-import Pokemon.Model.Jokalari;
 import Pokemon.Model.JokalariKatalogoa;
 
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.GridBagLayout;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -21,22 +18,17 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.FlowLayout;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.Color;
 import java.awt.Font;
 
+@SuppressWarnings("serial")
 public class HasieraPantalla extends JFrame implements Observer {
 	private Kontroladore kontroladore=null;
 	

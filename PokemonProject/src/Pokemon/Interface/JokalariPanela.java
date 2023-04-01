@@ -10,12 +10,10 @@ import Pokemon.Model.Borroka;
 import Pokemon.Model.Bot;
 import Pokemon.Model.Jokalari;
 import Pokemon.Model.JokalariKatalogoa;
-import Pokemon.Model.JokalariZerrenda;
 import Pokemon.Model.Pokemon;
 
 import java.awt.BorderLayout;
 import javax.swing.JButton;
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -24,11 +22,11 @@ import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
-import java.awt.CardLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+@SuppressWarnings("serial")
 public class JokalariPanela extends JFrame implements Observer{
 
 	private Kontroladore kontroladore=null;

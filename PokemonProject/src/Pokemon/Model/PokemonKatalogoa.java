@@ -1,7 +1,5 @@
 package Pokemon.Model;
 
-import java.util.Random;
-
 public class PokemonKatalogoa {
 
 	private PokemonZerrenda lista;

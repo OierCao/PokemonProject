@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class ReadMe extends JFrame {
-	private static ReadMe frame = null;
   private JPanel readMePanel;
   
   private JTextPane readMeText;

@@ -68,7 +68,7 @@ public class Borroka extends Observable{
 		TimerTask txandaJolastu = new TimerTask() {
 			public void run() {
 				if (irabazle==null) {
-					Jokalari jokalari = JokalariKatalogoa.getJK().getLista().txandaJolastu();
+					JokalariKatalogoa.getJK().getLista().txandaJolastu();
 					irabazle = JokalariKatalogoa.getJK().getLista().irabazlea();
 					JokalariKatalogoa.getJK().getLista().jokalariakEguneratu();
 				}

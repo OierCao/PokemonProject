@@ -1,23 +1,15 @@
 package Pokemon.Interface;
 
 import javax.swing.JPanel;
-import java.awt.GridBagLayout;
 import java.awt.BorderLayout;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
-import Pokemon.Model.Borroka;
-import Pokemon.Model.Jokalari;
 import Pokemon.Model.JokalariKatalogoa;
 import Pokemon.Model.Pokemon;
-import Pokemon.Model.PokemonKatalogoa;
 import Pokemon.Model.MugimenduKudeatzailea;
 
-import javax.swing.JTextField;
 import javax.swing.JTextPane;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Observable;
@@ -28,6 +20,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class PokemonPanela extends JPanel implements Observer{
 	private JProgressBar healthBar;
 	private JLabel pokeSprite;

@@ -102,7 +102,7 @@ public class JokalariZerrenda {
 	
 	
 	//EXTRAS 
-	public Jokalari txandaJolastu() {
+	public void txandaJolastu() {
 		setGuztienTxandaFalse();
 		Jokalari oraingoJ = null;
 		
@@ -114,7 +114,6 @@ public class JokalariZerrenda {
 			Borroka.getBorroka().timerAmaitu();
 			System.out.println("Pertsona naiz");
 		}
-		return oraingoJ;
 	}
 	
 	

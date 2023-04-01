@@ -1,8 +1,5 @@
 package Pokemon.Model;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class Bot extends Jokalari {
 
 	public Bot(int pJokNum,int pPokKop) {
