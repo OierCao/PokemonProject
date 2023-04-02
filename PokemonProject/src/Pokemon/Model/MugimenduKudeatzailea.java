@@ -53,21 +53,8 @@ public class MugimenduKudeatzailea {
 	public Jokalari eraso() {
 		System.out.println("Erasoa egingo da");
 		int erasoAtk= pokErasotzaile.getAtk();
-		boolean eraginkor = false;
-		if(pokErasotzaile.getMota().equals("Fire") && pokErasotua.getMota().equals("Grass")) {
-			eraginkor =true;
-		}
-		else if(pokErasotzaile.getMota().equals("Water") && pokErasotua.getMota().equals("Fire")) {
-			eraginkor =true;
-		}
-		else if(pokErasotzaile.getMota().equals("Electric") && pokErasotua.getMota().equals("Water")) {
-			eraginkor =true;
-		}
-		else if(pokErasotzaile.getMota().equals("Grass") && pokErasotua.getMota().equals("Electric")) {
-			eraginkor =true;
-		}
-		
-		pokErasotua.atakeaKudeatu(erasoAtk, eraginkor);
+	
+		pokErasotua.atakeaKudeatu(erasoAtk);
 		System.out.println("Erasoa kudeatu da");
 				
 		jokErasotua.eguneratuEgoera();

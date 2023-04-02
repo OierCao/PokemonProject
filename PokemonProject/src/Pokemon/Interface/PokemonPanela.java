@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 
+import Pokemon.Model.Bot;
 import Pokemon.Model.JokalariKatalogoa;
 import Pokemon.Model.Pokemon;
 import Pokemon.Model.MugimenduKudeatzailea;
@@ -92,7 +93,7 @@ public class PokemonPanela extends JPanel implements Observer{
 	private class Sagua implements MouseListener {
 		
 		public void mouseClicked(MouseEvent e) {
-			if (e.getSource().equals(getPokeSprite()) && pokeSprite.isEnabled() && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda() && MugimenduKudeatzailea.getMK().getPokErasotzaile()==null) {
+			if (e.getSource().equals(getPokeSprite()) && pokeSprite.isEnabled() && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda() && MugimenduKudeatzailea.getMK().getPokErasotzaile()==null && !(JokalariKatalogoa.getJK().getJokPos(jokPos) instanceof Bot)) {
 				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
 				pokeSprite.setEnabled(false);
