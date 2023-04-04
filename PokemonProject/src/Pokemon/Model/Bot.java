@@ -11,7 +11,6 @@ public class Bot extends Jokalari {
 	//Getter
 	private Jokalari getJokalaria(JokalariZerrenda pJZ) {
 		return pJZ.getBesteRandomBizirik(this);
-
 	}
 	
 	private Pokemon getAtkPok(PokemonZerrenda pZ) {

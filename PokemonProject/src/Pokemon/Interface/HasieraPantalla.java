@@ -1,4 +1,4 @@
-package Pokemon.Interface;
+	package Pokemon.Interface;
 
 import java.awt.EventQueue;
 
@@ -292,10 +292,6 @@ public class HasieraPantalla extends JFrame implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		JokalariPanela jp = new JokalariPanela((int)arg1);
 		JokalariKatalogoa.getJK().getJokPos((int)arg1).addObserver(jp);
-		for (int i = 0; i < Integer.parseInt(PokemonKopText.getText()); i++) {
-			JokalariKatalogoa.getJK().getJokPos((int)arg1).getTalde().get(i).addObserver((Observer)jp.getPokePanelak().get(i));
-			JokalariKatalogoa.getJK().getJokPos((int)arg1).eguneratuTaldea();
-		}
 		jp.setVisible(true);
 	}
 }
