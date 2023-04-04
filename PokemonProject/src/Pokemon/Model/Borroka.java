@@ -73,12 +73,10 @@ public class Borroka extends Observable{
 		};
 		timer = new Timer();
 		timer.scheduleAtFixedRate(txandaJolastu, l, (long)millis);
-		
 	}
 	
 	public void timerAmaitu() {
 		timer.cancel();
-		timer.purge();
 	}
 
 	
@@ -86,7 +84,6 @@ public class Borroka extends Observable{
 	private void eguneratuBorrokaScreen(int pJokPos) { //actualizar la pantalla porque hay un nuevo jugador
 		setChanged();
 		notifyObservers(pJokPos);
-		
 	}
 	
 	
