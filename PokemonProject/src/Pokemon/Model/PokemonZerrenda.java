@@ -41,8 +41,7 @@ public class PokemonZerrenda {
 		int i=0;
 		Random r = new Random();
 		while (i<pKop) {
-			 Pokemon aux = lista.get(r.nextInt(lista.size()));
-			 pArray.addPokemon(new Pokemon(aux.getIzena(),aux.getMota()));
+			 pArray.addPokemon(new Pokemon(Mota.values()[r.nextInt(Mota.values().length)]));
 			 i++;
 		} 
 		return pArray;	
@@ -130,5 +129,22 @@ public class PokemonZerrenda {
 			 Pokemon p = itr.next();
 			 p.eguneratuEgoera();
 		} 
+	}
+
+	public int getPokemonPos(Pokemon pPok) {
+		Iterator<Pokemon> itr = getIter();
+		boolean aurkitua=false;
+		Pokemon p;
+		int pos=0;
+		while (itr.hasNext() && !aurkitua) {
+			p = itr.next();
+			if (p.equals(pPok)) {
+				aurkitua=true;
+			}
+			else {
+				pos++;
+			}
+		}
+		return pos;
 	}
 }

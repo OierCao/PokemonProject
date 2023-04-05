@@ -10,13 +10,12 @@ public class Pokemon extends Observable{
 	private int hp;
 	private int maxHP;
 	private String izena;
-	private String mota;
+	private Mota mota;
 	private boolean ahulduta;
 
 	
 	//Eraikitzaile
-	public Pokemon(String pIzena, String pMota) {
-		this.izena = pIzena;
+	public Pokemon(Mota pMota) {
 		this.mota = pMota;
 		this.ahulduta=false;
 	}
@@ -38,7 +37,7 @@ public class Pokemon extends Observable{
 	
 	public int getHP(){return this.hp;}
 	
-	public String getMota(){return this.mota;}
+	public Mota getMota(){return this.mota;}
 	
 	public int getMaxHP() {return this.maxHP;}
 	
@@ -47,15 +46,15 @@ public class Pokemon extends Observable{
 	private void setAhulduta(boolean pAhulduta) {this.ahulduta = pAhulduta;}
 
 	//Beste metodoak
-	public void atakeaKudeatu(int pAtk) {
-		int mina = minaKalkulatu(pAtk);
-		hpKudeatu(mina);
+	public void atakeaKudeatu(int pAtk, float bider) {
+		float mina = minaKalkulatu(pAtk, bider);
+		hpKudeatu((int)mina);
 		eguneratuEgoera();
 	}
 	
-	private int minaKalkulatu(int pAtk) {
-		int mina;
-		mina = pAtk - this.def;
+	private float minaKalkulatu(int pAtk, float bider) {
+		float mina;
+		mina = pAtk*bider - this.def;
 			
 		if (mina < 0) {
 			mina = 0;

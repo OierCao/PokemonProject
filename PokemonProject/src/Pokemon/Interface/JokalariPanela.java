@@ -63,7 +63,6 @@ public class JokalariPanela extends JFrame implements Observer{
 		jokPos=pJokPos;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -82,6 +81,7 @@ public class JokalariPanela extends JFrame implements Observer{
 			p.addObserver(PP);
 			i++;
 		}
+		setBounds(100, 100, 100+140*pokemonPanelak.size(), 300);
 		setTitle(JokalariKatalogoa.getJK().getJokPos(pJokPos).getIzena());
 	}
 	public ArrayList<PokemonPanela> getPokePanelak(){

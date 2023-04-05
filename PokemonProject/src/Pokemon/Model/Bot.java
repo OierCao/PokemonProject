@@ -18,7 +18,6 @@ public class Bot extends Jokalari {
 	}
 	
 	//Beste metodoak
-	@Override
 	public void jolastu() {
 		System.out.println("Nire izena " + izena + " da eta erasotzeari ekin egingo diot");
 		JokalariZerrenda pJZ = JokalariKatalogoa.getJK().getLista();

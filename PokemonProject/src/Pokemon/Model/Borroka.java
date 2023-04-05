@@ -51,7 +51,7 @@ public class Borroka extends Observable{
 			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
 			iBot++;	
 		}
-		
+		partida();
 	}
 	
 	public void partida() {

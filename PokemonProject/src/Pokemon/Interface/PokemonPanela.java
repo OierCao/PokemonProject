@@ -39,6 +39,7 @@ public class PokemonPanela extends JPanel implements Observer{
 		pokPos=pPokPos;
 		
 		setBackground(Color.WHITE);
+		setBounds(0, 0, 140, 140);
 		setLayout(new BorderLayout(0, 0));
 		add(getHealthBar(), BorderLayout.SOUTH);
 		add(getPokeSprite(), BorderLayout.CENTER);
@@ -74,9 +75,10 @@ public class PokemonPanela extends JPanel implements Observer{
 	private JLabel getPokeSprite() {
 		if (pokeSprite == null) {
 			pokeSprite = new JLabel("");
+			pokeSprite.setBounds(0, 0, 140, 140);
 			pokeSprite.setHorizontalAlignment(SwingConstants.CENTER);
 			pokeSprite.setBackground(Color.WHITE);
-			String pokemon = "/Images/0" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena().toLowerCase() + ".png";
+			String pokemon = "/Images/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota().toString().toLowerCase() + "_0_1.png";
 			pokeSprite.setIcon(new ImageIcon(PokemonPanela.class.getResource(pokemon)));
 			pokeSprite.addMouseListener(getSagua());
 		}
@@ -128,15 +130,15 @@ public class PokemonPanela extends JPanel implements Observer{
 				+ "Defentsa: " + ((Pokemon)arg0).getDef() + "\n"
 				+ "Bizia: " + ((Pokemon)arg0).getHP() + "/" + ((Pokemon)arg0).getMaxHP() + "\n"
 				+ "Mota: " + ((Pokemon)arg0).getMota());
-		int bizia = (int) (((Pokemon)arg0).getHP()*100)/((Pokemon)arg0).getMaxHP();
-		healthBar.setValue(bizia);
+		float bizia = (((Pokemon)arg0).getHP()*100)/((Pokemon)arg0).getMaxHP();
+		healthBar.setValue((int)bizia);
 		if (bizia <= 50) {
 			this.healthBar.setForeground(Color.ORANGE);
 		}   
 		if (bizia <= 15) {
 			this.healthBar.setForeground(Color.RED);
 		}
-		if (bizia==0) {
+		if (((Pokemon)arg0).getHP()==0) {
 			pokeSprite.setEnabled(false);
 		}
 	}

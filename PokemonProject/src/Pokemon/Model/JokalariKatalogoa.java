@@ -33,7 +33,7 @@ public class JokalariKatalogoa {
 	}
 	
 	public Jokalari getJokPos(int i) { //i posizioan dagoen jokalaria bueltatu
-		return lista.getJoklaraiPos(i);
+		return lista.getJoklariaPos(i);
 	}
 	
 	public int getPos(Jokalari jok) {//jok Jokalariaren posizioa bueltatu

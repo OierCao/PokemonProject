@@ -21,10 +21,8 @@ public class Jokalari extends Observable{
 	}
 	
 	private PokemonZerrenda randomTaldeLortu(int pKop) {
-		PokemonKatalogoa PK = PokemonKatalogoa.getPK();
-		PokemonZerrenda randomTalde = PK.getLista().getXRandom(pKop);
-	
-		return randomTalde;
+		PokemonZerrenda randomTalde = new PokemonZerrenda();
+		return randomTalde.getXRandom(pKop);
 	}
 	
 	
@@ -54,8 +52,6 @@ public class Jokalari extends Observable{
 	}
 	
 	//Beste metodoak
-	public void jolastu() {}
-
 	public void eguneratuEgoera() {	
 		if (talde.guztiakAhulduta()) {
 			setBizirik(false);

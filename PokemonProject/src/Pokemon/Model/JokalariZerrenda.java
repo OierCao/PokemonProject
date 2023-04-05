@@ -95,7 +95,7 @@ public class JokalariZerrenda {
 		}
 		return pos;
 	}
-	public Jokalari getJoklaraiPos(int i) {
+	public Jokalari getJoklariaPos(int i) {
 		return lista.get(i);
 	}	
 	
@@ -130,10 +130,12 @@ public class JokalariZerrenda {
 		oraingoJ = getRandomBizirik();
 		System.out.println(oraingoJ.getIzena() + "-ren txanda \n");
 		oraingoJ.setTxanda(true);
-		oraingoJ.jolastu();
 		if (oraingoJ instanceof Pertsona) {
 			Borroka.getBorroka().timerAmaitu();
 			System.out.println("Pertsona naiz");
+		}
+		else {
+			((Bot)oraingoJ).jolastu();
 		}
 	}
 	
