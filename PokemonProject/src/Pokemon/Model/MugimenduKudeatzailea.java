@@ -31,34 +31,34 @@ public class MugimenduKudeatzailea {
 		motaTabla[0][9] = 2.0f;
 		motaTabla[0][14] = 2.0f;
 		
-		motaTabla[0][4] = 1.5f;
-		motaTabla[0][5] = 1.5f;
-		motaTabla[0][6] = 1.5f;
-		motaTabla[0][7] = 1.5f;
-		motaTabla[0][8] = 1.5f;
-		motaTabla[0][13] = 1.5f;
-		motaTabla[0][16] = 1.5f;
+		motaTabla[0][4] = 0.5f;
+		motaTabla[0][5] = 0.5f;
+		motaTabla[0][6] = 0.5f;
+		motaTabla[0][7] = 0.5f;
+		motaTabla[0][8] = 0.5f;
+		motaTabla[0][13] = 0.5f;
+		motaTabla[0][16] = 0.5f;
 		
 		//DARK
 		motaTabla[1][8] = 2.0f;
 		motaTabla[1][14] = 2.0f;
 		
-		motaTabla[1][1] = 1.5f;
-		motaTabla[1][4] = 1.5f;
-		motaTabla[1][5] = 1.5f;
+		motaTabla[1][1] = 0.5f;
+		motaTabla[1][4] = 0.5f;
+		motaTabla[1][5] = 0.5f;
 		
 		//DRAGON
 		motaTabla[2][2] = 2.0f;
 		
-		motaTabla[2][16] = 1.5f;
+		motaTabla[2][16] = 0.5f;
 		
 		//ELECTRIC
 		motaTabla[3][7] = 2.0f;
 		motaTabla[3][17] = 2.0f;
 		
-		motaTabla[3][2] = 1.5f;
-		motaTabla[3][3] = 1.5f;
-		motaTabla[3][9] = 1.5f;
+		motaTabla[3][2] = 0.5f;
+		motaTabla[3][3] = 0.5f;
+		motaTabla[3][9] = 0.5f;
 		
 		motaTabla[3][10] = 0.0f;
 		
@@ -67,9 +67,9 @@ public class MugimenduKudeatzailea {
 		motaTabla[4][2] = 2.0f;
 		motaTabla[4][5] = 2.0f;
 		
-		motaTabla[4][6] = 1.5f;
-		motaTabla[4][13] = 1.5f;
-		motaTabla[4][16] = 1.5f;
+		motaTabla[4][6] = 0.5f;
+		motaTabla[4][13] = 0.5f;
+		motaTabla[4][16] = 0.5f;
 		
 		//FIGHT
 		motaTabla[5][1] = 2.0f;
@@ -78,11 +78,11 @@ public class MugimenduKudeatzailea {
 		motaTabla[5][15] = 2.0f;
 		motaTabla[5][16] = 2.0f;
 		
-		motaTabla[5][0] = 1.5f;
-		motaTabla[5][4] = 1.5f;
-		motaTabla[5][7] = 1.5f;
-		motaTabla[5][13] = 1.5f;
-		motaTabla[5][14] = 1.5f;
+		motaTabla[5][0] = 0.5f;
+		motaTabla[5][4] = 0.5f;
+		motaTabla[5][7] = 0.5f;
+		motaTabla[5][13] = 0.5f;
+		motaTabla[5][14] = 0.5f;
 		
 		motaTabla[5][8] = 0.0f;
 		
@@ -92,25 +92,25 @@ public class MugimenduKudeatzailea {
 		motaTabla[6][11] = 2.0f;
 		motaTabla[6][16] = 2.0f;
 		
-		motaTabla[6][2] = 1.5f;
-		motaTabla[6][6] = 1.5f;
-		motaTabla[6][15] = 1.5f;
-		motaTabla[6][17] = 1.5f;
+		motaTabla[6][2] = 0.5f;
+		motaTabla[6][6] = 0.5f;
+		motaTabla[6][15] = 0.5f;
+		motaTabla[6][17] = 0.5f;
 		
 		//FLYING
 		motaTabla[7][0] = 2.0f;
 		motaTabla[7][5] = 2.0f;
 		motaTabla[7][9] = 2.0f;
 		
-		motaTabla[7][3] = 1.5f;
-		motaTabla[7][15] = 1.5f;
-		motaTabla[7][16] = 1.5f;
+		motaTabla[7][3] = 0.5f;
+		motaTabla[7][15] = 0.5f;
+		motaTabla[7][16] = 0.5f;
 		
 		//GHOST
 		motaTabla[8][8] = 2.0f;
 		motaTabla[8][14] = 2.0f;
 		
-		motaTabla[8][1] = 1.5f;
+		motaTabla[8][1] = 0.5f;
 
 		motaTabla[8][12] = 0.0f;
 		
@@ -119,13 +119,13 @@ public class MugimenduKudeatzailea {
 		motaTabla[9][15] = 2.0f;
 		motaTabla[9][17] = 2.0f;
 		
-		motaTabla[9][0] = 1.5f;
-		motaTabla[9][2] = 1.5f;
-		motaTabla[9][6] = 1.5f;
-		motaTabla[9][7] = 1.5f;
-		motaTabla[9][9] = 1.5f;
-		motaTabla[9][13] = 1.5f;
-		motaTabla[9][16] = 1.5f;
+		motaTabla[9][0] = 0.5f;
+		motaTabla[9][2] = 0.5f;
+		motaTabla[9][6] = 0.5f;
+		motaTabla[9][7] = 0.5f;
+		motaTabla[9][9] = 0.5f;
+		motaTabla[9][13] = 0.5f;
+		motaTabla[9][16] = 0.5f;
 		
 		//GROUND
 		motaTabla[10][4] = 2.0f;
@@ -134,8 +134,8 @@ public class MugimenduKudeatzailea {
 		motaTabla[10][15] = 2.0f;
 		motaTabla[10][16] = 2.0f;
 		
-		motaTabla[10][0] = 1.5f;
-		motaTabla[10][9] = 1.5f;
+		motaTabla[10][0] = 0.5f;
+		motaTabla[10][9] = 0.5f;
 		
 		motaTabla[10][7] = 0.0f;
 		
@@ -145,14 +145,14 @@ public class MugimenduKudeatzailea {
 		motaTabla[11][9] = 2.0f;
 		motaTabla[11][10] = 2.0f;
 		
-		motaTabla[10][4] = 1.5f;
-		motaTabla[10][10] = 1.5f;
-		motaTabla[10][16] = 1.5f;
-		motaTabla[10][17] = 1.5f;
+		motaTabla[10][4] = 0.5f;
+		motaTabla[10][10] = 0.5f;
+		motaTabla[10][16] = 0.5f;
+		motaTabla[10][17] = 0.5f;
 		
 		//NORMAL
-		motaTabla[12][15] = 1.5f;
-		motaTabla[12][16] = 1.5f;
+		motaTabla[12][15] = 0.5f;
+		motaTabla[12][16] = 0.5f;
 		
 		motaTabla[12][8] = 0.0f;
 		
@@ -160,10 +160,10 @@ public class MugimenduKudeatzailea {
 		motaTabla[13][4] = 2.0f;
 		motaTabla[13][9] = 2.0f;
 		
-		motaTabla[13][8] = 1.5f;
-		motaTabla[13][10] = 1.5f;
-		motaTabla[13][13] = 1.5f;
-		motaTabla[13][15] = 1.5f;
+		motaTabla[13][8] = 0.5f;
+		motaTabla[13][10] = 0.5f;
+		motaTabla[13][13] = 0.5f;
+		motaTabla[13][15] = 0.5f;
 		
 		motaTabla[13][16] = 0.0f;
 		
@@ -171,10 +171,10 @@ public class MugimenduKudeatzailea {
 		motaTabla[14][5] = 2.0f;
 		motaTabla[14][13] = 2.0f;
 		
-		motaTabla[14][14] = 1.5f;
-		motaTabla[14][16] = 1.5f;
+		motaTabla[14][14] = 0.5f;
+		motaTabla[14][16] = 0.5f;
 		
-		motaTabla[14][1] = 1.5f;
+		motaTabla[14][1] = 0.0f;
 		
 		//ROCK
 		motaTabla[15][0] = 2.0f;
@@ -182,28 +182,28 @@ public class MugimenduKudeatzailea {
 		motaTabla[15][7] = 2.0f;
 		motaTabla[15][11] = 2.0f;
 		
-		motaTabla[15][5] = 1.5f;
-		motaTabla[15][10] = 1.5f;
-		motaTabla[15][16] = 1.5f;
+		motaTabla[15][5] = 0.5f;
+		motaTabla[15][10] = 0.5f;
+		motaTabla[15][16] = 0.5f;
 		
 		//STEEL
 		motaTabla[16][4] = 2.0f;
 		motaTabla[16][11] = 2.0f;
 		motaTabla[16][15] = 2.0f;
 		
-		motaTabla[16][3] = 1.5f;
-		motaTabla[16][6] = 1.5f;
-		motaTabla[16][16] = 1.5f;
-		motaTabla[16][17] = 1.5f;
+		motaTabla[16][3] = 0.5f;
+		motaTabla[16][6] = 0.5f;
+		motaTabla[16][16] = 0.5f;
+		motaTabla[16][17] = 0.5f;
 		
 		//WATER
 		motaTabla[17][6] = 2.0f;
 		motaTabla[17][10] = 2.0f;
 		motaTabla[17][15] = 2.0f;
 		
-		motaTabla[17][2] = 1.5f;
-		motaTabla[17][9] = 1.5f;
-		motaTabla[17][17] = 1.5f;
+		motaTabla[17][2] = 0.5f;
+		motaTabla[17][9] = 0.5f;
+		motaTabla[17][17] = 0.5f;
 
 	}
 
@@ -247,9 +247,10 @@ public class MugimenduKudeatzailea {
 		
 		int i = Arrays.asList(Mota.values()).indexOf(pokErasotzaile.getMota());
 		int j = Arrays.asList(Mota.values()).indexOf(pokErasotua.getMota());
-		float aux = motaTabla[i][j];
+		float bider = motaTabla[i][j];
 		
-		pokErasotua.atakeaKudeatu(erasoAtk, aux);
+		pokErasotua.atakeaKudeatu(erasoAtk, bider);
+		pokErasotzaile.euforiaKendu();
 		System.out.println("Erasoa kudeatu da");
 				
 		jokErasotua.eguneratuEgoera();

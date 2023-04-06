@@ -20,16 +20,19 @@ import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import java.awt.GridLayout;
 
 @SuppressWarnings("serial")
 public class PokemonPanela extends JPanel implements Observer{
-	private JProgressBar healthBar;
 	private JLabel pokeSprite;
 	private JTextPane pokeInfoPanel;
 	private Sagua sagua=null;
 
 	private int jokPos;
 	private int pokPos;
+	private JPanel barrakPanel;
+	private JProgressBar healthBar;
+	private JProgressBar euforiaBar;
 
 	/**
 	 * Create the panel.
@@ -41,21 +44,9 @@ public class PokemonPanela extends JPanel implements Observer{
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 140, 140);
 		setLayout(new BorderLayout(0, 0));
-		add(getHealthBar(), BorderLayout.SOUTH);
 		add(getPokeSprite(), BorderLayout.CENTER);
 		add(getPokeInfoPanel(), BorderLayout.NORTH);
-	}
-
-	private JProgressBar getHealthBar() {
-		if (this.healthBar == null) {
-		      this.healthBar = new JProgressBar();
-		      healthBar.setEnabled(false);
-		      this.healthBar.setStringPainted(true);
-		      this.healthBar.setString("BIZIA");
-		      this.healthBar.setForeground(new Color(138, 226, 52));
-		      this.healthBar.setValue(100);
-		    } 
-		    return this.healthBar;
+		add(getBarrakPanel(), BorderLayout.SOUTH);
 	}
 
 	private JTextPane getPokeInfoPanel() {
@@ -71,6 +62,38 @@ public class PokemonPanela extends JPanel implements Observer{
 		}
 		return pokeInfoPanel;
 	}
+	
+	private JPanel getBarrakPanel() {
+		if (barrakPanel == null) {
+			barrakPanel = new JPanel();
+			barrakPanel.setLayout(new GridLayout(2, 1, 0, 0));
+			barrakPanel.add(getHealthBar());
+			barrakPanel.add(getEuforiaBar());
+		}
+		return barrakPanel;
+	}
+	private JProgressBar getHealthBar() {
+		if (this.healthBar == null) {
+		      this.healthBar = new JProgressBar();
+		      healthBar.setEnabled(false);
+		      this.healthBar.setStringPainted(true);
+		      this.healthBar.setString("BIZIA");
+		      this.healthBar.setForeground(new Color(138, 226, 52));
+		      this.healthBar.setValue(100);
+		    } 
+		return this.healthBar;
+	}
+	private JProgressBar getEuforiaBar() {
+		if (euforiaBar == null) {
+			euforiaBar = new JProgressBar();
+			euforiaBar.setEnabled(false);
+		    euforiaBar.setStringPainted(true);
+		    euforiaBar.setString("EUFORIA");
+		    euforiaBar.setForeground(Color.YELLOW);
+		    euforiaBar.setValue(0);
+		}
+		return euforiaBar;
+	}
 
 	private JLabel getPokeSprite() {
 		if (pokeSprite == null) {
@@ -78,7 +101,7 @@ public class PokemonPanela extends JPanel implements Observer{
 			pokeSprite.setBounds(0, 0, 140, 140);
 			pokeSprite.setHorizontalAlignment(SwingConstants.CENTER);
 			pokeSprite.setBackground(Color.WHITE);
-			String pokemon = "/Images/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota().toString().toLowerCase() + "_0_1.png";
+			String pokemon = "/Images/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota().toString().toLowerCase() + "_0_0.png";
 			pokeSprite.setIcon(new ImageIcon(PokemonPanela.class.getResource(pokemon)));
 			pokeSprite.addMouseListener(getSagua());
 		}
@@ -132,6 +155,8 @@ public class PokemonPanela extends JPanel implements Observer{
 				+ "Mota: " + ((Pokemon)arg0).getMota());
 		float bizia = (((Pokemon)arg0).getHP()*100)/((Pokemon)arg0).getMaxHP();
 		healthBar.setValue((int)bizia);
+		float euforia = (((Pokemon)arg0).getEgoeraI()*100)/((Pokemon)arg0).getEgoeraIMax();
+		euforiaBar.setValue((int)euforia);
 		if (bizia <= 50) {
 			this.healthBar.setForeground(Color.ORANGE);
 		}   
@@ -141,5 +166,21 @@ public class PokemonPanela extends JPanel implements Observer{
 		if (((Pokemon)arg0).getHP()==0) {
 			pokeSprite.setEnabled(false);
 		}
+		if (euforia <=0) {
+			euforiaBar.setForeground(Color.YELLOW);
+		}
+		if (euforia >= 50) {
+			euforiaBar.setForeground(Color.ORANGE);
+		}   
+		if (euforia == 100) {
+			euforiaBar.setForeground(Color.RED);
+			pokeInfoPanel.setForeground(Color.RED);
+		}
+		if (euforia < 100) {
+			pokeInfoPanel.setForeground(Color.BLACK);
+		}
+		String pokemon = "/Images/" + ((Pokemon)arg0).getMota().toString().toLowerCase() + "_0_" + ((Pokemon)arg0).getEboluzioZenb() + ".png";
+		pokeSprite.setIcon(new ImageIcon(PokemonPanela.class.getResource(pokemon)));
 	}
+	
 }

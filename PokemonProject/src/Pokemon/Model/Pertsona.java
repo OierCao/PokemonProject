@@ -10,5 +10,4 @@ public class Pertsona extends Jokalari {
 	}
 	
 	//Beste metodoak
-	public void jolastu() {}
 }

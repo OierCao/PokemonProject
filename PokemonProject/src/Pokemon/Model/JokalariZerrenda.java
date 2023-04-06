@@ -122,22 +122,6 @@ public class JokalariZerrenda {
 		}
 		return  jIrabazle;
 	}
-
-	public void txandaJolastu() {
-		setGuztienTxandaFalse();
-		Jokalari oraingoJ = null;
-		
-		oraingoJ = getRandomBizirik();
-		System.out.println(oraingoJ.getIzena() + "-ren txanda \n");
-		oraingoJ.setTxanda(true);
-		if (oraingoJ instanceof Pertsona) {
-			Borroka.getBorroka().timerAmaitu();
-			System.out.println("Pertsona naiz");
-		}
-		else {
-			((Bot)oraingoJ).jolastu();
-		}
-	}
 	
 	//Pantalla
 	public void jokalariakEguneratu() {

@@ -60,7 +60,7 @@ public class Borroka extends Observable{
 		TimerTask txandaJolastu = new TimerTask() {
 			public void run() {
 				if (irabazle==null) {
-					JokalariKatalogoa.getJK().getLista().txandaJolastu();
+					txandaJolastu();
 					irabazle = JokalariKatalogoa.getJK().getLista().irabazlea();
 					JokalariKatalogoa.getJK().getLista().jokalariakEguneratu();
 				}
@@ -77,6 +77,22 @@ public class Borroka extends Observable{
 	
 	public void timerAmaitu() {
 		timer.cancel();
+	}
+	
+	public void txandaJolastu() {
+		JokalariKatalogoa.getJK().getLista().setGuztienTxandaFalse();
+		Jokalari oraingoJ = null;
+		
+		oraingoJ = JokalariKatalogoa.getJK().getLista().getRandomBizirik();
+		System.out.println(oraingoJ.getIzena() + "-ren txanda \n");
+		oraingoJ.setTxanda(true);
+		if (oraingoJ instanceof Pertsona) {
+			timerAmaitu();
+			System.out.println("Pertsona naiz");
+		}
+		else {
+			((Bot)oraingoJ).jolastu();
+		}
 	}
 
 	
