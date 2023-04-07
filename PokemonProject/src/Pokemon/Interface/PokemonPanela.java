@@ -156,15 +156,19 @@ public class PokemonPanela extends JPanel implements Observer{
 		float bizia = (((Pokemon)arg0).getHP()*100)/((Pokemon)arg0).getMaxHP();
 		healthBar.setValue((int)bizia);
 		float euforia = (((Pokemon)arg0).getEgoeraI()*100)/((Pokemon)arg0).getEgoeraIMax();
+		
+		if (((Pokemon)arg0).getHP()==0) { //bizia 0 bada, euforia 0 izango da ere
+			pokeSprite.setEnabled(false);
+			euforia = 0.0f;
+		}
 		euforiaBar.setValue((int)euforia);
+		
+		
 		if (bizia <= 50) {
 			this.healthBar.setForeground(Color.ORANGE);
 		}   
 		if (bizia <= 15) {
 			this.healthBar.setForeground(Color.RED);
-		}
-		if (((Pokemon)arg0).getHP()==0) {
-			pokeSprite.setEnabled(false);
 		}
 		if (euforia <=0) {
 			euforiaBar.setForeground(Color.YELLOW);
@@ -179,6 +183,7 @@ public class PokemonPanela extends JPanel implements Observer{
 		if (euforia < 100) {
 			pokeInfoPanel.setForeground(Color.BLACK);
 		}
+		
 		String pokemon = "/Images/" + ((Pokemon)arg0).getMota().toString().toLowerCase() + "_0_" + ((Pokemon)arg0).getEboluzioZenb() + ".png";
 		pokeSprite.setIcon(new ImageIcon(PokemonPanela.class.getResource(pokemon)));
 	}

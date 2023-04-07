@@ -136,7 +136,7 @@ public class Pokemon extends Observable{
 	}
 	
 	public void euforiaKudeatu() {
-		if(egoeraI==egoeraIMax && !(egoera instanceof EgoeraEuforia)) {
+		if(egoeraI==egoeraIMax && !(egoera instanceof EgoeraEuforia) && hp!=0) {
 			egoeraAldatu();
 		}
 	}

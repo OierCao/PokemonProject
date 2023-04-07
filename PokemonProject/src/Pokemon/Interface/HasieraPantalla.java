@@ -218,7 +218,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 	private JTextField getMillisText() {
 		if (MillisText == null) {
 			MillisText = new JTextField();
-			MillisText.setText("200");
+			MillisText.setText("2000");
 			MillisText.setColumns(10);
 		}
 		return MillisText;
