@@ -1,8 +1,9 @@
 package Pokemon.Model;
 
 import java.util.Arrays;
+import java.util.Observable;
 
-public class MugimenduKudeatzailea {
+public class MugimenduKudeatzailea extends Observable{
 	private static MugimenduKudeatzailea nMK = null;
 	//erasotzaile
 	private Jokalari jokErasotzaile;
@@ -223,6 +224,17 @@ public class MugimenduKudeatzailea {
 	public Pokemon getPokErasotzaile() {
 		return pokErasotzaile;
 	}
+	public Jokalari getJokErasotzaile() {
+		return jokErasotzaile;
+	}
+	
+	public Pokemon getPokErasotua() {
+		return pokErasotua;
+	}
+	public Jokalari getJokErasotua() {
+		return jokErasotua;
+	}
+	
 	public void setJokErasotzaile(Jokalari pJErasotzaile) {
 		jokErasotzaile = pJErasotzaile;
 	}
@@ -276,6 +288,7 @@ public class MugimenduKudeatzailea {
 			Borroka.getBorroka().setIrabazle(jokErasotzaile);
 			jokErasotzaile.eguneratuEgoera();
 		}
+		eguneratuConsoleScreen();
 		setNull();
 		return irabazlea;
 	}
@@ -284,6 +297,17 @@ public class MugimenduKudeatzailea {
 		if(!(jokErasotzaile==null || jokErasotua==null || pokErasotzaile==null || pokErasotua==null)) {
 			eraso();
 		}
+		
+	}
+	
+	private void eguneratuConsoleScreen() { //actualizar la pantalla porque hay un nuevo jugador
+		setChanged();
+		String object[]= {"a","a","a","a"};
+		object[0]=jokErasotzaile.getIzena();
+		object[2]=jokErasotua.getIzena();	
+		System.out.println("SEXOOOOOOOOOOO");
+		
+		notifyObservers();
 		
 	}
 	
