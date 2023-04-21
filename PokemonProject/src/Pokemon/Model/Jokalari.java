@@ -15,9 +15,6 @@ public class Jokalari extends Observable{
 		bizirik = true;
 		txanda=false;
 		talde = randomTaldeLortu(pPokKop);
-		for (Pokemon p: talde.getLista()) {
-			p.estatistikakKalkulatu();
-		}
 	}
 	
 	private PokemonZerrenda randomTaldeLortu(int pKop) {
@@ -53,7 +50,7 @@ public class Jokalari extends Observable{
 	
 	//Beste metodoak
 	public void eguneratuEgoera() {	
-		if (talde.guztiakAhulduta()) {
+		if (talde.getLista().stream().allMatch(p->p.getAhulduta())) {
 			setBizirik(false);
 		}
 		setChanged();

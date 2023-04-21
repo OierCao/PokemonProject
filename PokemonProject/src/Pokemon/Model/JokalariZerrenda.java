@@ -1,8 +1,9 @@
 package Pokemon.Model;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class JokalariZerrenda {
 	private ArrayList<Jokalari> lista;
@@ -40,33 +41,20 @@ public class JokalariZerrenda {
 
 
 	//Setter eta getter
-	private Iterator<Jokalari> getIter() {
-		return lista.iterator();
-	}
-	
-	private JokalariZerrenda getBizirikDaudenak() {
-		JokalariZerrenda pArray = new JokalariZerrenda();;
-		Iterator<Jokalari> itr = getIter();
-		while (itr.hasNext()) {
-			 Jokalari j = itr.next();
-			 if (j.getBizirik()) {
-				 pArray.addJokalari(j);
-			 }
-		} 
-		return pArray;	
+	private ArrayList<Jokalari> getBizirikDaudenak() {
+		return (ArrayList<Jokalari>)this.lista.stream().filter(j->j.getBizirik()).collect(Collectors.toList());
 	}
 	
 	
 	public Jokalari getRandomBizirik() {
-		JokalariZerrenda jZ = getBizirikDaudenak();
-		Jokalari j = null;
+		ArrayList<Jokalari> bizirik = getBizirikDaudenak();
+		Jokalari j;
 		int rand;
-		Random r=new Random();
-		rand = r.nextInt(jZ.lista.size());
-		j = jZ.lista.get(rand);
+		Random r = new Random();
+		rand = r.nextInt(bizirik.size());
+		j = bizirik.get(rand);
 		return j;
 	}
-	
 	public Jokalari getBesteRandomBizirik(Jokalari pJok) {
 		Jokalari j = null;
 		boolean aurkitua=false;
@@ -79,57 +67,29 @@ public class JokalariZerrenda {
 		return j;
 	}
 	
-	public int getPos(Jokalari pJok) {
-		Iterator<Jokalari> itr = getIter();
-		boolean aurkitua=false;
-		Jokalari j;
-		int pos=0;
-		while (itr.hasNext() && !aurkitua) {
-			j = itr.next();
-			if (j.equals(pJok)) {
-				aurkitua=true;
-			}
-			else {
-				pos++;
-			}
-		}
-		return pos;
-	}
+	public int getPos(Jokalari pJok) {return lista.indexOf(pJok);}
 	public Jokalari getJoklariaPos(int i) {
 		return lista.get(i);
 	}	
 	
 	public void setGuztienTxandaFalse() {
-		for (Jokalari j: JokalariKatalogoa.getJK().getLista().getLista()) {
-			j.setTxanda(false);
-		}
+		lista.stream().forEach(j->j.setTxanda(false));
 	}
 
 	//Beste metodoak
 	public Jokalari irabazlea() {
-		Iterator<Jokalari> itr = getIter();
 		Jokalari jIrabazle = null;
-		int i = 0;
-		while ( itr.hasNext() && i<this.lista.size() ) {
-			Jokalari j = itr.next();
-			if (j.getBizirik()) {
-				jIrabazle = j;
-				i++;
-			}
-		}
-		if (i>1) {
-			jIrabazle = null;
+		List<Jokalari> jokLista = lista.stream().filter(j->j.getBizirik()).collect(Collectors.toList());
+
+		if (jokLista.size()==1) {
+			jIrabazle = jokLista.get(0);
 		}
 		return  jIrabazle;
 	}
 	
 	//Pantalla
 	public void jokalariakEguneratu() {
-		Iterator<Jokalari> itr = getIter();
-		while (itr.hasNext()) {
-			 Jokalari j = itr.next();
-			 j.eguneratuEgoera();
-		}
+		lista.stream().forEach(j->j.eguneratuEgoera());
 	}
 	
 

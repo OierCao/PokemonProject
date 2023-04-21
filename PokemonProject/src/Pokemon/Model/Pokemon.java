@@ -1,6 +1,8 @@
 package Pokemon.Model;
 
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Observable;
 
 public class Pokemon extends Observable{
@@ -9,8 +11,8 @@ public class Pokemon extends Observable{
 	private int def;
 	private int hp;
 	private int maxHP;
-	private String izena;
-	private Mota mota;
+	private int id;
+	private ArrayList<Mota> mota;
 	private boolean ahulduta;
 	private Eboluzioa eboluzioa;
 	private Egoera egoera;
@@ -20,24 +22,41 @@ public class Pokemon extends Observable{
 	
 	//Eraikitzaile
 	public Pokemon(Mota pMota) {
-		this.mota = pMota;
+		mota = new ArrayList<Mota>();
+		mota.add(pMota);
+		estatistikakKalkulatu();
 		this.ahulduta=false;
-		eboluzioa = new Eboluzio0();
+		eboluzioa = new Eboluzio0(this);
 		egoera = new EgoeraNormal();
 	}
 	
 	//Setter eta getter
-	public void estatistikakKalkulatu() {
+	private void estatistikakKalkulatu() {
 		Random r=new Random();
 		this.atk = 11 + r.nextInt(6) + 1;
 		this.def = 3 + r.nextInt(3) + 1;
 		this.hp = 200 + r.nextInt(19) + 1;
 		this.maxHP = this.hp;
 		this.egoeraI = 0;
-		this.egoeraIMax = 3 + r.nextInt(4);
+		this.egoeraIMax = 3 + r.nextInt(5);
+		int iMota = Arrays.asList(Mota.values()).indexOf(mota.get(0));
+		int randomBalio;
+		if(iMota==2 || iMota==4 || iMota==16 || iMota==11) {
+			randomBalio=10;
+		}
+		else if(iMota==0 || iMota==6 || iMota==9 || iMota==15) {
+			randomBalio=20;
+		}
+		else if(iMota==17) {
+			randomBalio=21;
+		}
+		else {
+			randomBalio=13;
+		}
+		this.id = r.nextInt(randomBalio);
 	}
 	
-	public String getIzena() {return izena;}
+	public int getId() {return id;}
 	
 	public int getAtk(){return this.atk;}
 	
@@ -45,7 +64,8 @@ public class Pokemon extends Observable{
 	
 	public int getHP(){return this.hp;}
 	
-	public Mota getMota(){return this.mota;}
+	public Mota getMota1(){return this.mota.get(0);}
+	public Mota getMota2() {if(mota.size()==1) {return null;} else{return mota.get(1);}}
 	
 	public int getMaxHP() {return this.maxHP;}
 	
@@ -58,20 +78,27 @@ public class Pokemon extends Observable{
 	public int getEgoeraIMax() {return this.egoeraIMax;}
 
 	//Beste metodoak
-	public void atakeaKudeatu(int pAtk, float bider) {
+	public void atakeaKudeatu(int pAtk, float bider, float bider2) {
 		if(egoera instanceof EgoeraNormal) {
 			egoeraI = egoeraI + 1;
 		}
-		float mina = minaKalkulatu(pAtk, bider);
+		float mina = minaKalkulatu(pAtk, bider, bider2);
 		hpKudeatu((int)mina);
 		eboluzioKudeatu();
 		euforiaKudeatu();
+		System.out.println(getEboluzioZenb());
 		eguneratuEgoera();
 	}
 	
-	private float minaKalkulatu(int pAtk, float bider) {
+	private float minaKalkulatu(int pAtk, float bider, float bider2) {
 		float mina;
-		mina = pAtk*bider - this.def;
+		
+		if(bider2==-1) {
+			mina = pAtk*bider - this.def;
+		}
+		else {
+			mina = pAtk*bider*bider2 - this.def;
+		}
 			
 		if (mina < 0) {
 			mina = 0;
@@ -90,6 +117,17 @@ public class Pokemon extends Observable{
 	public void gehituAtributuak(int pAtk, int pDef) {
 		atk = atk+pAtk;
 		def = def+pDef;
+	}
+	
+	public void gehituMota(Mota pMota) {
+		mota.add(pMota);
+	}
+	
+	public void aldatuMota(Mota pMota) {
+		if(getMota2()!=null) {
+			mota.remove(getMota2());
+			mota.add(pMota);
+		}
 	}
 	
 	//Eboluzioa (STATE)

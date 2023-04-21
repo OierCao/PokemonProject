@@ -10,6 +10,7 @@ import Pokemon.Model.Borroka;
 import Pokemon.Model.Bot;
 import Pokemon.Model.Jokalari;
 import Pokemon.Model.JokalariKatalogoa;
+import Pokemon.Model.MugimenduKudeatzailea;
 import Pokemon.Model.Pokemon;
 
 import java.awt.BorderLayout;
@@ -81,7 +82,7 @@ public class JokalariPanela extends JFrame implements Observer{
 			p.addObserver(PP);
 			i++;
 		}
-		setBounds(100, 100, 100+140*pokemonPanelak.size(), 350);
+		setBounds(100, 100, 100+140*pokemonPanelak.size(), 400);
 		setTitle(JokalariKatalogoa.getJK().getJokPos(pJokPos).getIzena());
 	}
 	public ArrayList<PokemonPanela> getPokePanelak(){
@@ -128,7 +129,9 @@ public class JokalariPanela extends JFrame implements Observer{
 			if(e.getSource().equals(skipButton) && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda() && !(JokalariKatalogoa.getJK().getJokPos(jokPos) instanceof Bot)) {
 				for(PokemonPanela PP: pokemonPanelak) {
 					PP.aktibatuSprite();
+					PP.aktibatuBotoiak();
 				}
+				MugimenduKudeatzailea.getMK().setNull();
 				Borroka.getBorroka().partida();
 			}
 		}
@@ -161,6 +164,10 @@ public class JokalariPanela extends JFrame implements Observer{
 		else {
 			if (Borroka.getBorroka().getIrabazale().equals(((Jokalari)arg0))) {
 				skipButton.setText("Irabazlea!!!");
+				for(PokemonPanela PP: pokemonPanelak) {
+					PP.aktibatuSprite();
+					PP.aktibatuBotoiak();
+				}
 				skipButton.setBackground(Color.MAGENTA);
 			}
 		}

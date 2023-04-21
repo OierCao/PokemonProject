@@ -11,6 +11,7 @@ public class MugimenduKudeatzailea {
 	private Jokalari jokErasotua;
 	private Pokemon pokErasotua;
 	private float[][] motaTabla;
+	private Mota motaAtk;
 	
 	
 	//BUILDER
@@ -51,6 +52,8 @@ public class MugimenduKudeatzailea {
 		motaTabla[2][2] = 2.0f;
 		
 		motaTabla[2][16] = 0.5f;
+		
+		motaTabla[2][4] = 0.0f;
 		
 		//ELECTRIC
 		motaTabla[3][7] = 2.0f;
@@ -128,7 +131,7 @@ public class MugimenduKudeatzailea {
 		motaTabla[9][16] = 0.5f;
 		
 		//GROUND
-		motaTabla[10][4] = 2.0f;
+		motaTabla[10][3] = 2.0f;
 		motaTabla[10][6] = 2.0f;
 		motaTabla[10][13] = 2.0f;
 		motaTabla[10][15] = 2.0f;
@@ -145,8 +148,8 @@ public class MugimenduKudeatzailea {
 		motaTabla[11][9] = 2.0f;
 		motaTabla[11][10] = 2.0f;
 		
-		motaTabla[10][4] = 0.5f;
-		motaTabla[10][10] = 0.5f;
+		motaTabla[10][6] = 0.5f;
+		motaTabla[10][11] = 0.5f;
 		motaTabla[10][16] = 0.5f;
 		motaTabla[10][17] = 0.5f;
 		
@@ -232,8 +235,11 @@ public class MugimenduKudeatzailea {
 	public void setPokErasotua(Pokemon pPErasotua) {
 		pokErasotua = pPErasotua;
 	}
+	public void setMotaAtk(Mota pMotaAtk) {
+		motaAtk = pMotaAtk;
+	}
 	
-	private void setNull() {
+	public void setNull() {
 		jokErasotua=null;
 		pokErasotua=null;
 		pokErasotzaile=null;
@@ -245,12 +251,21 @@ public class MugimenduKudeatzailea {
 		System.out.println("Erasoa egingo da");
 		int erasoAtk= pokErasotzaile.getAtk();
 		
-		int i = Arrays.asList(Mota.values()).indexOf(pokErasotzaile.getMota());
-		int j = Arrays.asList(Mota.values()).indexOf(pokErasotua.getMota());
+		int i = Arrays.asList(Mota.values()).indexOf(motaAtk);
+		int j = Arrays.asList(Mota.values()).indexOf(pokErasotua.getMota1());
 		float bider = motaTabla[i][j];
 		
-		pokErasotua.atakeaKudeatu(erasoAtk, bider);
+		if(pokErasotua.getMota2()!=null) {
+			int j2 = Arrays.asList(Mota.values()).indexOf(pokErasotua.getMota2());
+			float bider2 = motaTabla[i][j2];
+			pokErasotua.atakeaKudeatu(erasoAtk, bider, bider2);
+		}
+		else {
+			pokErasotua.atakeaKudeatu(erasoAtk, bider, -1.0f);
+		}
+		
 		pokErasotzaile.euforiaKendu();
+		pokErasotzaile.eguneratuEgoera();
 		System.out.println("Erasoa kudeatu da");
 				
 		jokErasotua.eguneratuEgoera();

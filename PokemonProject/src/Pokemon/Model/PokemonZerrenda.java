@@ -41,20 +41,18 @@ public class PokemonZerrenda {
 		int i=0;
 		Random r = new Random();
 		while (i<pKop) {
-			 pArray.addPokemon(new Pokemon(Mota.values()[r.nextInt(Mota.values().length)]));
-			 i++;
+			int mota1 = r.nextInt(Mota.values().length);
+			System.out.println(Mota.values()[mota1]);
+			pArray.addPokemon(new Pokemon(Mota.values()[mota1]));
+			i++;
 		} 
 		return pArray;	
 	}
-	
+
 	public PokemonZerrenda getEzAhulduak(){
 		PokemonZerrenda pArray = new PokemonZerrenda();
-		Iterator<Pokemon> itr = getIter();
-		while (itr.hasNext()) {
-			 Pokemon p = itr.next();
-			 if (!p.getAhulduta()) pArray.addPokemon(p);
-		} 
-		return pArray;	
+		lista.stream().filter(p->!p.getAhulduta()).forEach(p->pArray.addPokemon(p));
+		return pArray;
 	}
 
 	public Pokemon getRandomEzAhulduta() {
@@ -80,71 +78,14 @@ public class PokemonZerrenda {
 		return pPok;
 	}
 	
-	//Beste metodoak
-	public boolean guztiakAhulduta() {
-		boolean ahuldutak = true;
-		Iterator<Pokemon> itr = getIter();
-		while (itr.hasNext() && ahuldutak == true) {
-			 Pokemon p = itr.next();
-			 ahuldutak = p.getAhulduta();
-		} 
-		return ahuldutak;	
+	//Beste Metodoak
+	public int getPokemonPos(Pokemon pPok) {
+		return lista.indexOf(pPok);
 	}
 
-	public Pokemon bilatuPokemon(String pIzena) {
-		Iterator<Pokemon> itr = getIter();
-		boolean aurk = false;
-		Pokemon p = null;
-		while (itr.hasNext() && !aurk) {
-			p = itr.next();
-			if(p.getIzena().equals(pIzena)) {
-				aurk = true;
-			}
-		}
-		if (aurk) {
-			return p;
-		}
-		else {
-			return null;
-		}
-	}
-	
-	public boolean pokemonaDago(Pokemon pPok) {
-		Iterator<Pokemon> itr = getIter();
-		boolean aurk = false;
-		Pokemon p = null;
-		while (itr.hasNext() && !aurk) {
-			p = itr.next();
-			if(p.equals(pPok)) {
-				aurk = true;
-			}
-		}
-		return aurk;
-	}
-	
+
 	//Pantalla
 	public void pokemonakEguneratu() {
-		Iterator<Pokemon> itr = getIter();
-		while (itr.hasNext()) {
-			 Pokemon p = itr.next();
-			 p.eguneratuEgoera();
-		} 
-	}
-
-	public int getPokemonPos(Pokemon pPok) {
-		Iterator<Pokemon> itr = getIter();
-		boolean aurkitua=false;
-		Pokemon p;
-		int pos=0;
-		while (itr.hasNext() && !aurkitua) {
-			p = itr.next();
-			if (p.equals(pPok)) {
-				aurkitua=true;
-			}
-			else {
-				pos++;
-			}
-		}
-		return pos;
+		lista.stream().forEach(p->p.eguneratuEgoera());
 	}
 }
