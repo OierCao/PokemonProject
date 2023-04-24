@@ -2,6 +2,8 @@ package Pokemon.Model;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -15,8 +17,8 @@ public class AudioKudeatzailea {
 	private Long oraingoms;
 	
 	FloatControl fc;
-	float prevVol = -25f;
-	float cVol = -25f;
+	float prevVol = -15f;
+	float cVol = -15f;
 	boolean mute = false;
 	
 	private Clip effectClip = null;
@@ -27,8 +29,23 @@ public class AudioKudeatzailea {
 	
 	private String egoera;
 	
-	private String fitxategiPath = "/Audio/Pokemon_Theme_Song.wav";
+	private String musikaFitx;
 	
+	private ArrayList<String> musikaAukeraLista = new ArrayList<String>();
+	private ArrayList<String> musikaLista;
+	
+	
+	private AudioKudeatzailea() {
+		musikaAukeraLista.add("blackwhite");
+		musikaAukeraLista.add("oras");
+		musikaAukeraLista.add("platinum");
+		musikaAukeraLista.add("xy");
+		
+		musikaLista=(ArrayList<String>) musikaAukeraLista.clone();
+		musikaLista.add("advanced battle");
+		musikaLista.add("champion");
+		
+	}
 	
 	public static AudioKudeatzailea getAudioKudeatzailea()
 	{
@@ -65,45 +82,57 @@ public class AudioKudeatzailea {
 	}
 	 
 	 
-	public synchronized void playAudio(int pSound) {
-	     if (this.musicClip != null) {
-	      this.musicClip.stop();
-	       this.musicClip.flush();
-	       this.musicClip.close();
-	    } 
-	     String pFile = "";
-	     if (pSound == 0) {
-	       pFile = "/Audio/Pokemon_Theme_Song.wav";
-	     }
-	     if (pSound == 1) {
-	       pFile = "";
-	     }
-	     if (pSound == 2) {
-	      pFile = "";
-	     }
+	public synchronized boolean playAudio(String pAudioIzena) {
+	     boolean aldaketa=this.setAudioFitx(pAudioIzena);
 	     
-	     try {
-	      this.musicSoinuInput = AudioSystem.getAudioInputStream(getClass().getResource(pFile));
-	       this.musicClip = AudioSystem.getClip();
-	       this.musicClip.open(this.musicSoinuInput);
-	       this.musicClip.loop(-1);
-	       fc = (FloatControl) musicClip.getControl(FloatControl.Type.MASTER_GAIN);
-	       cVol = prevVol;
-           fc.setValue(cVol);
-	       
-	       this.playMusic();
+	     if (aldaketa) {
+		     if (this.musicClip != null) {
+			      this.musicClip.stop();
+			       this.musicClip.flush();
+			       this.musicClip.close();
+			     } 
+	    	 try {
+		    	 System.out.println("musikafitx=" + musikaFitx);
+		      this.musicSoinuInput = AudioSystem.getAudioInputStream(getClass().getResource(musikaFitx));
+		       this.musicClip = AudioSystem.getClip();
+		       this.musicClip.open(this.musicSoinuInput);
+		       this.musicClip.loop(-1);
+		       fc = (FloatControl) musicClip.getControl(FloatControl.Type.MASTER_GAIN);
+		       cVol = prevVol;
+	           fc.setValue(cVol);
+		       
+		       this.playMusic();
+		     }
+		     catch (Exception e) {
+		      e.printStackTrace();
+		     } 
 	     }
-	     catch (Exception e) {
-	      e.printStackTrace();
-	     } 
+	     return aldaketa;
+	     
 	   }
 
-
-	//SET/GET
-	public void setFitxategiPath(String path) {
-	}
-	
-	public void changeSong(int pSongId) {
+	private boolean setAudioFitx(String pAudioIzena) {
+		boolean changed=true;
+		 if (pAudioIzena.equals("random")) {
+	    	 Random rand = new Random(); 
+	    	 System.out.println("size=" +musikaAukeraLista.size());
+	         int random = rand.nextInt(musikaAukeraLista.size()-1); 
+	         pAudioIzena=musikaAukeraLista.get(random);
+	         System.out.println("random song=" + random);
+	         this.musikaFitx="/Audio/" + pAudioIzena + ".wav";
+		 }
+	        
+		 else {
+			 if (musikaLista.contains(pAudioIzena)) {
+				 this.musikaFitx="/Audio/" + pAudioIzena + ".wav";
+			 }
+			 else {
+				 changed=false;
+			 }
+		 }
+		 return changed;
+		 
+		 
 		
 	}
 	
@@ -111,6 +140,7 @@ public class AudioKudeatzailea {
 	//MUSIC
     public void playMusic() 
     {
+    	System.out.println("play music");
         musicClip.start();
         egoera = "play";
     }
@@ -161,10 +191,8 @@ public class AudioKudeatzailea {
     
     public void resetAudio()
     {
-    	String pFile = "/Audio/Pokemon_Theme_Song.wav";
-    	
     	try {
-    	musicSoinuInput = AudioSystem.getAudioInputStream(getClass().getResource(pFile));
+    	musicSoinuInput = AudioSystem.getAudioInputStream(getClass().getResource(musikaFitx));
         musicClip.open(musicSoinuInput);
         musicClip.loop(Clip.LOOP_CONTINUOUSLY);
     	}

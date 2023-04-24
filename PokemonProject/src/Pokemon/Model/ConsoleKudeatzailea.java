@@ -27,11 +27,15 @@ public class ConsoleKudeatzailea extends Observable{
 	
 	public String runCommand(String pCommand) {
 		String sysOut="Comandoa ez da aurkitu";
-		
 
+		
 		//AUDIO
-		if (pCommand.equals("/play")) {
-			AudioKudeatzailea.getAudioKudeatzailea().playAudio(0);
+		if (pCommand.startsWith("/play")) {
+			String balioa=this.getWord(pCommand);
+			boolean aldaketa=AudioKudeatzailea.getAudioKudeatzailea().playAudio(balioa);
+			if (aldaketa) {sysOut="musica aldatu egin da";}
+			else {sysOut="musica ez izan da aldatu";}
+			
 		}
 		
 		else if (pCommand.equals("/pause")) {
@@ -50,27 +54,47 @@ public class ConsoleKudeatzailea extends Observable{
 		}
 		
 		else if (pCommand.startsWith("/changevolume")) {
-			String balioaStr="s";
-			if(pCommand.contains(" ")) {
-				int pos = pCommand.indexOf(" ") + 1;
-				balioaStr = pCommand.substring(pos);
-				System.out.println("console-en sartutako balioa=" + balioaStr);
-			}
-			int balioa=Integer.parseInt(balioaStr);
+			String balioaStr=this.getWord(pCommand);
 			
-			
-			if (balioa>=0 && balioa <=100) {
-				AudioKudeatzailea.getAudioKudeatzailea().setVol((float)balioa);
-				sysOut="musikaren bolumena eguneratu da";
-			}
-			else {sysOut="ezin izan da musikaren bolumena eguneratu sartu 0-100 arteko balio bat";}
+			if (balioaStr!=null && this.zenbakiaDa(balioaStr)){
+				int balioa=Integer.parseInt(balioaStr);
+				if (balioa>=0 && balioa <=100) {
+					AudioKudeatzailea.getAudioKudeatzailea().setVol((float)balioa);
+					sysOut="musikaren bolumena eguneratu da";
+				}
+			}	
+			else {sysOut="ezin izan da musikaren bolumena eguneratu sartu 0-100 arteko balio bat";}	
 		}
-		txt=sysOut;
 		
+		//update
+		txt=sysOut;	
 		eguneratuConsoleScreen();
-		return sysOut;
+		return sysOut;		
+	}
+			
+		
+	
+	
+	private String getWord(String pCommand) 
+	{
+		String balioaStr=null;
+		if(pCommand.contains(" ")) {
+			int pos = pCommand.indexOf(" ") + 1;
+			balioaStr = pCommand.substring(pos);
+		}
+		return balioaStr;
 	}
 	
+	private boolean zenbakiaDa(String pStr) {
+		try {
+			int balioa=Integer.parseInt(pStr);
+			return true;
+		}
+		
+		catch(NumberFormatException e) {
+			return false;
+		}
+	}
 	
 	
 	private void eguneratuConsoleScreen() {

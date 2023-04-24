@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Pokemon.Model.AudioKudeatzailea;
 import Pokemon.Model.Borroka;
 import Pokemon.Model.JokalariKatalogoa;
 
@@ -75,6 +76,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 		getContentPane().add(getPanelImg(), BorderLayout.CENTER);
 		Borroka.getBorroka().addObserver(this);
 		setTitle("Hasiera Pantalla");
+		AudioKudeatzailea.getAudioKudeatzailea().playAudio("advanced battle");
 	}
 	
 	private JPanel getPanelRight() {
@@ -274,6 +276,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
 				setVisible(false);
 				new Console().setVisible(true);
+				AudioKudeatzailea.getAudioKudeatzailea().playAudio("random");
 			}
 			else {
 				new ReadMe().setVisible(true);
