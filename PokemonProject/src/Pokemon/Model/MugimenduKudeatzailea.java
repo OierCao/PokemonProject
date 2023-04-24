@@ -305,7 +305,6 @@ public class MugimenduKudeatzailea extends Observable{
 		String object[]= {"a","a","a","a"};
 		object[0]=jokErasotzaile.getIzena();
 		object[2]=jokErasotua.getIzena();	
-		System.out.println("SEXOOOOOOOOOOO");
 		
 		notifyObservers();
 		
