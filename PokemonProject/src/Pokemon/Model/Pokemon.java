@@ -7,6 +7,7 @@ import java.util.Observable;
 
 public class Pokemon extends Observable{
 
+	private String izena;
 	private int atk;
 	private int def;
 	private int hp;
@@ -63,6 +64,9 @@ public class Pokemon extends Observable{
 	public int getDef(){return this.def;}
 	
 	public int getHP(){return this.hp;}
+	
+	public String getIzena() {return this.izena;}
+	public void setIzena(String pIzena) {this.izena=pIzena;}
 	
 	public Mota getMota1(){return this.mota.get(0);}
 	public Mota getMota2() {if(mota.size()==1) {return null;} else{return mota.get(1);}}

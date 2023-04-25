@@ -1,11 +1,20 @@
 package Pokemon.Model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Eboluzio0 implements Eboluzioa{
 	
 	private int atk=5;
 	private int def=3;
+	private String[][] izenak;
+	private Pokemon pok;
 	
 	public Eboluzio0(Pokemon pPok) {
+		pok =pPok;
+		izenak = new String[21][18];
+		matrizeaSortu(pPok);
+		
 		
 		if( (pPok.getMota1().equals(Mota.Fire) && (pPok.getId()==16)) ||
 			(pPok.getMota1().equals(Mota.Ice) && (pPok.getId()==8)) ||
@@ -148,8 +157,111 @@ public class Eboluzio0 implements Eboluzioa{
 				) {
 			pPok.gehituMota(Mota.Water);
 		}
+		pPok.setIzena(izenak[pPok.getId()][Arrays.asList(Mota.values()).indexOf(pPok.getMota1())]);	
 	}
 	
+	private void matrizeaSortu(Pokemon pPok) {
+		ArrayList<String> izenGuztiak = izenGuztiak();
+		int iMota = Arrays.asList(Mota.values()).indexOf(pPok.getMota1());
+		int balioMax;
+		if(iMota==2 || iMota==4 || iMota==16 || iMota==11) {
+			balioMax=10;
+		}
+		else if(iMota==0 || iMota==6 || iMota==9 || iMota==15) {
+			balioMax=20;
+		}
+		else if(iMota==17) {
+			balioMax=21;
+		}
+		else {
+			balioMax=13;
+		}
+		
+		
+		int err=0;
+		int zut=0;
+		for() {
+			
+		}
+	}
+
+	private ArrayList<String> izenGuztiak() {
+		ArrayList<String> izenak = new ArrayList<>();
+		izenak.add("Caterpie");
+		izenak.add("Weedle");
+		izenak.add("Wurmple");
+		izenak.add("Wurmple");
+		izenak.add("Nincada");
+		izenak.add("Surskit");
+		izenak.add("Sewaddle");
+		izenak.add("Cutiefly");
+		izenak.add("Venipede");
+		izenak.add("Scatterbug");
+		izenak.add("Blipbug");
+		izenak.add("Yanma");
+		izenak.add("Pinsir");
+		izenak.add("Scyther");
+		izenak.add("Heracross");
+		izenak.add("Dwebble");
+		izenak.add("Joltik");
+		izenak.add("Grubin");
+		izenak.add("Nymble");
+		izenak.add("Larvesta");
+		
+		izenak.add("Murkrow");
+		izenak.add("Sneasel");
+		izenak.add("Houndour");
+		izenak.add("Poochyena");
+		izenak.add("Zigzagoon");
+		izenak.add("Absol");
+		izenak.add("Purrloin");
+		izenak.add("Scraggy");
+		izenak.add("Zorua");
+		izenak.add("Pawniard");
+		izenak.add("Deino");
+		izenak.add("Inkay");
+		izenak.add("Impidimp");
+		
+		izenak.add("Dratini");
+		izenak.add("Bagon");
+		izenak.add("Gible");
+		izenak.add("Axew");
+		izenak.add("Druddigon");
+		izenak.add("Goomy");
+		izenak.add("Jangmo-o");
+		izenak.add("Dreepy");
+		izenak.add("Tatsugiri");
+		izenak.add("Frigibax");
+		
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		izenak.add("Caterpie");
+		return izenak;
+	}
+
 	@Override
 	public void eboluzionatu(Pokemon pPok) {
 		pPok.setEboluzio(new Eboluzio1(pPok));

@@ -1,4 +1,4 @@
-	package Pokemon.Interface;
+package Pokemon.Interface;
 
 import java.awt.EventQueue;
 
@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 import Pokemon.Model.AudioKudeatzailea;
 import Pokemon.Model.Borroka;
 import Pokemon.Model.JokalariKatalogoa;
-
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.BorderLayout;

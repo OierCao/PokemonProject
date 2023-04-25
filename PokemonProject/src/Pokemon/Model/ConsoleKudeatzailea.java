@@ -39,7 +39,7 @@ public class ConsoleKudeatzailea extends Observable{
 		}
 		
 		else if (pCommand.equals("/pause")) {
-			AudioKudeatzailea.getAudioKudeatzailea().pauseMusic();
+			AudioKudeatzailea.getAudioKudeatzailea().pauseAudio();
 			sysOut="musica gelditu egin da";
 		}
 		
