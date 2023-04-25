@@ -17,9 +17,14 @@ public class AudioKudeatzailea {
 	private Long oraingoms;
 	
 	FloatControl fc;
+	FloatControl fcFx;
 	float prevVol = -15f;
 	float cVol = -15f;
 	boolean mute = false;
+	float prevVolFx = -10f;
+	float cVolFx = -10f;
+	boolean muteFx = false;
+	
 	
 	private Clip effectClip = null;
 	private Clip musicClip = null;
@@ -28,6 +33,7 @@ public class AudioKudeatzailea {
 	private AudioInputStream effectSoinuInput;
 	
 	private String egoera;
+	private String egoeraFx;
 	
 	private String musikaFitx;
 	
@@ -35,6 +41,7 @@ public class AudioKudeatzailea {
 	private ArrayList<String> musikaLista;
 	
 	
+	//Eraikitzailea
 	private AudioKudeatzailea() {
 		musikaAukeraLista.add("blackwhite");
 		musikaAukeraLista.add("oras");
@@ -46,7 +53,6 @@ public class AudioKudeatzailea {
 		musikaLista.add("champion");
 		
 	}
-	
 	public static AudioKudeatzailea getAudioKudeatzailea()
 	{
 		if (nAK == null) {
@@ -57,23 +63,23 @@ public class AudioKudeatzailea {
 	
 
 	
-	//
-	public synchronized void playEffect(int pSound) {
+	//PLAY
+	public synchronized void playEffect(String pFx) {
 		if (this.effectClip != null) 
 	     {
 	       this.effectClip.stop();
 	       this.effectClip.flush();
 	       this.effectClip.close();
 	     }  
-	    String pFile = "";
-	    if (pSound == 0) {
-	      pFile = "/Audio/virtual.wav";
-	     }
-
+		pFx= "/AudioFx/" + pFx + ".wav";
 	     try {
-	      this.effectSoinuInput = AudioSystem.getAudioInputStream(getClass().getResource(pFile));
+	      this.effectSoinuInput = AudioSystem.getAudioInputStream(getClass().getResource(pFx));
 	      this.effectClip = AudioSystem.getClip();
 	      this.effectClip.open(this.effectSoinuInput);
+	      
+	      fcFx = (FloatControl) effectClip.getControl(FloatControl.Type.MASTER_GAIN);
+	      cVolFx = prevVolFx;
+          fcFx.setValue(cVolFx);
 	      
 	      this.effectClip.start();
 	       this.effectClip.wait();
@@ -131,9 +137,6 @@ public class AudioKudeatzailea {
 			 }
 		 }
 		 return changed;
-		 
-		 
-		
 	}
 	
 	
@@ -145,18 +148,18 @@ public class AudioKudeatzailea {
         egoera = "play";
     }
       
-    public void pauseMusic()
-    {
-        if (egoera.equals("pause")) 
-        {
-            System.out.println("pause-n dago jada");
-            return;
-        }
-        this.oraingoms = this.musicClip.getMicrosecondPosition();
-        musicClip.stop();
-        egoera = "pause";
-    }
-      
+    public void pauseAudio(){
+    	if (egoera.equals("pause")) {
+    		System.out.println("Musika pause-n dago jada");
+    		return;
+    		}
+    	else {
+    		this.oraingoms = this.musicClip.getMicrosecondPosition();
+    		musicClip.stop();
+    		egoera = "pause";
+    		}
+    	}
+
     public void resumeMusic()
     {
         if (egoera.equals("play")) 
@@ -203,7 +206,7 @@ public class AudioKudeatzailea {
     }
     
     //VOLUME
-    public void volUp() {
+    public void volUp(String pChannel) {
         cVol += 1.0f;
         System.out.println("up");
         if(cVol > 6.0f) {
@@ -244,10 +247,12 @@ public class AudioKudeatzailea {
         else if(mute == true) {
             cVol = prevVol;
             fc.setValue(cVol);
-            mute = false;
-            
+            mute = false;   
         }
     }
 	
+    
+    
+    
 
 }

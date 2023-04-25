@@ -288,6 +288,7 @@ public class MugimenduKudeatzailea extends Observable{
 			Borroka.getBorroka().setIrabazle(jokErasotzaile);
 			jokErasotzaile.eguneratuEgoera();
 		}
+		AudioKudeatzailea.getAudioKudeatzailea().playEffect(motaAtk.toString());
 		eguneratuConsoleScreen();
 		setNull();
 		return irabazlea;
