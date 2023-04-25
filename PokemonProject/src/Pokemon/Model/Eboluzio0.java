@@ -13,7 +13,7 @@ public class Eboluzio0 implements Eboluzioa{
 	public Eboluzio0(Pokemon pPok) {
 		pok =pPok;
 		izenak = new String[21][18];
-		matrizeaSortu(pPok);
+		//matrizeaSortu(pPok);
 		
 		
 		if( (pPok.getMota1().equals(Mota.Fire) && (pPok.getId()==16)) ||
@@ -160,7 +160,7 @@ public class Eboluzio0 implements Eboluzioa{
 		pPok.setIzena(izenak[pPok.getId()][Arrays.asList(Mota.values()).indexOf(pPok.getMota1())]);	
 	}
 	
-	private void matrizeaSortu(Pokemon pPok) {
+	/*private void matrizeaSortu(Pokemon pPok) {
 		ArrayList<String> izenGuztiak = izenGuztiak();
 		int iMota = Arrays.asList(Mota.values()).indexOf(pPok.getMota1());
 		int balioMax;
@@ -183,7 +183,7 @@ public class Eboluzio0 implements Eboluzioa{
 		for() {
 			
 		}
-	}
+	}*/
 
 	private ArrayList<String> izenGuztiak() {
 		ArrayList<String> izenak = new ArrayList<>();

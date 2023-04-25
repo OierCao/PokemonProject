@@ -315,3 +315,6 @@ public class Console extends JFrame implements Observer{
 		return label_5;
 	}
 }
+
+
+	

@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class ConsoleInfo extends JFrame {
@@ -32,13 +33,13 @@ public class ConsoleInfo extends JFrame {
     setFont(new Font("Centaur", Font.PLAIN, 12));
     setBackground(Color.WHITE);
     setTitle("readMe");
-    setBounds(200, 200,559, 326);
+    setBounds(200, 200,559, 600);
     this.readMePanel = new JPanel();
     this.readMePanel.setBackground(Color.WHITE);
     this.readMePanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-    this.readMePanel.setLayout(new BorderLayout(0, 0));
     setContentPane(this.readMePanel);
-    this.readMePanel.add(getReadMeText(), "Center");
+    readMePanel.setLayout(new BorderLayout(0, 0));
+    this.readMePanel.add(getReadMeText());
     setTitle("ReadMe");
   }
   
@@ -49,10 +50,27 @@ public class ConsoleInfo extends JFrame {
       this.readMeText.setForeground(Color.DARK_GRAY);
       this.readMeText.setBackground(Color.WHITE);
       this.readMeText.setText("Consola erabiliz partidari buruzko informazio zehatzagoa lortu ahal duzu, gainera beheko hutsunea erabiliz komandoak exekutatu ditzakezu\n\n"
-      		+ "Consolako comandoak:\n"
+      		+ "CONSOLAKO KOMANDOAK:\n"
+      		+ "INFORMAZIOA: \n"
       		+ "/typetable \n"
       		+ "/weak <type> \n"
-      		+ "/stop \n"
+      		+ "\n"
+      		+ "AUDIO \n"
+      		+ "/play <song>\n"
+      		+ "/pause\n"
+      		+ "/resume\n"
+      		+ "/changevolume <0-100>\n"
+      		+ "/changevolumeFx <0-100>\n"
+      		+ "/mute (muteatu edo desmuteatzen du)"
+      		+ "\n\n\n"
+      		+ "AUKERATU DAITEZKEEN MUSIKAK:\n"
+      		+ "advanced battle\n"
+      		+ "blackwhite\n"
+      		+ "champion\n"
+      		+ "oras\n"
+      		+ "platinum\n"
+      		+ "xy\n"
+      		
     		  );
       this.readMeText.setEditable(false);
     } 

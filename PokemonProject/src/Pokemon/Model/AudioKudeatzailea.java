@@ -78,7 +78,6 @@ public class AudioKudeatzailea {
 	      this.effectClip.open(this.effectSoinuInput);
 	      
 	      fcFx = (FloatControl) effectClip.getControl(FloatControl.Type.MASTER_GAIN);
-	      cVolFx = prevVolFx;
           fcFx.setValue(cVolFx);
 	      
 	      this.effectClip.start();
@@ -104,7 +103,6 @@ public class AudioKudeatzailea {
 		       this.musicClip.open(this.musicSoinuInput);
 		       this.musicClip.loop(-1);
 		       fc = (FloatControl) musicClip.getControl(FloatControl.Type.MASTER_GAIN);
-		       cVol = prevVol;
 	           fc.setValue(cVol);
 		       
 		       this.playMusic();
@@ -148,29 +146,29 @@ public class AudioKudeatzailea {
         egoera = "play";
     }
       
-    public void pauseAudio(){
+    public boolean pauseAudio(){
     	if (egoera.equals("pause")) {
-    		System.out.println("Musika pause-n dago jada");
-    		return;
+    		return false;
     		}
     	else {
     		this.oraingoms = this.musicClip.getMicrosecondPosition();
     		musicClip.stop();
     		egoera = "pause";
+    		return true;
     		}
     	}
 
-    public void resumeMusic()
+    public boolean resumeMusic()
     {
         if (egoera.equals("play")) 
         {
-            System.out.println("play-an dago jada");
-            return;
+            return false;
         }
         musicClip.close();
         resetAudio();
         musicClip.setMicrosecondPosition(oraingoms);
         this.playMusic();
+        return true;
     }
       
     public void restart() throws UnsupportedAudioFileException, IOException,
@@ -206,35 +204,24 @@ public class AudioKudeatzailea {
     }
     
     //VOLUME
-    public void volUp(String pChannel) {
-        cVol += 1.0f;
-        System.out.println("up");
-        if(cVol > 6.0f) {
-            cVol = 6.0f;
-        }
-        fc.setValue(cVol);
-    }
-    public void volDown() {
-        cVol -= 1.0f;
-        if(cVol > -80.0f) {
-            cVol = -80.0f;
-        }
-        fc.setValue(cVol);  
+    public void setVol(float pVol,String pChannel) //-80f<x<6f
+    {
+    	float calcVol= this.kalkulatuVol(pVol);
+    	if (pChannel.equals("Music")) {
+        	this.cVol=calcVol;
+            fc.setValue(cVol);
+    	}
+    	else if(pChannel.equals("Fx")){
+        	this.cVolFx=calcVol;
+            fcFx.setValue(cVolFx);
+    	}	
     }
     
-    public void setVol(float pVol) //-80f<x<6f
-    {
-    	System.out.println(pVol + "pVol");
+    private float kalkulatuVol(float pVol) {
     	Float calcVol=(86f/100f);
     	calcVol=calcVol*pVol;
-    	//Float calcVol=((86/100) * pVol);
     	calcVol=calcVol-80;
-    	System.out.println(calcVol);
-    	
-    	if(calcVol >= -80.0f && calcVol <= 6f) {
-    		this.cVol=calcVol;
-        	fc.setValue(cVol);
-    	}
+    	return calcVol;
     }
     
     public void mute() {
