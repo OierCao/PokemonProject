@@ -8,12 +8,10 @@ public class Eboluzio0 implements Eboluzioa{
 	private int atk=5;
 	private int def=3;
 	private String[][] izenak;
-	private Pokemon pok;
 	
 	public Eboluzio0(Pokemon pPok) {
-		pok =pPok;
 		izenak = new String[21][18];
-		//matrizeaSortu(pPok);
+		matrizeaSortu(pPok);
 		
 		
 		if( (pPok.getMota1().equals(Mota.Fire) && (pPok.getId()==16)) ||
@@ -157,33 +155,39 @@ public class Eboluzio0 implements Eboluzioa{
 				) {
 			pPok.gehituMota(Mota.Water);
 		}
+		
 		pPok.setIzena(izenak[pPok.getId()][Arrays.asList(Mota.values()).indexOf(pPok.getMota1())]);	
 	}
 	
-	/*private void matrizeaSortu(Pokemon pPok) {
+	private void matrizeaSortu(Pokemon pPok) {
 		ArrayList<String> izenGuztiak = izenGuztiak();
-		int iMota = Arrays.asList(Mota.values()).indexOf(pPok.getMota1());
-		int balioMax;
-		if(iMota==2 || iMota==4 || iMota==16 || iMota==11) {
-			balioMax=10;
-		}
-		else if(iMota==0 || iMota==6 || iMota==9 || iMota==15) {
-			balioMax=20;
-		}
-		else if(iMota==17) {
-			balioMax=21;
-		}
-		else {
-			balioMax=13;
-		}
-		
-		
+		int balioMax;	
 		int err=0;
 		int zut=0;
-		for() {
-			
+		int pos=0;
+		while(zut<Mota.values().length) {
+			if(zut==2 || zut==4 || zut==16 || zut==11) {
+				balioMax=10;
+			}
+			else if(zut==0 || zut==6 || zut==9 || zut==15) {
+				balioMax=20;
+			}
+			else if(zut==17) {
+				balioMax=21;
+			}
+			else {
+				balioMax=13;
+			}
+			while(err<balioMax) {
+				System.out.println(err + " " + zut + "" + izenGuztiak.get(pos));
+				izenak[err][zut] = izenGuztiak.get(pos);
+				err++;
+				pos++;
+			}
+			err=0;
+			zut++;
 		}
-	}*/
+	}
 
 	private ArrayList<String> izenGuztiak() {
 		ArrayList<String> izenak = new ArrayList<>();
@@ -233,32 +237,235 @@ public class Eboluzio0 implements Eboluzioa{
 		izenak.add("Tatsugiri");
 		izenak.add("Frigibax");
 		
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
-		izenak.add("Caterpie");
+		izenak.add("Pichu");
+		izenak.add("Magnemite");
+		izenak.add("Elekid");
+		izenak.add("Electrike");
+		izenak.add("Mareep");
+		izenak.add("Shinx");
+		izenak.add("Helioptile");
+		izenak.add("Toxel");
+		izenak.add("Pawmi");
+		izenak.add("Wattrel");
+		izenak.add("Tynamo");
+		izenak.add("Tadbulb");
+		izenak.add("Yamper");
+		
+		izenak.add("Togepi");
+		izenak.add("Cleffa");
+		izenak.add("Snubbull");
+		izenak.add("Flabébé");
+		izenak.add("Spritzee");
+		izenak.add("Swirlix");
+		izenak.add("Milcery");
+		izenak.add("Fidough");
+		izenak.add("Tinkatink");
+		izenak.add("Comfey");
+		
+		izenak.add("Mankey");
+		izenak.add("Machop");
+		izenak.add("Makuhita");
+		izenak.add("Meditite");
+		izenak.add("Riolu");
+		izenak.add("Timburr");
+		izenak.add("Mienfoo");
+		izenak.add("Pancham");
+		izenak.add("Crabrawler");
+		izenak.add("Clobbopus");
+		izenak.add("Farfetch'd");
+		izenak.add("Hawlucha");
+		izenak.add("Tauros");
+		
+		izenak.add("Charmander");
+		izenak.add("Chimchar");
+		izenak.add("Vulpix");
+		izenak.add("Growlithe");
+		izenak.add("Cyndaquil");
+		izenak.add("Magby");
+		izenak.add("Torchic");
+		izenak.add("Numel");
+		izenak.add("Slugma");
+		izenak.add("Ponyta");
+		izenak.add("Tepig");
+		izenak.add("Pansear");
+		izenak.add("Darumaka");
+		izenak.add("Fennekin");
+		izenak.add("Litten");
+		izenak.add("Scorbunny");
+		izenak.add("Sizzlipede");
+		izenak.add("Fuecoco");
+		izenak.add("Charcadet");
+		izenak.add("Litleo");
+		
+		izenak.add("Pidgey");
+		izenak.add("Fletchling");
+		izenak.add("Rookidee");
+		izenak.add("Rufflet");
+		izenak.add("Pikipek");
+		izenak.add("Cramorant");
+		izenak.add("Noibat");
+		izenak.add("Taillow");
+		izenak.add("Starly");
+		izenak.add("Swablu");
+		izenak.add("Pidove");
+		izenak.add("Pidove");
+		izenak.add("Hoothoot");
+		
+		izenak.add("Gastly");
+		izenak.add("Duskull");
+		izenak.add("Misdreavus");
+		izenak.add("Shuppet");
+		izenak.add("Drifloon");
+		izenak.add("Yamask");
+		izenak.add("Litwick");
+		izenak.add("Phantump");
+		izenak.add("Sandygast");
+		izenak.add("Mimikyu");
+		izenak.add("Pumpkaboo");
+		izenak.add("Corsola");
+		izenak.add("Gimmighoul");
+		
+		izenak.add("Bulbasaur");
+		izenak.add("Treecko");
+		izenak.add("Oddish");
+		izenak.add("Bellsprout");
+		izenak.add("Exeggcute");
+		izenak.add("Chikorita");
+		izenak.add("Shroomish");
+		izenak.add("Budew");
+		izenak.add("Snover");
+		izenak.add("Seedot");
+		izenak.add("Turtwig");
+		izenak.add("Ferroseed");
+		izenak.add("Snivy");
+		izenak.add("Bounsweet");
+		izenak.add("Chespin");
+		izenak.add("Rowlet");
+		izenak.add("Grookey");
+		izenak.add("Sprigatito");
+		izenak.add("Applin");
+		izenak.add("Smoliv");
+		
+		izenak.add("Rhyhorn");
+		izenak.add("Sandile");
+		izenak.add("Sandshrew");
+		izenak.add("Diglett");
+		izenak.add("Gligar");
+		izenak.add("Phanpy");
+		izenak.add("Trapinch");
+		izenak.add("Baltoy");
+		izenak.add("Hippopotas");
+		izenak.add("Drillbur");
+		izenak.add("Golett");
+		izenak.add("Silicobra");
+		izenak.add("Cubone");
+		
+		izenak.add("Swinub");
+		izenak.add("Vanillite");
+		izenak.add("Smoochum");
+		izenak.add("Snorunt");
+		izenak.add("Snorunt");
+		izenak.add("Spheal");
+		izenak.add("Cubchoo");
+		izenak.add("Bergmite");
+		izenak.add("Snom");
+		izenak.add("Eiscue");
+		
+		izenak.add("Whismur");
+		izenak.add("Happiny");
+		izenak.add("Igglybuff");
+		izenak.add("Meowth");
+		izenak.add("Teddiursa");
+		izenak.add("Dunsparce");
+		izenak.add("Stantler");
+		izenak.add("Porygon");
+		izenak.add("Slakoth");
+		izenak.add("Lillipup");
+		izenak.add("Munchlax");
+		izenak.add("Stufful");
+		izenak.add("Buneary");
+		
+		izenak.add("Nidoran(Male)");
+		izenak.add("Nidoran(Female)");
+		izenak.add("Ekans");
+		izenak.add("Zubat");
+		izenak.add("Grimer");
+		izenak.add("Skorupi");
+		izenak.add("Croagunk");
+		izenak.add("Trubbish");
+		izenak.add("Skrelp");
+		izenak.add("Salandit");
+		izenak.add("Stunky");
+		izenak.add("Mareanie");
+		izenak.add("Poipole");
+		
+		izenak.add("Ralts");
+		izenak.add("Abra");
+		izenak.add("Ralts");
+		izenak.add("Wynaut");
+		izenak.add("Woobat");
+		izenak.add("Gothita");
+		izenak.add("Solosis");
+		izenak.add("Elgyem");
+		izenak.add("Espurr");
+		izenak.add("Hatenna");
+		izenak.add("Drowzee");
+		izenak.add("Natu");
+		izenak.add("Mime Jr.");
+		
+		izenak.add("Geodude");
+		izenak.add("Larvitar");
+		izenak.add("Omanyte");
+		izenak.add("Kabuto");
+		izenak.add("Onix");
+		izenak.add("Rolycoly");
+		izenak.add("Aerodactyl");
+		izenak.add("Lileep");
+		izenak.add("Anorith");
+		izenak.add("Cranidos");
+		izenak.add("Shieldon");
+		izenak.add("Bonsly");
+		izenak.add("Archen");
+		izenak.add("Tyrunt");
+		izenak.add("Amaura");
+		izenak.add("Roggenrola");
+		izenak.add("Rockruff");
+		izenak.add("Nacli");
+		izenak.add("Glimmet");
+		izenak.add("Binacle");
+		
+		izenak.add("Beldum");
+		izenak.add("Aron");
+		izenak.add("Mawile");
+		izenak.add("Bronzor");
+		izenak.add("Klink");
+		izenak.add("Honedge");
+		izenak.add("Meltan");
+		izenak.add("Varoom");
+		izenak.add("Cuffant");
+		izenak.add("Duraludon");
+		
+		izenak.add("Squirtle");
+		izenak.add("Mudkip");
+		izenak.add("Totodile");
+		izenak.add("Piplup");
+		izenak.add("Oshawott");
+		izenak.add("Froakie");
+		izenak.add("Popplio");
+		izenak.add("Sobble");
+		izenak.add("Quaxly");
+		izenak.add("Feebas");
+		izenak.add("Basculin");
+		izenak.add("Clauncher");
+		izenak.add("Psyduck");
+		izenak.add("Poliwag");
+		izenak.add("Horsea");
+		izenak.add("Magikarp");
+		izenak.add("Tirtouga");
+		izenak.add("Lotad");
+		izenak.add("Carvanha");
+		izenak.add("Tympole");
+		izenak.add("Azurill");
 		return izenak;
 	}
 

@@ -68,12 +68,14 @@ public class PokemonPanela extends JPanel implements Observer{
 				pokeInfoPanel.setText("\nEraso: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAtk() + "" +  "\n"
 						+ "Defentsa: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getDef() + "\n"
 						+ "Bizia: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getHP() + "/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMaxHP() + "\n"
+						+ "Izena: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena() +"\n"
 						+ "Mota: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
 			}
 			else{
 				pokeInfoPanel.setText("\nEraso: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAtk() + "" +  "\n"
 						+ "Defentsa: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getDef() + "\n"
 						+ "Bizia: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getHP() + "/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMaxHP() + "\n"
+						+ "Izena: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena() +"\n"
 						+ "Mota: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1() + "/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
 			}
 		}
@@ -314,6 +316,7 @@ public class PokemonPanela extends JPanel implements Observer{
 			pokeInfoPanel.setText("\nEraso: " + ((Pokemon)arg0).getAtk() + "" +  "\n"
 					+ "Defentsa: " + ((Pokemon)arg0).getDef() + "\n"
 					+ "Bizia: " + ((Pokemon)arg0).getHP() + "/" + ((Pokemon)arg0).getMaxHP() + "\n"
+					+ "Izena: " + ((Pokemon)arg0).getIzena() +"\n"
 					+ "Mota: " + ((Pokemon)arg0).getMota1());
 		}
 		else{
@@ -324,6 +327,7 @@ public class PokemonPanela extends JPanel implements Observer{
 			pokeInfoPanel.setText("\nEraso: " + ((Pokemon)arg0).getAtk() + "" +  "\n"
 				+ "Defentsa: " + ((Pokemon)arg0).getDef() + "\n"
 				+ "Bizia: " + ((Pokemon)arg0).getHP() + "/" + ((Pokemon)arg0).getMaxHP() + "\n"
+				+ "Izena: " + ((Pokemon)arg0).getIzena() +"\n"
 				+ "Mota: " + ((Pokemon)arg0).getMota1() + "/" + ((Pokemon)arg0).getMota2());
 		}	
 		pokemon = "/Images/" +  ((Pokemon)arg0).getMota1().toString().toLowerCase() + "_" + ((Pokemon)arg0).getId() + "_" + ((Pokemon)arg0).getEboluzioZenb() +".png";
