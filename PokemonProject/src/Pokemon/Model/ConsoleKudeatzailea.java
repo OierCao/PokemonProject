@@ -65,7 +65,7 @@ public class ConsoleKudeatzailea extends Observable{
 			}	
 			else {sysOut="ezin izan da musikaren bolumena eguneratu sartu 0-100 arteko balio bat";}	
 		}
-		
+
 		//update
 		txt=sysOut;	
 		eguneratuConsoleScreen();
