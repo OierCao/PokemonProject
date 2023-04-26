@@ -261,6 +261,7 @@ public class MugimenduKudeatzailea extends Observable{
 	//Beste metodoak
 	public Jokalari eraso() {
 		System.out.println("Erasoa egingo da");
+		int prevHp = pokErasotua.getHP();
 		int erasoAtk= pokErasotzaile.getAtk();
 		
 		int i = Arrays.asList(Mota.values()).indexOf(motaAtk);
@@ -282,6 +283,10 @@ public class MugimenduKudeatzailea extends Observable{
 				
 		jokErasotua.eguneratuEgoera();
 		jokErasotzaile.eguneratuEgoera();
+		
+		
+		int Hp = pokErasotua.getHP();
+		int hpLost = prevHp-Hp;
 				
 		Jokalari irabazlea = JokalariKatalogoa.getJK().getLista().irabazlea();
 		if(jokErasotzaile.equals(irabazlea)) {
@@ -289,7 +294,7 @@ public class MugimenduKudeatzailea extends Observable{
 			jokErasotzaile.eguneratuEgoera();
 		}
 		AudioKudeatzailea.getAudioKudeatzailea().playEffect(motaAtk.toString());
-		eguneratuConsoleScreen();
+		eguneratuConsoleScreen(hpLost);
 		setNull();
 		return irabazlea;
 	}
@@ -301,13 +306,9 @@ public class MugimenduKudeatzailea extends Observable{
 		
 	}
 	
-	private void eguneratuConsoleScreen() { //actualizar la pantalla porque hay un nuevo jugador
+	private void eguneratuConsoleScreen(int hpLost) { //actualizar la pantalla porque hay un nuevo jugador
 		setChanged();
-		String object[]= {"a","a","a","a"};
-		object[0]=jokErasotzaile.getIzena();
-		object[2]=jokErasotua.getIzena();	
-		
-		notifyObservers();
+		notifyObservers(hpLost);
 		
 	}
 	

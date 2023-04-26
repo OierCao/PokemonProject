@@ -20,7 +20,8 @@ public class JokalariFactory {
 			j = new Pertsona(pJokNum,pPokKop);
 		}
 		else {
-			j = new Bot(pJokNum,pPokKop);
+			Easy e= new Easy();
+			j = new Bot(pJokNum,pPokKop,e);
 		}
 		return j;
 	}	

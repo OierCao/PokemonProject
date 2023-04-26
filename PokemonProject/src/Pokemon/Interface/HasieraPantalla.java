@@ -293,8 +293,11 @@ public class HasieraPantalla extends JFrame implements Observer {
 	//Eguneraketa
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		JokalariPanela jp = new JokalariPanela((int)arg1);
-		JokalariKatalogoa.getJK().getJokPos((int)arg1).addObserver(jp);
-		jp.setVisible(true);
+		if ((int)arg1!=-1) {
+			JokalariPanela jp = new JokalariPanela((int)arg1);
+			JokalariKatalogoa.getJK().getJokPos((int)arg1).addObserver(jp);
+			jp.setVisible(true);
+		}
+	
 	}
 }

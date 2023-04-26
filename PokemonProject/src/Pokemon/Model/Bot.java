@@ -4,10 +4,14 @@ import java.util.Random;
 
 public class Bot extends Jokalari {
 	
+	AIPortaera aiPortaera; 
+	
+	
 	//Eraikitzaile
-	public Bot(int pJokNum,int pPokKop) {
+	public Bot(int pJokNum,int pPokKop,AIPortaera pPortaera) {
 		super(pPokKop);
 		izena = "Bot" + pJokNum;
+		aiPortaera=pPortaera;
 	}
 	
 	//Getter
@@ -57,5 +61,13 @@ public class Bot extends Jokalari {
 			}
 			
 		}
-	}	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

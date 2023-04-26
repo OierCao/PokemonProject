@@ -65,7 +65,8 @@ public class Borroka extends Observable{
 					JokalariKatalogoa.getJK().getLista().jokalariakEguneratu();
 				}
 				else {
-					irabazle.eguneratuEgoera();
+					System.out.println("irabazlea dago \n");
+					AudioKudeatzailea.getAudioKudeatzailea().playAudio("victory");
 					JokalariKatalogoa.getJK().reset();
 					timerAmaitu();
 				}
@@ -80,6 +81,8 @@ public class Borroka extends Observable{
 	}
 	
 	public void txandaJolastu() {
+		eguneratuConsoleScreen(-1);
+		
 		JokalariKatalogoa.getJK().getLista().setGuztienTxandaFalse();
 		Jokalari oraingoJ = null;
 		
@@ -99,8 +102,16 @@ public class Borroka extends Observable{
 	//Pantalla eguneratu
 	private void eguneratuBorrokaScreen(int pJokPos) { //actualizar la pantalla porque hay un nuevo jugador
 		setChanged();
+		
 		notifyObservers(pJokPos);
 	}
+	
+	//Pantalla eguneratu
+		private void eguneratuConsoleScreen(int value) { //actualizar la pantalla porque hay un nuevo jugador
+			setChanged();
+			
+			notifyObservers(value);
+		}
 	
 	
 }

@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Pokemon.Model.Borroka;
 import Pokemon.Model.ConsoleKudeatzailea;
 import Pokemon.Model.MugimenduKudeatzailea;
 
@@ -25,6 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import java.awt.GridLayout;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class Console extends JFrame implements Observer{
 	private KontroladoreConsole nKontroladoreConsole=null;
@@ -40,11 +42,7 @@ public class Console extends JFrame implements Observer{
 	private JButton InfoButton;
 	private JPanel spacePanel;
 	private JTextArea textArea;
-	private JLabel label;
-	private JLabel label_1;
-	private JLabel label_2;
-	private JLabel label_4;
-	private JLabel label_5;
+	private JPanel panel;
 
 
 	/**
@@ -68,7 +66,7 @@ public class Console extends JFrame implements Observer{
 	 */
 	public Console() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 350, 400);
+		setBounds(100, 100, 450, 425);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,70 +78,47 @@ public class Console extends JFrame implements Observer{
 		
 		ConsoleKudeatzailea.getCK().addObserver(this);
 		MugimenduKudeatzailea.getMK().addObserver(this);
+		Borroka.getBorroka().addObserver(this);
 	}
 
 	private JPanel getPanel_north() {
 		if (panel_north == null) {
 			panel_north = new JPanel();
 			GridBagLayout gbl_panel_north = new GridBagLayout();
-			gbl_panel_north.columnWidths = new int[]{32, 32, 32, 32, 0, 32, 32, 32, 0, 0, 32, 0};
+			gbl_panel_north.columnWidths = new int[]{32, 32, 32, 32, 0, 32, 32, 0, 32, 0, 0, 32, 0, 0, 0};
 			gbl_panel_north.rowHeights = new int[]{25, 0};
-			gbl_panel_north.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_panel_north.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+			gbl_panel_north.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel_north.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 			panel_north.setLayout(gbl_panel_north);
-			GridBagConstraints gbc_label = new GridBagConstraints();
-			gbc_label.fill = GridBagConstraints.BOTH;
-			gbc_label.insets = new Insets(0, 0, 0, 5);
-			gbc_label.gridx = 0;
-			gbc_label.gridy = 0;
-			panel_north.add(getLabel(), gbc_label);
-			GridBagConstraints gbc_label_1 = new GridBagConstraints();
-			gbc_label_1.fill = GridBagConstraints.BOTH;
-			gbc_label_1.insets = new Insets(0, 0, 0, 5);
-			gbc_label_1.gridx = 1;
-			gbc_label_1.gridy = 0;
-			panel_north.add(getLabel_1(), gbc_label_1);
 			GridBagConstraints gbc_spacePanel = new GridBagConstraints();
 			gbc_spacePanel.fill = GridBagConstraints.BOTH;
 			gbc_spacePanel.insets = new Insets(0, 0, 0, 5);
 			gbc_spacePanel.gridx = 2;
 			gbc_spacePanel.gridy = 0;
 			panel_north.add(getSpacePanel(), gbc_spacePanel);
-			GridBagConstraints gbc_label_2 = new GridBagConstraints();
-			gbc_label_2.fill = GridBagConstraints.BOTH;
-			gbc_label_2.insets = new Insets(0, 0, 0, 5);
-			gbc_label_2.gridx = 3;
-			gbc_label_2.gridy = 0;
-			panel_north.add(getLabel_2(), gbc_label_2);
 			GridBagConstraints gbc_Terminal_icon = new GridBagConstraints();
 			gbc_Terminal_icon.fill = GridBagConstraints.BOTH;
 			gbc_Terminal_icon.insets = new Insets(0, 0, 0, 5);
-			gbc_Terminal_icon.gridx = 4;
+			gbc_Terminal_icon.gridx = 6;
 			gbc_Terminal_icon.gridy = 0;
 			panel_north.add(getTerminal_icon(), gbc_Terminal_icon);
 			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.fill = GridBagConstraints.VERTICAL;
+			gbc_lblNewLabel.fill = GridBagConstraints.BOTH;
 			gbc_lblNewLabel.insets = new Insets(0, 0, 0, 5);
-			gbc_lblNewLabel.gridx = 5;
+			gbc_lblNewLabel.gridx = 7;
 			gbc_lblNewLabel.gridy = 0;
 			panel_north.add(getLblNewLabel(), gbc_lblNewLabel);
-			GridBagConstraints gbc_label_4 = new GridBagConstraints();
-			gbc_label_4.fill = GridBagConstraints.BOTH;
-			gbc_label_4.insets = new Insets(0, 0, 0, 5);
-			gbc_label_4.gridx = 7;
-			gbc_label_4.gridy = 0;
-			panel_north.add(getLabel_4(), gbc_label_4);
+			GridBagConstraints gbc_panel = new GridBagConstraints();
+			gbc_panel.insets = new Insets(0, 0, 0, 5);
+			gbc_panel.fill = GridBagConstraints.BOTH;
+			gbc_panel.gridx = 10;
+			gbc_panel.gridy = 0;
+			panel_north.add(getPanel(), gbc_panel);
 			GridBagConstraints gbc_InfoButton = new GridBagConstraints();
 			gbc_InfoButton.fill = GridBagConstraints.BOTH;
-			gbc_InfoButton.insets = new Insets(0, 0, 0, 5);
-			gbc_InfoButton.gridx = 9;
+			gbc_InfoButton.gridx = 13;
 			gbc_InfoButton.gridy = 0;
 			panel_north.add(getInfoButton(), gbc_InfoButton);
-			GridBagConstraints gbc_label_5 = new GridBagConstraints();
-			gbc_label_5.fill = GridBagConstraints.BOTH;
-			gbc_label_5.gridx = 10;
-			gbc_label_5.gridy = 0;
-			panel_north.add(getLabel_5(), gbc_label_5);
 		}
 		return panel_north;
 	}
@@ -158,6 +133,7 @@ public class Console extends JFrame implements Observer{
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
 			lblNewLabel = new JLabel("Console");
+			lblNewLabel.setFont(new Font("Impact", Font.PLAIN, 11));
 		}
 		return lblNewLabel;
 	}
@@ -229,6 +205,7 @@ public class Console extends JFrame implements Observer{
 	private JTextArea getTextArea() {
 		if (textArea == null) {
 			textArea = new JTextArea();
+			textArea.setFont(new Font("Consolas", Font.PLAIN, 11));
 		}
 		return textArea;
 	}
@@ -274,45 +251,24 @@ public class Console extends JFrame implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
-		if(!(o instanceof ConsoleKudeatzailea)){
-			this.addScreenText(((MugimenduKudeatzailea)o).getJokErasotzaile().getIzena() + " " + ((MugimenduKudeatzailea)o).getPokErasotzaile().getId() + " pokemona erabili du " + ((MugimenduKudeatzailea)o).getJokErasotua().getIzena() + "-ren " + ((MugimenduKudeatzailea)o).getPokErasotua().getId() + " erasotzeko");
+		if(o instanceof MugimenduKudeatzailea){
+			this.addScreenText(((MugimenduKudeatzailea)o).getJokErasotzaile().getIzena() + " " + ((MugimenduKudeatzailea)o).getPokErasotzaile().getIzena() + " pokemonarekin " + arg.toString() + " dmg egin dio " + ((MugimenduKudeatzailea)o).getJokErasotua().getIzena() + "-ren " + ((MugimenduKudeatzailea)o).getPokErasotua().getIzena() + "-ri");
 		}
-		else {
+		else if (o instanceof ConsoleKudeatzailea) {
 			if(arg!=null) {
 				addScreenText(arg.toString());
 				System.out.println("Update");
 			}
 		}
-	}
-	private JLabel getLabel() {
-		if (label == null) {
-			label = new JLabel("");
+		else if (o instanceof Borroka) {
+			this.addScreenText("");
 		}
-		return label;
 	}
-	private JLabel getLabel_1() {
-		if (label_1 == null) {
-			label_1 = new JLabel("");
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
 		}
-		return label_1;
-	}
-	private JLabel getLabel_2() {
-		if (label_2 == null) {
-			label_2 = new JLabel("");
-		}
-		return label_2;
-	}
-	private JLabel getLabel_4() {
-		if (label_4 == null) {
-			label_4 = new JLabel("");
-		}
-		return label_4;
-	}
-	private JLabel getLabel_5() {
-		if (label_5 == null) {
-			label_5 = new JLabel("");
-		}
-		return label_5;
+		return panel;
 	}
 }
 

@@ -51,6 +51,7 @@ public class AudioKudeatzailea {
 		musikaLista=(ArrayList<String>) musikaAukeraLista.clone();
 		musikaLista.add("advanced battle");
 		musikaLista.add("champion");
+		musikaLista.add("victory");
 		
 	}
 	public static AudioKudeatzailea getAudioKudeatzailea()

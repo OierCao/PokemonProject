@@ -27,7 +27,7 @@ public class PokemonZerrenda {
 		int i=0;
 		Random r = new Random();
 		while (i<pKop) {
-			int mota1 = 9;//r.nextInt(Mota.values().length);
+			int mota1 = r.nextInt(Mota.values().length);
 			pArray.addPokemon(new Pokemon(Mota.values()[mota1]));
 			i++;
 		} 
