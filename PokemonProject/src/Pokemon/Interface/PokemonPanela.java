@@ -27,11 +27,13 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 @SuppressWarnings("serial")
 public class PokemonPanela extends JPanel implements Observer{
 	private JLabel pokeSprite;
-	private JTextPane pokeInfoPanel;
 	private Sagua sagua=null;
 	private Kontroladore kontroladore;
 
@@ -42,7 +44,18 @@ public class PokemonPanela extends JPanel implements Observer{
 	private JProgressBar euforiaBar;
 	private JButton atk1;
 	private JButton atk2;
-	private JLabel lblNewLabel;
+	private JLabel separadore;
+	private JPanel panel;
+	private JLabel motakText;
+	private JLabel izenaText;
+	private JLabel erasoImg;
+	private JLabel hpText;
+	private JLabel erasoText;
+	private JLabel defentsaText;
+	private JLabel defentsaImg;
+	private JLabel mota1Img;
+	private JLabel mota2Img;
+	private JLabel hpImg;
 
 	/**
 	 * Create the panel.
@@ -51,35 +64,11 @@ public class PokemonPanela extends JPanel implements Observer{
 		jokPos=pJokPos;
 		pokPos=pPokPos;
 		setBackground(Color.WHITE);
-		setBounds(0, 0, 140, 140);
+		setBounds(0, 0, 150, 200);
 		setLayout(new BorderLayout(0, 0));
 		add(getPokeSprite(), BorderLayout.CENTER);
-		add(getPokeInfoPanel(), BorderLayout.NORTH);
 		add(getBarrakPanel(), BorderLayout.SOUTH);
-	}
-
-	private JTextPane getPokeInfoPanel() {
-		if (pokeInfoPanel == null) {
-			pokeInfoPanel = new JTextPane();
-			pokeInfoPanel.setBounds(0, 0, 100, 100);
-			pokeInfoPanel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			pokeInfoPanel.setBackground(Color.WHITE);
-			if (JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2()==null) {
-				pokeInfoPanel.setText("\nEraso: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAtk() + "" +  "\n"
-						+ "Defentsa: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getDef() + "\n"
-						+ "Bizia: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getHP() + "/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMaxHP() + "\n"
-						+ "Izena: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena() +"\n"
-						+ "Mota: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
-			}
-			else{
-				pokeInfoPanel.setText("\nEraso: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAtk() + "" +  "\n"
-						+ "Defentsa: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getDef() + "\n"
-						+ "Bizia: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getHP() + "/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMaxHP() + "\n"
-						+ "Izena: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena() +"\n"
-						+ "Mota: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1() + "/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
-			}
-		}
-		return pokeInfoPanel;
+		add(getPanel(), BorderLayout.NORTH);
 	}
 	
 	private JPanel getBarrakPanel() {
@@ -88,7 +77,7 @@ public class PokemonPanela extends JPanel implements Observer{
 			barrakPanel.setLayout(new GridLayout(5, 1, 0, 0));
 			barrakPanel.add(getHealthBar());
 			barrakPanel.add(getEuforiaBar());
-			barrakPanel.add(getLblNewLabel());
+			barrakPanel.add(getSeparadore());
 			barrakPanel.add(getAtk1());
 			barrakPanel.add(getAtk2());
 		}
@@ -312,23 +301,23 @@ public class PokemonPanela extends JPanel implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		String pokemon;
+		izenaText.setText("Izena: " + ((Pokemon)arg0).getIzena());
 		if (((Pokemon)arg0).getMota2()==null) {
-			pokeInfoPanel.setText("\nEraso: " + ((Pokemon)arg0).getAtk() + "" +  "\n"
-					+ "Defentsa: " + ((Pokemon)arg0).getDef() + "\n"
-					+ "Bizia: " + ((Pokemon)arg0).getHP() + "/" + ((Pokemon)arg0).getMaxHP() + "\n"
-					+ "Izena: " + ((Pokemon)arg0).getIzena() +"\n"
-					+ "Mota: " + ((Pokemon)arg0).getMota1());
+			erasoText.setText(((Pokemon)arg0).getAtk() + "");
+			defentsaText.setText(((Pokemon)arg0).getDef() + "");
+			hpText.setText(((Pokemon)arg0).getHP() + " / " + ((Pokemon)arg0).getMaxHP());
 		}
 		else{
 			atk2.setEnabled(true);
 			atk2.addActionListener(getKontroladore());
 			atk2.setText(((Pokemon)arg0).getMota2().toString());
 			botoiKolorea(atk2, ((Pokemon)arg0).getMota2());
-			pokeInfoPanel.setText("\nEraso: " + ((Pokemon)arg0).getAtk() + "" +  "\n"
-				+ "Defentsa: " + ((Pokemon)arg0).getDef() + "\n"
-				+ "Bizia: " + ((Pokemon)arg0).getHP() + "/" + ((Pokemon)arg0).getMaxHP() + "\n"
-				+ "Izena: " + ((Pokemon)arg0).getIzena() +"\n"
-				+ "Mota: " + ((Pokemon)arg0).getMota1() + "/" + ((Pokemon)arg0).getMota2());
+			erasoText.setText(((Pokemon)arg0).getAtk() + "");
+			defentsaText.setText(((Pokemon)arg0).getDef() + "");
+			hpText.setText(((Pokemon)arg0).getHP() + " / " + ((Pokemon)arg0).getMaxHP());
+			String icon;
+			icon = "/Icons/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2().toString().toLowerCase() + ".png";
+			mota2Img.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
 		}	
 		pokemon = "/Images/" +  ((Pokemon)arg0).getMota1().toString().toLowerCase() + "_" + ((Pokemon)arg0).getId() + "_" + ((Pokemon)arg0).getEboluzioZenb() +".png";
 		
@@ -360,21 +349,184 @@ public class PokemonPanela extends JPanel implements Observer{
 		}   
 		if (euforia == 100) {
 			euforiaBar.setForeground(Color.RED);
-			pokeInfoPanel.setForeground(Color.RED);
+			erasoText.setForeground(Color.RED);
+			defentsaText.setForeground(Color.RED);
+			hpText.setForeground(Color.RED);
+			motakText.setForeground(Color.RED);
 		}
 		if (euforia < 100) {
-			pokeInfoPanel.setForeground(Color.BLACK);
+			erasoText.setForeground(Color.BLACK);
+			defentsaText.setForeground(Color.BLACK);
+			hpText.setForeground(Color.BLACK);
+			motakText.setForeground(Color.BLACK);
 		}
 		if (!pokeSprite.isEnabled()) {
 			atk1.setEnabled(false);
 			atk2.setEnabled(false);
 		}
 	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("");
-			lblNewLabel.setBackground(Color.WHITE);
+	private JLabel getSeparadore() {
+		if (separadore == null) {
+			separadore = new JLabel("");
+			separadore.setBackground(Color.WHITE);
 		}
-		return lblNewLabel;
+		return separadore;
+	}
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBackground(Color.WHITE);
+			GridBagLayout gbl_panel = new GridBagLayout();
+			gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0};
+			gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0};
+			gbl_panel.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			panel.setLayout(gbl_panel);
+			GridBagConstraints gbc_izenaText = new GridBagConstraints();
+			gbc_izenaText.gridwidth = 4;
+			gbc_izenaText.insets = new Insets(0, 0, 5, 0);
+			gbc_izenaText.gridx = 0;
+			gbc_izenaText.gridy = 0;
+			panel.add(getIzenaText(), gbc_izenaText);
+			GridBagConstraints gbc_erasoImg = new GridBagConstraints();
+			gbc_erasoImg.insets = new Insets(0, 0, 5, 5);
+			gbc_erasoImg.gridx = 0;
+			gbc_erasoImg.gridy = 1;
+			panel.add(getErasoImg(), gbc_erasoImg);
+			GridBagConstraints gbc_erasoText = new GridBagConstraints();
+			gbc_erasoText.insets = new Insets(0, 0, 5, 5);
+			gbc_erasoText.gridx = 1;
+			gbc_erasoText.gridy = 1;
+			panel.add(getErasoText(), gbc_erasoText);
+			GridBagConstraints gbc_defentsaImg = new GridBagConstraints();
+			gbc_defentsaImg.insets = new Insets(0, 0, 5, 5);
+			gbc_defentsaImg.gridx = 2;
+			gbc_defentsaImg.gridy = 1;
+			panel.add(getDefentsaImg(), gbc_defentsaImg);
+			GridBagConstraints gbc_defentsaText = new GridBagConstraints();
+			gbc_defentsaText.insets = new Insets(0, 0, 5, 0);
+			gbc_defentsaText.gridx = 3;
+			gbc_defentsaText.gridy = 1;
+			panel.add(getDefentsaText(), gbc_defentsaText);
+			GridBagConstraints gbc_hpImg = new GridBagConstraints();
+			gbc_hpImg.insets = new Insets(0, 0, 5, 5);
+			gbc_hpImg.gridx = 0;
+			gbc_hpImg.gridy = 2;
+			panel.add(getHpImg(), gbc_hpImg);
+			GridBagConstraints gbc_hpText = new GridBagConstraints();
+			gbc_hpText.gridwidth = 3;
+			gbc_hpText.insets = new Insets(0, 0, 5, 0);
+			gbc_hpText.gridx = 1;
+			gbc_hpText.gridy = 2;
+			panel.add(getHpText(), gbc_hpText);
+			GridBagConstraints gbc_motakText = new GridBagConstraints();
+			gbc_motakText.gridwidth = 2;
+			gbc_motakText.insets = new Insets(0, 0, 0, 5);
+			gbc_motakText.gridx = 0;
+			gbc_motakText.gridy = 3;
+			panel.add(getMotakText(), gbc_motakText);
+			GridBagConstraints gbc_mota1Img = new GridBagConstraints();
+			gbc_mota1Img.insets = new Insets(0, 0, 0, 5);
+			gbc_mota1Img.gridx = 2;
+			gbc_mota1Img.gridy = 3;
+			panel.add(getMota1Img(), gbc_mota1Img);
+			GridBagConstraints gbc_mota2Img = new GridBagConstraints();
+			gbc_mota2Img.gridx = 3;
+			gbc_mota2Img.gridy = 3;
+			panel.add(getMota2Img(), gbc_mota2Img);
+		}
+		return panel;
+	}
+	private JLabel getIzenaText() {
+		if (izenaText == null) {
+			izenaText = new JLabel();
+			izenaText.setHorizontalAlignment(SwingConstants.CENTER);
+			izenaText.setText("Izena: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
+		}
+		return izenaText;
+	}
+
+	private JLabel getErasoImg() {
+		if (erasoImg == null) {
+			erasoImg = new JLabel();
+			String icon;
+			icon = "/Icons/eraso_icon.png";
+			erasoImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		}
+		return erasoImg;
+	}
+
+	private JLabel getErasoText() {
+		if (erasoText == null) {
+			erasoText = new JLabel();
+			erasoText.setText(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAtk() + "");
+		}
+		return erasoText;
+	}
+
+	private JLabel getDefentsaImg() {
+		if (defentsaImg == null) {
+			defentsaImg = new JLabel();
+			String icon;
+			icon = "/Icons/defentsa_icon.png";
+			defentsaImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		}
+		return defentsaImg;
+	}
+
+	private JLabel getDefentsaText() {
+		if (defentsaText == null) {
+			defentsaText = new JLabel();
+			defentsaText.setText(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getDef() + "");
+		}
+		return defentsaText;
+	}
+
+	private JLabel getHpImg() {
+		if (hpImg == null) {
+			hpImg = new JLabel();
+			String icon;
+			icon = "/Icons/health_icon.png";
+			hpImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		}
+		return hpImg;
+	}
+
+	private JLabel getHpText() {
+		if (hpText == null) {
+			hpText = new JLabel();
+			hpText.setHorizontalAlignment(SwingConstants.LEFT);
+			hpText.setText(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getHP() + " / " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMaxHP());
+
+		}
+		return hpText;
+	}
+
+	private JLabel getMotakText() {
+		if (motakText == null) {
+			motakText = new JLabel("Motak:");
+			motakText.setHorizontalAlignment(SwingConstants.LEFT);
+		}
+		return motakText;
+	}
+	private JLabel getMota1Img() {
+		if (mota1Img == null) {
+			mota1Img = new JLabel();
+			String icon;
+			icon = "/Icons/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1().toString().toLowerCase() + ".png";
+			mota1Img.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		}
+		return mota1Img;
+	}
+	private JLabel getMota2Img() {
+		if (mota2Img == null) {
+			mota2Img = new JLabel();
+			if(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2()!=null) {
+				String icon;
+				icon = "/Icons/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2().toString().toLowerCase() + ".png";
+				mota2Img.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+			}
+		}
+		return mota2Img;
 	}
 }

@@ -82,7 +82,7 @@ public class JokalariPanela extends JFrame implements Observer{
 			p.addObserver(PP);
 			i++;
 		}
-		setBounds(100, 100, 100+140*pokemonPanelak.size(), 450);
+		setBounds(100, 100, 100 + 150*pokemonPanelak.size(), 450);
 		setTitle(JokalariKatalogoa.getJK().getJokPos(pJokPos).getIzena());
 	}
 	public ArrayList<PokemonPanela> getPokePanelak(){
