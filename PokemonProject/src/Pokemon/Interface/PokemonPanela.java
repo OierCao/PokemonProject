@@ -307,6 +307,7 @@ public class PokemonPanela extends JPanel implements Observer{
 		}
 		else{
 			atk2.setEnabled(true);
+			beheMota2Img.setEnabled(true);
 			atk2.addActionListener(getKontroladore());
 			botoiKolorea(atk2, ((Pokemon)arg0).getMota2());
 			erasoText.setText(((Pokemon)arg0).getAtk() + "");
