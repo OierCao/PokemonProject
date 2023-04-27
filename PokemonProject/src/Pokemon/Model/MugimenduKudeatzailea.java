@@ -149,10 +149,10 @@ public class MugimenduKudeatzailea extends Observable{
 		motaTabla[11][9] = 2.0f;
 		motaTabla[11][10] = 2.0f;
 		
-		motaTabla[10][6] = 0.5f;
-		motaTabla[10][11] = 0.5f;
-		motaTabla[10][16] = 0.5f;
-		motaTabla[10][17] = 0.5f;
+		motaTabla[11][6] = 0.5f;
+		motaTabla[11][11] = 0.5f;
+		motaTabla[11][16] = 0.5f;
+		motaTabla[11][17] = 0.5f;
 		
 		//NORMAL
 		motaTabla[12][15] = 0.5f;
@@ -263,20 +263,9 @@ public class MugimenduKudeatzailea extends Observable{
 		System.out.println("Erasoa egingo da");
 		int prevHp = pokErasotua.getHP();
 		int erasoAtk= pokErasotzaile.getAtk();
-		
-		int i = Arrays.asList(Mota.values()).indexOf(motaAtk);
-		int j = Arrays.asList(Mota.values()).indexOf(pokErasotua.getMota1());
-		float bider = motaTabla[i][j];
-		
-		if(pokErasotua.getMota2()!=null) {
-			int j2 = Arrays.asList(Mota.values()).indexOf(pokErasotua.getMota2());
-			float bider2 = motaTabla[i][j2];
-			pokErasotua.atakeaKudeatu(erasoAtk, bider, bider2);
-		}
-		else {
-			pokErasotua.atakeaKudeatu(erasoAtk, bider, -1.0f);
-		}
-		
+
+		pokErasotua.atakeaKudeatu(erasoAtk, efikaziaCalc(motaAtk,pokErasotua) );
+
 		pokErasotzaile.euforiaKendu();
 		pokErasotzaile.eguneratuEgoera();
 		System.out.println("Erasoa kudeatu da");
@@ -298,6 +287,32 @@ public class MugimenduKudeatzailea extends Observable{
 		setNull();
 		return irabazlea;
 	}
+	
+	
+	public float efikaziaCalc(Mota pMota, Pokemon pPok) {
+		float efikazia;
+
+		int i = Arrays.asList(Mota.values()).indexOf(pMota);
+		int j = Arrays.asList(Mota.values()).indexOf(pPok.getMota1());
+		float bider = motaTabla[i][j];
+		System.out.println("bider 1" + bider);
+		
+		if(pPok.getMota2()!=null) {
+			int j2 = Arrays.asList(Mota.values()).indexOf(pPok.getMota2());
+			float bider2 = motaTabla[i][j2];
+			System.out.println("i" + i + "j2" + j2);
+			System.out.println("bider 2" + bider2);
+			efikazia=bider*bider2;
+		}
+		else {
+			efikazia=bider;
+		}
+		System.out.println("efikazia" + efikazia);
+		return efikazia;
+	}
+	
+	
+	
 
 	public void prestEraso() {
 		if(!(jokErasotzaile==null || jokErasotua==null || pokErasotzaile==null || pokErasotua==null)) {

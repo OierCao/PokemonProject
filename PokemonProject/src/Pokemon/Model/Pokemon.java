@@ -51,9 +51,11 @@ public class Pokemon extends Observable{
 		else if(iMota==17) {
 			randomBalio=21;
 		}
+		
 		else {
 			randomBalio=13;
 		}
+
 		this.id = r.nextInt(randomBalio);
 	}
 	
@@ -71,6 +73,10 @@ public class Pokemon extends Observable{
 	public Mota getMota1(){return this.mota.get(0);}
 	public Mota getMota2() {if(mota.size()==1) {return null;} else{return mota.get(1);}}
 	
+	public ArrayList<Mota> getMotak(){
+		return this.mota;
+	}
+	
 	public int getMaxHP() {return this.maxHP;}
 	
 	public boolean getAhulduta(){return this.ahulduta;}
@@ -81,12 +87,15 @@ public class Pokemon extends Observable{
 	
 	public int getEgoeraIMax() {return this.egoeraIMax;}
 
+	
+	
+	
 	//Beste metodoak
-	public void atakeaKudeatu(int pAtk, float bider, float bider2) {
+	public void atakeaKudeatu(int pAtk, float efikazia) {
 		if(egoera instanceof EgoeraNormal) {
 			egoeraI = egoeraI + 1;
 		}
-		float mina = minaKalkulatu(pAtk, bider, bider2);
+		float mina = minaKalkulatu(pAtk, efikazia);
 		hpKudeatu((int)mina);
 		eboluzioKudeatu();
 		euforiaKudeatu();
@@ -94,16 +103,9 @@ public class Pokemon extends Observable{
 		eguneratuEgoera();
 	}
 	
-	private float minaKalkulatu(int pAtk, float bider, float bider2) {
+	private float minaKalkulatu(int pAtk, float efikazia) {
 		float mina;
-		
-		if(bider2==-1) {
-			mina = pAtk*bider - this.def;
-		}
-		else {
-			mina = pAtk*bider*bider2 - this.def;
-		}
-			
+		mina = pAtk*efikazia - this.def;
 		if (mina < 0) {
 			mina = 0;
 		}
