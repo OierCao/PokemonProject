@@ -30,7 +30,7 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import java.awt.Rectangle;
+import java.awt.FlowLayout;
 
 @SuppressWarnings("serial")
 public class PokemonPanela extends JPanel implements Observer{
@@ -40,6 +40,10 @@ public class PokemonPanela extends JPanel implements Observer{
 
 	private int jokPos;
 	private int pokPos;
+	private JPanel behePanela;
+	private JProgressBar euforiaBar;
+	private JButton atk1;
+	private JButton atk2;
 	private JPanel panel;
 	private JLabel motakText;
 	private JLabel izenaText;
@@ -51,17 +55,17 @@ public class PokemonPanela extends JPanel implements Observer{
 	private JLabel mota1Img;
 	private JLabel mota2Img;
 	private JLabel hpImg;
-	private JPanel panel_1;
-	private JLabel lblBarraHP;
-	private JPanel panelBarrak;
-	private JLabel lblBarraHPImg;
-	private JLabel lblEuforiaImg;
+	private JPanel barrakPanela;
+	private JLabel healthBarImg;
 	private JProgressBar healthBar;
-	private JProgressBar euforiaBar;
-	private JButton btnAtk1;
-	private JPanel panelEuforia;
-	private JPanel panel_3;
-	private JLabel lblNewLabel;
+	private JLabel separadore;
+	private JLabel euforiaBarImg;
+	private JPanel motaBotoiPanel;
+	private JPanel motaPanel;
+	private JLabel beheMota1Img;
+	private JLabel beheMota2Img;
+	private JPanel botoiPanel;
+	private JLabel separadore2;
 
 	/**
 	 * Create the panel.
@@ -70,13 +74,23 @@ public class PokemonPanela extends JPanel implements Observer{
 		jokPos=pJokPos;
 		pokPos=pPokPos;
 		setBackground(Color.WHITE);
-		setBounds(0, 0, 150, 386);
+		setBounds(0, 0, 150, 446);
 		setLayout(new BorderLayout(0, 0));
 		add(getPokeSprite(), BorderLayout.CENTER);
+		add(getBehePanela(), BorderLayout.SOUTH);
 		add(getPanel(), BorderLayout.NORTH);
-		add(getPanelBarrak(), BorderLayout.SOUTH);
 	}
-
+	
+	private JPanel getBehePanela() {
+		if (behePanela == null) {
+			behePanela = new JPanel();
+			behePanela.setBackground(Color.WHITE);
+			behePanela.setLayout(new GridLayout(2, 1, 0, 0));
+			behePanela.add(getBarrakPanela());
+			behePanela.add(getMotaBotoiPanel());
+		}
+		return behePanela;
+	}
 	private JLabel getPokeSprite() {
 		if (pokeSprite == null) {
 			pokeSprite = new JLabel("");
@@ -91,8 +105,32 @@ public class PokemonPanela extends JPanel implements Observer{
 		}
 		return pokeSprite;
 	}
+	
+	private JButton getAtk1() {
+		if (atk1 == null) {
+			atk1 = new JButton();
+			atk1.addActionListener(getKontroladore());
+			botoiKolorea(atk1, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
+		}
+		return atk1;
+	}
 
-	private void botoiKolorea(JButton btn, Mota mota) {
+	private JButton getAtk2() {
+		if (atk2 == null) {
+			atk2 = new JButton();
+			if(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2()!=null) {
+				botoiKolorea(atk2, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
+				atk2.addActionListener(getKontroladore());
+			}
+			else {
+				atk2.setEnabled(false);
+			}
+		}
+		return atk2;
+	}
+
+	public void botoiKolorea(JButton btn, Mota mota) {
+		btn.setForeground(Color.WHITE);
 		if(mota.equals(Mota.Bug)) {
 			btn.setBackground(new Color(143, 255, 56));
 		}
@@ -100,7 +138,7 @@ public class PokemonPanela extends JPanel implements Observer{
 			btn.setBackground(new Color(78, 83, 74));
 		}
 		else if(mota.equals(Mota.Dragon)) {
-			btn.setBackground(new Color(128, 0, 255));
+			btn.setBackground(new Color(36, 0, 184));
 		}
 		else if(mota.equals(Mota.Electric)) {
 			btn.setBackground(new Color(255, 247, 0));
@@ -161,8 +199,12 @@ public class PokemonPanela extends JPanel implements Observer{
 	public void aktibatuBotoiak() {
 		if(!JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getAhulduta()) {
 			atk1.setEnabled(true);
+			beheMota1Img.setEnabled(true);
+			botoiKolorea(atk1, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
 			if(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2()!=null) {
 				atk2.setEnabled(true);
+				beheMota2Img.setEnabled(true);
+				botoiKolorea(atk2, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
 			}
 		}
 	}
@@ -175,23 +217,31 @@ public class PokemonPanela extends JPanel implements Observer{
 				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
 				MugimenduKudeatzailea.getMK().setMotaAtk(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
+				atk1.setBackground(new Color(240,240,240));
 				atk1.setEnabled(false);
+				beheMota1Img.setEnabled(false);
 				pokeSprite.setEnabled(false);
 			}
 			else if(e.getSource().equals(atk2) && atk2.isEnabled() && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda() && MugimenduKudeatzailea.getMK().getPokErasotzaile()==null && !(JokalariKatalogoa.getJK().getJokPos(jokPos) instanceof Bot)) {
 				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
 				MugimenduKudeatzailea.getMK().setMotaAtk(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
+				atk2.setBackground(new Color(240,240,240));
 				atk2.setEnabled(false);
+				beheMota2Img.setEnabled(false);
 				pokeSprite.setEnabled(false);
 			}
 			else if(e.getSource().equals(atk1) && atk1.isEnabled() && JokalariKatalogoa.getJK().getJokPos(jokPos).getTxanda() && MugimenduKudeatzailea.getMK().getPokErasotzaile().equals(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos)) && !(JokalariKatalogoa.getJK().getJokPos(jokPos) instanceof Bot)) {
 				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
 				MugimenduKudeatzailea.getMK().setMotaAtk(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
+				atk1.setBackground(new Color(240,240,240));
 				atk1.setEnabled(false);
+				beheMota1Img.setEnabled(false);
 				if(!atk2.isEnabled()) {
+					botoiKolorea(atk2, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
 					atk2.setEnabled(true);
+					beheMota2Img.setEnabled(true);
 				}
 				pokeSprite.setEnabled(false);
 			}
@@ -199,9 +249,13 @@ public class PokemonPanela extends JPanel implements Observer{
 				MugimenduKudeatzailea.getMK().setJokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos));
 				MugimenduKudeatzailea.getMK().setPokErasotzaile(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos));
 				MugimenduKudeatzailea.getMK().setMotaAtk(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
+				atk2.setBackground(new Color(240,240,240));
 				atk2.setEnabled(false);
+				beheMota2Img.setEnabled(false);
 				if(!atk1.isEnabled()) {
+					botoiKolorea(atk1, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
 					atk1.setEnabled(true);
+					beheMota1Img.setEnabled(true);
 				}
 				pokeSprite.setEnabled(false);
 			}
@@ -254,7 +308,6 @@ public class PokemonPanela extends JPanel implements Observer{
 		else{
 			atk2.setEnabled(true);
 			atk2.addActionListener(getKontroladore());
-			atk2.setText(((Pokemon)arg0).getMota2().toString());
 			botoiKolorea(atk2, ((Pokemon)arg0).getMota2());
 			erasoText.setText(((Pokemon)arg0).getAtk() + "");
 			defentsaText.setText(((Pokemon)arg0).getDef() + "");
@@ -262,6 +315,7 @@ public class PokemonPanela extends JPanel implements Observer{
 			String icon;
 			icon = "/Icons/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2().toString().toLowerCase() + ".png";
 			mota2Img.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+			beheMota2Img.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
 		}	
 		pokemon = "/Images/" +  ((Pokemon)arg0).getMota1().toString().toLowerCase() + "_" + ((Pokemon)arg0).getId() + "_" + ((Pokemon)arg0).getEboluzioZenb() +".png";
 		
@@ -305,8 +359,12 @@ public class PokemonPanela extends JPanel implements Observer{
 			motakText.setForeground(Color.BLACK);
 		}
 		if (!pokeSprite.isEnabled()) {
+			atk1.setBackground(new Color(240,240,240));
 			atk1.setEnabled(false);
+			beheMota1Img.setEnabled(false);
+			atk2.setBackground(new Color(240,240,240));
 			atk2.setEnabled(false);
+			beheMota2Img.setEnabled(false);
 		}
 	}
 	private JPanel getPanel() {
@@ -466,107 +524,153 @@ public class PokemonPanela extends JPanel implements Observer{
 		}
 		return mota2Img;
 	}
-	private JPanel getPanelBarrak() {
-		if (panelBarrak == null) {
-			panelBarrak = new JPanel();
-			panelBarrak.setBackground(Color.WHITE);
-			panelBarrak.setLayout(new GridLayout(0, 1, 0, 0));
-			panelBarrak.add(getPanelEuforia());
-			panelBarrak.add(getPanel_3());
+	private JPanel getBarrakPanela() {
+		if (barrakPanela == null) {
+			barrakPanela = new JPanel();
+			barrakPanela.setBackground(Color.WHITE);
+			GridBagLayout gbl_barrakPanela = new GridBagLayout();
+			gbl_barrakPanela.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
+			gbl_barrakPanela.rowHeights = new int[]{0, 0, 0, 0};
+			gbl_barrakPanela.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_barrakPanela.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+			barrakPanela.setLayout(gbl_barrakPanela);
+			GridBagConstraints gbc_healthBarImg = new GridBagConstraints();
+			gbc_healthBarImg.insets = new Insets(0, 0, 5, 5);
+			gbc_healthBarImg.gridx = 0;
+			gbc_healthBarImg.gridy = 0;
+			barrakPanela.add(getHealthBarImg(), gbc_healthBarImg);
+			GridBagConstraints gbc_healthBar = new GridBagConstraints();
+			gbc_healthBar.fill = GridBagConstraints.HORIZONTAL;
+			gbc_healthBar.gridwidth = 5;
+			gbc_healthBar.insets = new Insets(0, 0, 5, 5);
+			gbc_healthBar.gridx = 1;
+			gbc_healthBar.gridy = 0;
+			barrakPanela.add(getHealthBar(), gbc_healthBar);
+			GridBagConstraints gbc_euforiaBarImg = new GridBagConstraints();
+			gbc_euforiaBarImg.insets = new Insets(0, 0, 5, 5);
+			gbc_euforiaBarImg.gridx = 0;
+			gbc_euforiaBarImg.gridy = 1;
+			barrakPanela.add(getEuforiaBarImg(), gbc_euforiaBarImg);
+			GridBagConstraints gbc_euforiaBar = new GridBagConstraints();
+			gbc_euforiaBar.fill = GridBagConstraints.HORIZONTAL;
+			gbc_euforiaBar.gridwidth = 5;
+			gbc_euforiaBar.insets = new Insets(0, 0, 5, 5);
+			gbc_euforiaBar.gridx = 1;
+			gbc_euforiaBar.gridy = 1;
+			barrakPanela.add(getEuforiaBar(), gbc_euforiaBar);
+			GridBagConstraints gbc_separadore = new GridBagConstraints();
+			gbc_separadore.gridwidth = 5;
+			gbc_separadore.insets = new Insets(0, 0, 0, 5);
+			gbc_separadore.gridx = 1;
+			gbc_separadore.gridy = 2;
+			barrakPanela.add(getSeparadore(), gbc_separadore);
 		}
-		return panelBarrak;
+		return barrakPanela;
 	}
-	private JLabel getLblBarraHPImg() {
-		if (lblBarraHPImg == null) {
-			lblBarraHPImg = new JLabel();
+	private JLabel getHealthBarImg() {
+		if (healthBarImg == null) {
+			healthBarImg = new JLabel("");
 			String icon;
 			icon = "/Icons/health_icon.png";
-			lblBarraHPImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+			healthBarImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
 		}
-		return lblBarraHPImg;
-	}
-	private JLabel getLblEuforiaImg() {
-		if (lblEuforiaImg == null) {
-			lblEuforiaImg = new JLabel();
-			String icon;
-			icon = "/Icons/euforia_icon.png";
-			lblEuforiaImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
-		}
-		return lblEuforiaImg;
+		return healthBarImg;
 	}
 	private JProgressBar getHealthBar() {
 		if (this.healthBar == null) {
 		      this.healthBar = new JProgressBar();
 		      healthBar.setEnabled(false);
 		      this.healthBar.setStringPainted(true);
-		      this.healthBar.setString("");
 		      this.healthBar.setForeground(new Color(138, 226, 52));
 		      this.healthBar.setValue(100);
 		    } 
 		return this.healthBar;
 	}
-	
+	private JLabel getEuforiaBarImg() {
+		if (euforiaBarImg == null) {
+			euforiaBarImg = new JLabel("");
+			String icon;
+			icon = "/Icons/euforia_icon.png";
+			euforiaBarImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		}
+		return euforiaBarImg;
+	}
+
 	private JProgressBar getEuforiaBar() {
 		if (euforiaBar == null) {
 			euforiaBar = new JProgressBar();
 			euforiaBar.setEnabled(false);
 		    euforiaBar.setStringPainted(true);
-		    euforiaBar.setString("");
 		    euforiaBar.setForeground(Color.YELLOW);
 		    euforiaBar.setValue(0);
 		}
 		return euforiaBar;
 	}
-	private JPanel getPanelEuforia() {
-		if (panelEuforia == null) {
-			panelEuforia = new JPanel();
-			GridBagLayout gbl_panelEuforia = new GridBagLayout();
-			gbl_panelEuforia.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
-			gbl_panelEuforia.rowHeights = new int[]{0, 0, 0, 0};
-			gbl_panelEuforia.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-			gbl_panelEuforia.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-			panelEuforia.setLayout(gbl_panelEuforia);
-			GridBagConstraints gbc_lblBarraHPImg = new GridBagConstraints();
-			gbc_lblBarraHPImg.insets = new Insets(0, 0, 5, 5);
-			gbc_lblBarraHPImg.gridx = 0;
-			gbc_lblBarraHPImg.gridy = 0;
-			panelEuforia.add(getLblBarraHPImg(), gbc_lblBarraHPImg);
-			GridBagConstraints gbc_healthBar = new GridBagConstraints();
-			gbc_healthBar.fill = GridBagConstraints.HORIZONTAL;
-			gbc_healthBar.gridwidth = 4;
-			gbc_healthBar.insets = new Insets(0, 0, 5, 5);
-			gbc_healthBar.gridx = 1;
-			gbc_healthBar.gridy = 0;
-			panelEuforia.add(getHealthBar(), gbc_healthBar);
-			GridBagConstraints gbc_lblEuforiaImg = new GridBagConstraints();
-			gbc_lblEuforiaImg.insets = new Insets(0, 0, 5, 5);
-			gbc_lblEuforiaImg.gridx = 0;
-			gbc_lblEuforiaImg.gridy = 1;
-			panelEuforia.add(getLblEuforiaImg(), gbc_lblEuforiaImg);
-			GridBagConstraints gbc_euforiaBar = new GridBagConstraints();
-			gbc_euforiaBar.fill = GridBagConstraints.HORIZONTAL;
-			gbc_euforiaBar.gridwidth = 4;
-			gbc_euforiaBar.insets = new Insets(0, 0, 5, 5);
-			gbc_euforiaBar.gridx = 1;
-			gbc_euforiaBar.gridy = 1;
-			panelEuforia.add(getEuforiaBar(), gbc_euforiaBar);
-			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-			gbc_lblNewLabel.gridx = 4;
-			gbc_lblNewLabel.gridy = 2;
-			panelEuforia.add(getLblNewLabel(), gbc_lblNewLabel);
+
+	private JLabel getSeparadore() {
+		if (separadore == null) {
+			separadore = new JLabel("BUENAS NOCHES");
+			separadore.setForeground(Color.WHITE);
 		}
-		return panelEuforia;
+		return separadore;
 	}
-	private JPanel getPanel_3() {
-		if (panel_3 == null) {
-			panel_3 = new JPanel();
+	private JPanel getMotaBotoiPanel() {
+		if (motaBotoiPanel == null) {
+			motaBotoiPanel = new JPanel();
+			motaBotoiPanel.setBackground(Color.WHITE);
+			motaBotoiPanel.setLayout(new BorderLayout(0, 0));
+			motaBotoiPanel.add(getMotaPanel(), BorderLayout.WEST);
+			motaBotoiPanel.add(getBotoiPanel(), BorderLayout.CENTER);
+			motaBotoiPanel.add(getSeparadore2(), BorderLayout.EAST);
 		}
-		return panel_3;
+		return motaBotoiPanel;
 	}
-	private JLabel getLblNewLabel() {
-		if (lblNewLabel == null) {
-			lblNewLabel = new JLabel("New label");
+	private JPanel getMotaPanel() {
+		if (motaPanel == null) {
+			motaPanel = new JPanel();
+			motaPanel.setBackground(Color.WHITE);
+			motaPanel.setLayout(new GridLayout(0, 1, 0, 0));
+			motaPanel.add(getBeheMota1Img());
+			motaPanel.add(getBeheMota2Img());
 		}
-		return lblNewLabel;
+		return motaPanel;
+	}
+	private JLabel getBeheMota1Img() {
+		if (beheMota1Img == null) {
+			beheMota1Img = new JLabel("");
+			String icon;
+			icon = "/Icons/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1().toString().toLowerCase() + ".png";
+			beheMota1Img.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		
+		}
+		return beheMota1Img;
+	}
+	private JLabel getBeheMota2Img() {
+		if (beheMota2Img == null) {
+			beheMota2Img = new JLabel("");
+			if(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2()!=null) {
+				String icon;
+				icon = "/Icons/" + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2().toString().toLowerCase() + ".png";
+				beheMota2Img.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+			}
+		}
+		return beheMota2Img;
+	}
+	private JPanel getBotoiPanel() {
+		if (botoiPanel == null) {
+			botoiPanel = new JPanel();
+			botoiPanel.setBackground(Color.WHITE);
+			botoiPanel.setLayout(new GridLayout(0, 1, 0, 0));
+			botoiPanel.add(getAtk1());
+			botoiPanel.add(getAtk2());
+		}
+		return botoiPanel;
+	}
+	private JLabel getSeparadore2() {
+		if (separadore2 == null) {
+			separadore2 = new JLabel("A");
+			separadore2.setForeground(Color.WHITE);
+		}
+		return separadore2;
 	}
 }

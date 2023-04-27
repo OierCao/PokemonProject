@@ -16,14 +16,14 @@ public class AudioKudeatzailea {
 	private static AudioKudeatzailea nAK=null;
 	private Long oraingoms;
 	
-	FloatControl fc;
-	FloatControl fcFx;
-	float prevVol = -15f;
-	float cVol = -15f;
-	boolean mute = false;
-	float prevVolFx = -10f;
-	float cVolFx = -10f;
-	boolean muteFx = false;
+	private FloatControl fc;
+	private FloatControl fcFx;
+	private float prevVol = -15f;
+	private float cVol = -15f;
+	private boolean mute = false;
+	private float prevVolFx = -10f;
+	private float cVolFx = -10f;
+	private boolean muteFx = false;
 	
 	
 	private Clip effectClip = null;
@@ -140,7 +140,7 @@ public class AudioKudeatzailea {
 	
 	
 	//MUSIC
-    public void playMusic() 
+    private void playMusic() 
     {
     	System.out.println("play music");
         musicClip.start();
