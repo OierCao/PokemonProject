@@ -24,8 +24,11 @@ public class Borroka extends Observable{
 	//Getter eta Setter
 	public Jokalari getIrabazale() {
 		return irabazle;
+		
 	}
 	public void setIrabazle(Jokalari pJok) {
+		System.out.println("irabazlea dago \n");
+		AudioKudeatzailea.getAudioKudeatzailea().playAudio("victory");
 		irabazle=pJok;
 	}
 	
@@ -59,14 +62,13 @@ public class Borroka extends Observable{
 		irabazle = null;
 		TimerTask txandaJolastu = new TimerTask() {
 			public void run() {
+				irabazle = JokalariKatalogoa.getJK().getLista().irabazlea();
 				if (irabazle==null) {
 					txandaJolastu();
 					irabazle = JokalariKatalogoa.getJK().getLista().irabazlea();
 					JokalariKatalogoa.getJK().getLista().jokalariakEguneratu();
 				}
 				else {
-					System.out.println("irabazlea dago \n");
-					AudioKudeatzailea.getAudioKudeatzailea().playAudio("victory");
 					JokalariKatalogoa.getJK().reset();
 					timerAmaitu();
 				}

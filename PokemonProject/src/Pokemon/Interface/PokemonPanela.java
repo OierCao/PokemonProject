@@ -301,7 +301,7 @@ public class PokemonPanela extends JPanel implements Observer{
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		String pokemon;
-		izenaText.setText("Izena: " + ((Pokemon)arg0).getIzena());
+		izenaText.setText(((Pokemon)arg0).getIzena());
 		if (((Pokemon)arg0).getMota2()==null) {
 			erasoText.setText(((Pokemon)arg0).getAtk() + "");
 			defentsaText.setText(((Pokemon)arg0).getDef() + "");
@@ -441,7 +441,7 @@ public class PokemonPanela extends JPanel implements Observer{
 		if (izenaText == null) {
 			izenaText = new JLabel();
 			izenaText.setHorizontalAlignment(SwingConstants.CENTER);
-			izenaText.setText("Izena: " + JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
+			izenaText.setText(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getIzena());
 		}
 		return izenaText;
 	}
