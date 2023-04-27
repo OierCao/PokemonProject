@@ -30,6 +30,7 @@ import javax.swing.JButton;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
 public class PokemonPanela extends JPanel implements Observer{
@@ -39,12 +40,6 @@ public class PokemonPanela extends JPanel implements Observer{
 
 	private int jokPos;
 	private int pokPos;
-	private JPanel barrakPanel;
-	private JProgressBar healthBar;
-	private JProgressBar euforiaBar;
-	private JButton atk1;
-	private JButton atk2;
-	private JLabel separadore;
 	private JPanel panel;
 	private JLabel motakText;
 	private JLabel izenaText;
@@ -56,6 +51,17 @@ public class PokemonPanela extends JPanel implements Observer{
 	private JLabel mota1Img;
 	private JLabel mota2Img;
 	private JLabel hpImg;
+	private JPanel panel_1;
+	private JLabel lblBarraHP;
+	private JPanel panelBarrak;
+	private JLabel lblBarraHPImg;
+	private JLabel lblEuforiaImg;
+	private JProgressBar healthBar;
+	private JProgressBar euforiaBar;
+	private JButton btnAtk1;
+	private JPanel panelEuforia;
+	private JPanel panel_3;
+	private JLabel lblNewLabel;
 
 	/**
 	 * Create the panel.
@@ -64,46 +70,11 @@ public class PokemonPanela extends JPanel implements Observer{
 		jokPos=pJokPos;
 		pokPos=pPokPos;
 		setBackground(Color.WHITE);
-		setBounds(0, 0, 150, 200);
+		setBounds(0, 0, 150, 386);
 		setLayout(new BorderLayout(0, 0));
 		add(getPokeSprite(), BorderLayout.CENTER);
-		add(getBarrakPanel(), BorderLayout.SOUTH);
 		add(getPanel(), BorderLayout.NORTH);
-	}
-	
-	private JPanel getBarrakPanel() {
-		if (barrakPanel == null) {
-			barrakPanel = new JPanel();
-			barrakPanel.setLayout(new GridLayout(5, 1, 0, 0));
-			barrakPanel.add(getHealthBar());
-			barrakPanel.add(getEuforiaBar());
-			barrakPanel.add(getSeparadore());
-			barrakPanel.add(getAtk1());
-			barrakPanel.add(getAtk2());
-		}
-		return barrakPanel;
-	}
-	private JProgressBar getHealthBar() {
-		if (this.healthBar == null) {
-		      this.healthBar = new JProgressBar();
-		      healthBar.setEnabled(false);
-		      this.healthBar.setStringPainted(true);
-		      this.healthBar.setString("BIZIA");
-		      this.healthBar.setForeground(new Color(138, 226, 52));
-		      this.healthBar.setValue(100);
-		    } 
-		return this.healthBar;
-	}
-	private JProgressBar getEuforiaBar() {
-		if (euforiaBar == null) {
-			euforiaBar = new JProgressBar();
-			euforiaBar.setEnabled(false);
-		    euforiaBar.setStringPainted(true);
-		    euforiaBar.setString("EUFORIA");
-		    euforiaBar.setForeground(Color.YELLOW);
-		    euforiaBar.setValue(0);
-		}
-		return euforiaBar;
+		add(getPanelBarrak(), BorderLayout.SOUTH);
 	}
 
 	private JLabel getPokeSprite() {
@@ -120,35 +91,8 @@ public class PokemonPanela extends JPanel implements Observer{
 		}
 		return pokeSprite;
 	}
-	
-	private JButton getAtk1() {
-		if (atk1 == null) {
-			atk1 = new JButton();
-			atk1.setText(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1().toString());
-			atk1.addActionListener(getKontroladore());
-			atk1.setBackground(Color.WHITE);
-			botoiKolorea(atk1, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota1());
-		}
-		return atk1;
-	}
-
-	private JButton getAtk2() {
-		if (atk2 == null) {
-			atk2 = new JButton();
-			if(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2()!=null) {
-				atk2.setText(JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2().toString());
-				botoiKolorea(atk2, JokalariKatalogoa.getJK().getJokPos(jokPos).getTalde().get(pokPos).getMota2());
-				atk2.addActionListener(getKontroladore());
-			}
-			else {
-				atk2.setEnabled(false);
-			}
-		}
-		return atk2;
-	}
 
 	private void botoiKolorea(JButton btn, Mota mota) {
-		btn.setForeground(Color.WHITE);
 		if(mota.equals(Mota.Bug)) {
 			btn.setBackground(new Color(143, 255, 56));
 		}
@@ -365,13 +309,6 @@ public class PokemonPanela extends JPanel implements Observer{
 			atk2.setEnabled(false);
 		}
 	}
-	private JLabel getSeparadore() {
-		if (separadore == null) {
-			separadore = new JLabel("");
-			separadore.setBackground(Color.WHITE);
-		}
-		return separadore;
-	}
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -528,5 +465,108 @@ public class PokemonPanela extends JPanel implements Observer{
 			}
 		}
 		return mota2Img;
+	}
+	private JPanel getPanelBarrak() {
+		if (panelBarrak == null) {
+			panelBarrak = new JPanel();
+			panelBarrak.setBackground(Color.WHITE);
+			panelBarrak.setLayout(new GridLayout(0, 1, 0, 0));
+			panelBarrak.add(getPanelEuforia());
+			panelBarrak.add(getPanel_3());
+		}
+		return panelBarrak;
+	}
+	private JLabel getLblBarraHPImg() {
+		if (lblBarraHPImg == null) {
+			lblBarraHPImg = new JLabel();
+			String icon;
+			icon = "/Icons/health_icon.png";
+			lblBarraHPImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		}
+		return lblBarraHPImg;
+	}
+	private JLabel getLblEuforiaImg() {
+		if (lblEuforiaImg == null) {
+			lblEuforiaImg = new JLabel();
+			String icon;
+			icon = "/Icons/euforia_icon.png";
+			lblEuforiaImg.setIcon(new ImageIcon(PokemonPanela.class.getResource(icon)));
+		}
+		return lblEuforiaImg;
+	}
+	private JProgressBar getHealthBar() {
+		if (this.healthBar == null) {
+		      this.healthBar = new JProgressBar();
+		      healthBar.setEnabled(false);
+		      this.healthBar.setStringPainted(true);
+		      this.healthBar.setString("");
+		      this.healthBar.setForeground(new Color(138, 226, 52));
+		      this.healthBar.setValue(100);
+		    } 
+		return this.healthBar;
+	}
+	
+	private JProgressBar getEuforiaBar() {
+		if (euforiaBar == null) {
+			euforiaBar = new JProgressBar();
+			euforiaBar.setEnabled(false);
+		    euforiaBar.setStringPainted(true);
+		    euforiaBar.setString("");
+		    euforiaBar.setForeground(Color.YELLOW);
+		    euforiaBar.setValue(0);
+		}
+		return euforiaBar;
+	}
+	private JPanel getPanelEuforia() {
+		if (panelEuforia == null) {
+			panelEuforia = new JPanel();
+			GridBagLayout gbl_panelEuforia = new GridBagLayout();
+			gbl_panelEuforia.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
+			gbl_panelEuforia.rowHeights = new int[]{0, 0, 0, 0};
+			gbl_panelEuforia.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panelEuforia.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+			panelEuforia.setLayout(gbl_panelEuforia);
+			GridBagConstraints gbc_lblBarraHPImg = new GridBagConstraints();
+			gbc_lblBarraHPImg.insets = new Insets(0, 0, 5, 5);
+			gbc_lblBarraHPImg.gridx = 0;
+			gbc_lblBarraHPImg.gridy = 0;
+			panelEuforia.add(getLblBarraHPImg(), gbc_lblBarraHPImg);
+			GridBagConstraints gbc_healthBar = new GridBagConstraints();
+			gbc_healthBar.fill = GridBagConstraints.HORIZONTAL;
+			gbc_healthBar.gridwidth = 4;
+			gbc_healthBar.insets = new Insets(0, 0, 5, 5);
+			gbc_healthBar.gridx = 1;
+			gbc_healthBar.gridy = 0;
+			panelEuforia.add(getHealthBar(), gbc_healthBar);
+			GridBagConstraints gbc_lblEuforiaImg = new GridBagConstraints();
+			gbc_lblEuforiaImg.insets = new Insets(0, 0, 5, 5);
+			gbc_lblEuforiaImg.gridx = 0;
+			gbc_lblEuforiaImg.gridy = 1;
+			panelEuforia.add(getLblEuforiaImg(), gbc_lblEuforiaImg);
+			GridBagConstraints gbc_euforiaBar = new GridBagConstraints();
+			gbc_euforiaBar.fill = GridBagConstraints.HORIZONTAL;
+			gbc_euforiaBar.gridwidth = 4;
+			gbc_euforiaBar.insets = new Insets(0, 0, 5, 5);
+			gbc_euforiaBar.gridx = 1;
+			gbc_euforiaBar.gridy = 1;
+			panelEuforia.add(getEuforiaBar(), gbc_euforiaBar);
+			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+			gbc_lblNewLabel.gridx = 4;
+			gbc_lblNewLabel.gridy = 2;
+			panelEuforia.add(getLblNewLabel(), gbc_lblNewLabel);
+		}
+		return panelEuforia;
+	}
+	private JPanel getPanel_3() {
+		if (panel_3 == null) {
+			panel_3 = new JPanel();
+		}
+		return panel_3;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("New label");
+		}
+		return lblNewLabel;
 	}
 }
