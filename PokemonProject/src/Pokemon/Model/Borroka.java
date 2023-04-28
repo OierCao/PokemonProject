@@ -35,25 +35,42 @@ public class Borroka extends Observable{
 	
 	
 	//Beste metodoak
-	public void hasieraketak(int perKop, int botKop, int pokKop, int pDelayms) {
+	public void hasieraketak(int perKop, int botKopEasy, int botKopMed, int botKopHard, int pokKop, int pDelayms) {
 		millis=pDelayms;
 		JokalariKatalogoa.getJK();
 		int iPer = 0; 
 		int iBot = 0;
-		//pertsona (1)
+		//pertsona (1,x)
 		while (iPer<perKop) {
-			Jokalari j = JokalariKatalogoa.getJK().newJokalari(1,iPer,pokKop);
+			Jokalari j = JokalariKatalogoa.getJK().newJokalari(1,0,iPer,pokKop);
 			JokalariKatalogoa.getJK().getLista().addJokalari(j);
 			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
 			iPer++;	
 		}
-		//bot (2)
-		while (iBot<botKop) {
-			Jokalari j = JokalariKatalogoa.getJK().newJokalari(2,iBot,pokKop);
+		//bot easy(2,1)
+		while (iBot<botKopEasy) {
+			Jokalari j = JokalariKatalogoa.getJK().newJokalari(2,1,iBot,pokKop);
 			JokalariKatalogoa.getJK().getLista().addJokalari(j);
 			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
 			iBot++;	
 		}
+		
+		//bot med(2,2)
+		while (iBot<botKopMed) {
+			Jokalari j = JokalariKatalogoa.getJK().newJokalari(2,2,iBot,pokKop);
+			JokalariKatalogoa.getJK().getLista().addJokalari(j);
+			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
+			iBot++;	
+			}
+		
+		//bot hard(2,3)
+		while (iBot<botKopHard) {
+			Jokalari j = JokalariKatalogoa.getJK().newJokalari(2,3,iBot,pokKop);
+			JokalariKatalogoa.getJK().getLista().addJokalari(j);
+			eguneratuBorrokaScreen(JokalariKatalogoa.getJK().getPos(j));
+			iBot++;	
+			}
+		
 		partida();
 	}
 	

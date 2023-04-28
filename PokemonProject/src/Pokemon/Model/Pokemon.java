@@ -83,6 +83,8 @@ public class Pokemon extends Observable{
 	
 	private void setAhulduta(boolean pAhulduta) {this.ahulduta = pAhulduta;}
 	
+	public Egoera getEgoera() {return this.egoera;}
+	
 	public int getEgoeraI() {return this.egoeraI;}
 	
 	public int getEgoeraIMax() {return this.egoeraIMax;}

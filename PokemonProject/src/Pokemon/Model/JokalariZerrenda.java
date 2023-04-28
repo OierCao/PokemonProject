@@ -24,8 +24,8 @@ public class JokalariZerrenda {
 	}
 	
 	//Jokalariak sortu
-	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop) {
-		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pJokNum,pPokKop);
+	public Jokalari newJokalari(int pMota, int pSubMota, int pJokNum,int pPokKop) {
+		Jokalari newJokalari = JokalariFactory.getJF().createJokalari(pMota,pSubMota,pJokNum,pPokKop);
 		return newJokalari;
 	}
 	

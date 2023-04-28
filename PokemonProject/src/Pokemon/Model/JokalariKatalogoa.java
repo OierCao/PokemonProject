@@ -17,8 +17,8 @@ public class JokalariKatalogoa {
 	}
 	
 	//Jokalariak eratu
-	public Jokalari newJokalari(int pMota,int pJokNum,int pPokKop) {
-		Jokalari newJokalari = this.lista.newJokalari(pMota,pJokNum,pPokKop);
+	public Jokalari newJokalari(int pMota, int pSubMota, int pJokNum,int pPokKop) {
+		Jokalari newJokalari = this.lista.newJokalari(pMota,pSubMota,pJokNum,pPokKop);
 		return newJokalari;
 	}
 	

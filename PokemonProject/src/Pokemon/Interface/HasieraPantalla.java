@@ -48,6 +48,10 @@ public class HasieraPantalla extends JFrame implements Observer {
 	private JTextField PlayerKopText;
 	private JButton ReadmeButton;
 	private JButton PlayButton;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JTextField BotKopMedText;
+	private JTextField BotKopHardText;
 
 	/**
 	 * Launch the application.
@@ -70,7 +74,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 	 */
 	public HasieraPantalla() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 649, 348);
+		setBounds(100, 100, 649, 400);
 		getContentPane().add(getPanelRight(), BorderLayout.EAST);
 		getContentPane().add(getPanelImg(), BorderLayout.CENTER);
 		Borroka.getBorroka().addObserver(this);
@@ -112,9 +116,9 @@ public class HasieraPantalla extends JFrame implements Observer {
 			panelInfo.setBackground(Color.WHITE);
 			GridBagLayout gbl_panelInfo = new GridBagLayout();
 			gbl_panelInfo.columnWidths = new int[]{2, 0, 0};
-			gbl_panelInfo.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
+			gbl_panelInfo.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 			gbl_panelInfo.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-			gbl_panelInfo.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+			gbl_panelInfo.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 			panelInfo.setLayout(gbl_panelInfo);
 			GridBagConstraints gbc_Hutsik1 = new GridBagConstraints();
 			gbc_Hutsik1.insets = new Insets(0, 0, 5, 5);
@@ -145,29 +149,52 @@ public class HasieraPantalla extends JFrame implements Observer {
 			gbc_BotKopText.gridx = 1;
 			gbc_BotKopText.gridy = 2;
 			panelInfo.add(getBotKopText(), gbc_BotKopText);
+			GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+			gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+			gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNewLabel.gridx = 0;
+			gbc_lblNewLabel.gridy = 3;
+			panelInfo.add(getLblNewLabel(), gbc_lblNewLabel);
+			GridBagConstraints gbc_BotKopMedText = new GridBagConstraints();
+			gbc_BotKopMedText.insets = new Insets(0, 0, 5, 0);
+			gbc_BotKopMedText.fill = GridBagConstraints.HORIZONTAL;
+			gbc_BotKopMedText.gridx = 1;
+			gbc_BotKopMedText.gridy = 3;
+			panelInfo.add(getBotKopMedText(), gbc_BotKopMedText);
+			GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+			gbc_lblNewLabel_1.anchor = GridBagConstraints.EAST;
+			gbc_lblNewLabel_1.insets = new Insets(0, 0, 5, 5);
+			gbc_lblNewLabel_1.gridx = 0;
+			gbc_lblNewLabel_1.gridy = 4;
+			panelInfo.add(getLblNewLabel_1(), gbc_lblNewLabel_1);
+			GridBagConstraints gbc_BotKopHardText = new GridBagConstraints();
+			gbc_BotKopHardText.insets = new Insets(0, 0, 5, 0);
+			gbc_BotKopHardText.fill = GridBagConstraints.HORIZONTAL;
+			gbc_BotKopHardText.gridx = 1;
+			gbc_BotKopHardText.gridy = 4;
+			panelInfo.add(getBotKopHardText(), gbc_BotKopHardText);
 			GridBagConstraints gbc_PokemonKopLabel = new GridBagConstraints();
 			gbc_PokemonKopLabel.anchor = GridBagConstraints.EAST;
 			gbc_PokemonKopLabel.insets = new Insets(0, 0, 5, 5);
 			gbc_PokemonKopLabel.gridx = 0;
-			gbc_PokemonKopLabel.gridy = 3;
+			gbc_PokemonKopLabel.gridy = 5;
 			panelInfo.add(getPokemonKopLabel(), gbc_PokemonKopLabel);
 			GridBagConstraints gbc_PokemonKopText = new GridBagConstraints();
 			gbc_PokemonKopText.fill = GridBagConstraints.HORIZONTAL;
 			gbc_PokemonKopText.insets = new Insets(0, 0, 5, 0);
 			gbc_PokemonKopText.gridx = 1;
-			gbc_PokemonKopText.gridy = 3;
+			gbc_PokemonKopText.gridy = 5;
 			panelInfo.add(getPokemonKopText(), gbc_PokemonKopText);
 			GridBagConstraints gbc_MillisLabel = new GridBagConstraints();
 			gbc_MillisLabel.anchor = GridBagConstraints.EAST;
-			gbc_MillisLabel.insets = new Insets(0, 0, 5, 5);
+			gbc_MillisLabel.insets = new Insets(0, 0, 0, 5);
 			gbc_MillisLabel.gridx = 0;
-			gbc_MillisLabel.gridy = 4;
+			gbc_MillisLabel.gridy = 6;
 			panelInfo.add(getMillisLabel(), gbc_MillisLabel);
 			GridBagConstraints gbc_MillisText = new GridBagConstraints();
-			gbc_MillisText.insets = new Insets(0, 0, 5, 0);
 			gbc_MillisText.fill = GridBagConstraints.HORIZONTAL;
 			gbc_MillisText.gridx = 1;
-			gbc_MillisText.gridy = 4;
+			gbc_MillisText.gridy = 6;
 			panelInfo.add(getMillisText(), gbc_MillisText);
 		}
 		return panelInfo;
@@ -181,7 +208,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 	}
 	private JLabel getBotKopLabel() {
 		if (BotKopLabel == null) {
-			BotKopLabel = new JLabel("Bot");
+			BotKopLabel = new JLabel("Bot (easy)");
 			BotKopLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		}
 		return BotKopLabel;
@@ -272,7 +299,7 @@ public class HasieraPantalla extends JFrame implements Observer {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource().equals(PlayButton)) {
-				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
+				Borroka.getBorroka().hasieraketak(Integer.parseInt(PlayerKopText.getText()), Integer.parseInt(BotKopText.getText()), Integer.parseInt(BotKopMedText.getText()), Integer.parseInt(BotKopHardText.getText()), Integer.parseInt(PokemonKopText.getText()), Integer.parseInt(MillisText.getText()) );
 				setVisible(false);
 				new Console().setVisible(true);
 				AudioKudeatzailea.getAudioKudeatzailea().playEffect("button");
@@ -299,5 +326,33 @@ public class HasieraPantalla extends JFrame implements Observer {
 			jp.setVisible(true);
 		}
 	
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("Bot (medium)");
+		}
+		return lblNewLabel;
+	}
+	private JLabel getLblNewLabel_1() {
+		if (lblNewLabel_1 == null) {
+			lblNewLabel_1 = new JLabel("Bot (hard)");
+		}
+		return lblNewLabel_1;
+	}
+	private JTextField getBotKopMedText() {
+		if (BotKopMedText == null) {
+			BotKopMedText = new JTextField();
+			BotKopMedText.setText("0");
+			BotKopMedText.setColumns(10);
+		}
+		return BotKopMedText;
+	}
+	private JTextField getBotKopHardText() {
+		if (BotKopHardText == null) {
+			BotKopHardText = new JTextField();
+			BotKopHardText.setText("0");
+			BotKopHardText.setColumns(10);
+		}
+		return BotKopHardText;
 	}
 }

@@ -10,12 +10,8 @@ public abstract class AIPortaera {
 
 	
 	
-	public void random() { //all values = 0
-		
-	}
-	
-	
-	public HashMap<ArrayList<Object>, Integer> efikazia(Pokemon pPok,Jokalari pJok) {
+	//INTELIGENTZIA
+	protected HashMap<ArrayList<Object>, Integer> efikazia(Pokemon pPok,Jokalari pJok) {
 		HashMap<ArrayList<Object>, Integer> map = new HashMap<>();
 		
 		ArrayList<Jokalari> jokLista = JokalariKatalogoa.getJK().getLista().getLista();
@@ -23,62 +19,182 @@ public abstract class AIPortaera {
 		
 		while (itrJok.hasNext()) {
 			Jokalari j=itrJok.next();
-			ArrayList<Pokemon> pokLista = j.getTalde();
-			Iterator<Pokemon> itrPok = pokLista.iterator();
-			
-			while (itrPok.hasNext()) {
-				Pokemon p=itrPok.next();
-				ArrayList<Mota> pokMotak= pPok.getMotak();
-				Iterator<Mota> itrMota = pokMotak.iterator();
+			if (!j.equals(pJok)) {
+				ArrayList<Pokemon> pokLista = j.getTalde();
+				Iterator<Pokemon> itrPok = pokLista.iterator();
 				
-				while (itrMota.hasNext()) {
-					Mota m=itrMota.next();
-					
-					int value=0;
-					ArrayList<Object> arrayInfo = new ArrayList <>(); //mota(atk), jokalari, pokemon
-					arrayInfo.add(m);
-					arrayInfo.add(j);
-					arrayInfo.add(p);
-					
-					float efikazia = MugimenduKudeatzailea.getMK().efikaziaCalc(m,p);
-					//efikazia posibleak --> 0,0.25,0.5,1,2,4
-					if (efikazia==0.0f) {value=-10000;}
-					else if (efikazia==0.25f) {value=-100;}
-					else if (efikazia==0.5f) {value=-50;}
-					else if (efikazia==1f) {value=0;}
-					else if (efikazia==0.25f) {value=50;}
-					else if (efikazia==0.25f) {value=100;}
-					map.put(arrayInfo, value);
+				while (itrPok.hasNext()) {
+					Pokemon p=itrPok.next();
+					if (!p.getAhulduta()) {
+						ArrayList<Mota> pokMotak= pPok.getMotak();
+						Iterator<Mota> itrMota = pokMotak.iterator();
+						
+						while (itrMota.hasNext()) {
+							Mota m=itrMota.next();
+							
+							int value=0;
+							ArrayList<Object> arrayInfo = new ArrayList <>(); //mota(atk), jokalari, pokemon
+							arrayInfo.add(m);
+							arrayInfo.add(j);
+							arrayInfo.add(p);
+							
+							float efikazia = MugimenduKudeatzailea.getMK().efikaziaCalc(m,p);
+							//efikazia posibleak --> 0,0.25,0.5,1,2,4
+							if (efikazia==0.0f) {value=-1000000;}
+							else if (efikazia==0.25f) {value=-100;}
+							else if (efikazia==0.5f) {value=-50;}
+							else if (efikazia==1f) {value=0;}
+							else if (efikazia==0.25f) {value=50;}
+							else if (efikazia==0.25f) {value=100;}
+							map.put(arrayInfo, value);
+						}
+					}
 				}
-			}
+			}	
 		}
-		
 		return map;
-		
 		}
 	
 	
-	/*
-	public HashMap<ArrayList<String>, Integer> bizitzaKop(Pokemon pPok,Jokalari pJok) {
-		//JokalariKatalogoa.getJK();
+	protected HashMap<ArrayList<Object>, Integer> euforia(Pokemon pPok,Jokalari pJok) {
+		HashMap<ArrayList<Object>, Integer> map = new HashMap<>();
 		
-		int value=0;
-		ArrayList<String> ArrayInfo = new ArrayList<String>(); //mota(atk), jokalari, pokemon
-		HashMap<ArrayList<String>, Integer> map = new HashMap<>();
-		loop jokalari
-			loop pokemon
-				simulatu eraso
+		ArrayList<Jokalari> jokLista = JokalariKatalogoa.getJK().getLista().getLista();
+		Iterator<Jokalari> itrJok = jokLista.iterator();
+		
+		while (itrJok.hasNext()) {
+			Jokalari j=itrJok.next();
+			if (!j.equals(pJok)) {
+				ArrayList<Pokemon> pokLista = j.getTalde();
+				Iterator<Pokemon> itrPok = pokLista.iterator();
 				
-		
-		
-		
-		
+				while (itrPok.hasNext()) {
+					Pokemon p=itrPok.next();
+					if (!p.getAhulduta()) {
+						ArrayList<Mota> pokMotak= pPok.getMotak();
+						Iterator<Mota> itrMota = pokMotak.iterator();
+						
+						while (itrMota.hasNext()) {
+							Mota m=itrMota.next();
+							
+							int value=0;
+							ArrayList<Object> arrayInfo = new ArrayList <>(); //mota(atk), jokalari, pokemon
+							arrayInfo.add(m);
+							arrayInfo.add(j);
+							arrayInfo.add(p);
+							
+							Egoera pokEgoera=p.getEgoera();
+							//egoera posibleak --> EgoeraNormal, EgoeraEuforia
+							if (pokEgoera instanceof EgoeraEuforia) {value=-75;}
+							else {
+								value=0;
+							}
+							map.put(arrayInfo, value);
+						}
+					}
+				}
+			}	
 		}
-	 */
+		return map;
+		}
 	
 	
-	private ArrayList<Object> getMugimenduHoberena(HashMap<ArrayList<Object>, Integer> hashInfo){
-		int max=-1000000;
+	protected HashMap<ArrayList<Object>, Integer> euforiaKarga(Pokemon pPok,Jokalari pJok) {
+		HashMap<ArrayList<Object>, Integer> map = new HashMap<>();
+		
+		ArrayList<Jokalari> jokLista = JokalariKatalogoa.getJK().getLista().getLista();
+		Iterator<Jokalari> itrJok = jokLista.iterator();
+		
+		while (itrJok.hasNext()) {
+			Jokalari j=itrJok.next();
+			if (!j.equals(pJok)) {
+				ArrayList<Pokemon> pokLista = j.getTalde();
+				Iterator<Pokemon> itrPok = pokLista.iterator();
+				
+				while (itrPok.hasNext()) {
+					Pokemon p=itrPok.next();
+					if (!p.getAhulduta()) {
+						ArrayList<Mota> pokMotak= pPok.getMotak();
+						Iterator<Mota> itrMota = pokMotak.iterator();
+						
+						while (itrMota.hasNext()) {
+							Mota m=itrMota.next();
+							
+							int value=0;
+							ArrayList<Object> arrayInfo = new ArrayList <>(); //mota(atk), jokalari, pokemon
+							arrayInfo.add(m);
+							arrayInfo.add(j);
+							arrayInfo.add(p);
+							
+							int egoeraI=p.getEgoeraI();
+							int egoeraMax=p.getEgoeraIMax();
+							float egoeraPercent=egoeraI/egoeraMax;
+							
+							//egoera posibleak --> EgoeraNormal, EgoeraEuforia
+							if (egoeraPercent <= 0.33) {value=25;}
+							else if (egoeraPercent > 0.33 && egoeraPercent <= 0.66) {value=0;}
+							else {value=-25;}
+							map.put(arrayInfo, value);
+						}
+					}
+				}
+			}	
+		}
+		return map;
+		}
+	
+	
+	
+	protected HashMap<ArrayList<Object>, Integer> bizitzaKop(Pokemon pPok,Jokalari pJok) {
+		HashMap<ArrayList<Object>, Integer> map = new HashMap<>();
+		
+		ArrayList<Jokalari> jokLista = JokalariKatalogoa.getJK().getLista().getLista();
+		Iterator<Jokalari> itrJok = jokLista.iterator();
+		
+		while (itrJok.hasNext()) {
+			Jokalari j=itrJok.next();
+			if (!j.equals(pJok)) {
+				ArrayList<Pokemon> pokLista = j.getTalde();
+				Iterator<Pokemon> itrPok = pokLista.iterator();
+				
+				while (itrPok.hasNext()) {
+					Pokemon p=itrPok.next();
+					if (!p.getAhulduta()) {
+						ArrayList<Mota> pokMotak= pPok.getMotak();
+						Iterator<Mota> itrMota = pokMotak.iterator();
+						
+						while (itrMota.hasNext()) {
+							Mota m=itrMota.next();
+							
+							int value=0;
+							ArrayList<Object> arrayInfo = new ArrayList <>(); //mota(atk), jokalari, pokemon
+							arrayInfo.add(m);
+							arrayInfo.add(j);
+							arrayInfo.add(p);
+							
+							int pHp=p.getHP();
+							int pHpMax=p.getMaxHP();
+							float HpPercent=pHp/pHpMax;
+							
+							//egoera posibleak --> EgoeraNormal, EgoeraEuforia
+							if (HpPercent <= 0.33) {value=30;}
+							else if (HpPercent > 0.33 && HpPercent <= 0.66) {value=15;}
+							else {value=0;}
+							map.put(arrayInfo, value);
+						}
+					}
+				}
+			}	
+		}
+		return map;
+		}
+	
+	
+	
+	
+	//METODO EXTRAK
+	protected ArrayList<Object> getMugimenduHoberena(HashMap<ArrayList<Object>, Integer> hashInfo){
+		int max=-999999999;
 		ArrayList<Object> mugimenduHoberena = new ArrayList<Object>();
 		
 		for ( Map.Entry<ArrayList<Object>, Integer> entry : hashInfo.entrySet() )
@@ -93,7 +209,7 @@ public abstract class AIPortaera {
 		return mugimenduHoberena;
 	}
 	
-	private HashMap<ArrayList<Object>, Integer> sumHash(ArrayList<HashMap<ArrayList<Object>, Integer>> pIrizpideak) {
+	protected HashMap<ArrayList<Object>, Integer> sumHash(ArrayList<HashMap<ArrayList<Object>, Integer>> pIrizpideak) {
 		HashMap<ArrayList<Object>, Integer> hashFinal= pIrizpideak.get(0);
 		pIrizpideak.remove(0);
 		
@@ -116,6 +232,6 @@ public abstract class AIPortaera {
 
 	
 	
-	public void mugimenduaPentsatu() {};
-	
+	protected ArrayList<Object> mugimenduaPentsatu(Pokemon pPok,Jokalari pJok) {
+		return null;};
 }

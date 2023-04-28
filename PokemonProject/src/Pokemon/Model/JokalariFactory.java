@@ -14,14 +14,26 @@ public class JokalariFactory {
 		return nJF;
 	}
 	
-	public Jokalari createJokalari(int type,int pJokNum, int pPokKop) {
+	public Jokalari createJokalari(int type, int subType, int pJokNum, int pPokKop) {
 		Jokalari j;
 		if (type==1) {
 			j = new Pertsona(pJokNum,pPokKop);
 		}
 		else {
-			Easy e= new Easy();
-			j = new Bot(pJokNum,pPokKop,e);
+			
+			if (subType==1) {
+				Easy e= new Easy();
+				j = new Bot(pJokNum,pPokKop,e);
+			}
+			else if (subType==2) {
+				Medium m= new Medium();
+				j = new Bot(pJokNum,pPokKop,m);
+			}
+			else {
+				Hard h= new Hard();
+				j = new Bot(pJokNum,pPokKop,h);
+			}
+
 		}
 		return j;
 	}	
