@@ -66,7 +66,7 @@ public class Console extends JFrame implements Observer{
 	 */
 	public Console() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 425);
+		setBounds(100, 100, 450, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -240,19 +240,22 @@ public class Console extends JFrame implements Observer{
 	
 	
 	private void addScreenText(String pText) {
+		String[] lines = pText.split("\n");
+		int pTextLerroKop=lines.length;
 		textArea.append(pText + "\n");
 		System.out.println(textArea.getLineCount());
-		if (textArea.getLineCount()==20) {
-			String newText=textArea.getText().substring(textArea.getText().indexOf('\n')+1);
+		while(textArea.getLineCount()>=25) {
+			String newText=textArea.getText().substring(textArea.getText().indexOf("\n")+ pTextLerroKop);
 			textArea.setText(newText);
+			}
+			
 		}
-	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		if(o instanceof MugimenduKudeatzailea){
-			this.addScreenText(((MugimenduKudeatzailea)o).getJokErasotzaile().getIzena() + " " + ((MugimenduKudeatzailea)o).getPokErasotzaile().getIzena() + " pokemonarekin " + arg.toString() + " dmg egin dio " + ((MugimenduKudeatzailea)o).getJokErasotua().getIzena() + "-ren " + ((MugimenduKudeatzailea)o).getPokErasotua().getIzena() + "-ri");
+			this.addScreenText(((MugimenduKudeatzailea)o).getPokErasotzaile().getIzena() + " pokemonarekin " + arg.toString() + " dmg egin dio " + ((MugimenduKudeatzailea)o).getJokErasotua().getIzena() + "-ren " + ((MugimenduKudeatzailea)o).getPokErasotua().getIzena() + "-ri");
 		}
 		else if (o instanceof ConsoleKudeatzailea) {
 			if(arg!=null) {
@@ -261,7 +264,7 @@ public class Console extends JFrame implements Observer{
 			}
 		}
 		else if (o instanceof Borroka) {
-			this.addScreenText("");
+			this.addScreenText("\n" + Borroka.getBorroka().getOraingoJok().getIzena() + ":");
 		}
 	}
 	private JPanel getPanel() {

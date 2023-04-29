@@ -44,8 +44,8 @@ public abstract class AIPortaera {
 							else if (efikazia==0.25f) {value=-100;}
 							else if (efikazia==0.5f) {value=-50;}
 							else if (efikazia==1f) {value=0;}
-							else if (efikazia==0.25f) {value=50;}
-							else if (efikazia==0.25f) {value=100;}
+							else if (efikazia==2f) {value=50;}
+							else if (efikazia==4f) {value=100;}
 							map.put(arrayInfo, value);
 						}
 					}
@@ -133,7 +133,7 @@ public abstract class AIPortaera {
 							//egoera posibleak --> EgoeraNormal, EgoeraEuforia
 							if (egoeraPercent <= 0.33) {value=25;}
 							else if (egoeraPercent > 0.33 && egoeraPercent <= 0.66) {value=0;}
-							else {value=-25;}
+							else if (egoeraPercent > 0.66 && egoeraPercent < 1) {value=-25;}
 							map.put(arrayInfo, value);
 						}
 					}

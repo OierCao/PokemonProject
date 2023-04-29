@@ -1,5 +1,7 @@
 package Pokemon.Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Arrays;
 import java.util.Observable;
 
@@ -309,6 +311,33 @@ public class MugimenduKudeatzailea extends Observable{
 		}
 		System.out.println("efikazia" + efikazia);
 		return efikazia;
+	}
+	
+	
+	public HashMap<Mota,Float> weak(Mota pMota){
+		HashMap<Mota,Float> list= new HashMap<Mota,Float>();
+		for (int i = 0; i < 18; i++) {
+		    for (int j = 0; j < 18; j++) {
+		    	if (pMota.equals(Mota.values()[j])) {
+		    		Mota mota=Mota.values()[i];
+			    	list.put(mota, motaTabla[i][j]);
+		    	}	
+		    }
+		    }
+		return list;
+	}
+	
+	public HashMap<Mota,Float> effective(Mota pMota){
+		HashMap<Mota,Float> list= new HashMap<Mota,Float>();
+		for (int i = 0; i < 18; i++) {
+		    for (int j = 0; j < 18; j++) {
+		    	if (pMota.equals(Mota.values()[i])) {
+		    		Mota mota=Mota.values()[j];
+			    	list.put(mota, motaTabla[i][j]);
+		    	}	
+		    }
+		    }
+		return list;
 	}
 	
 	

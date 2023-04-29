@@ -7,6 +7,7 @@ import java.util.TimerTask;
 public class Borroka extends Observable{
 	private static Borroka nB = null;
 	private Jokalari irabazle=null;
+	private Jokalari oraingoJok=null;
 	private int millis;
 	private Timer timer;
 	
@@ -30,6 +31,9 @@ public class Borroka extends Observable{
 		System.out.println("irabazlea dago \n");
 		AudioKudeatzailea.getAudioKudeatzailea().playAudio("victory");
 		irabazle=pJok;
+	}
+	public Jokalari getOraingoJok() {
+		return this.oraingoJok;
 	}
 	
 	
@@ -100,12 +104,13 @@ public class Borroka extends Observable{
 	}
 	
 	public void txandaJolastu() {
-		eguneratuConsoleScreen(-1);
-		
 		JokalariKatalogoa.getJK().getLista().setGuztienTxandaFalse();
 		Jokalari oraingoJ = null;
 		
 		oraingoJ = JokalariKatalogoa.getJK().getLista().getRandomBizirik();
+		oraingoJok=oraingoJ;
+		eguneratuConsoleScreen(-1);
+		
 		System.out.println(oraingoJ.getIzena() + "-ren txanda \n");
 		oraingoJ.setTxanda(true);
 		if (oraingoJ instanceof Pertsona) {

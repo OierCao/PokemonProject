@@ -1,5 +1,8 @@
 package Pokemon.Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 
 public class ConsoleKudeatzailea extends Observable{
@@ -89,6 +92,61 @@ public class ConsoleKudeatzailea extends Observable{
 				}
 				else {sysOut="mesedez sartu 0-100 arteko balio bat";}	
 			}	
+		}
+		
+		
+		//INFO
+		
+		
+		else if ((pCommand.startsWith("/weak"))) {
+			String balioaStr=this.getWord(pCommand);
+			if (balioaStr!=null){
+				try {
+					String Mayus=balioaStr.substring(0, 1).toUpperCase();
+					balioaStr=Mayus + balioaStr.substring(1);
+					Mota m=Mota.valueOf(balioaStr);
+					sysOut="";
+					HashMap<Mota,Float> lista=MugimenduKudeatzailea.getMK().weak(m);
+					for ( Map.Entry<Mota, Float> entry : lista.entrySet() )
+					{
+						float weakValue=entry.getValue();
+						Mota weakType=entry.getKey();
+						
+						sysOut=sysOut + "\n" + weakType.toString() + ": x" + weakValue;
+					}		
+					success=true;
+				}
+				catch(Exception e){
+					sysOut="ez da mota aurkitu";
+				}
+				
+			}
+		}
+		
+		
+		else if ((pCommand.startsWith("/effective"))) {
+			String balioaStr=this.getWord(pCommand);
+			if (balioaStr!=null){
+				try {
+					String Mayus=balioaStr.substring(0, 1).toUpperCase();
+					balioaStr=Mayus + balioaStr.substring(1);
+					Mota m=Mota.valueOf(balioaStr);
+					sysOut="";
+					HashMap<Mota,Float> lista=MugimenduKudeatzailea.getMK().effective(m);
+					for ( Map.Entry<Mota, Float> entry : lista.entrySet() )
+					{
+						float weakValue=entry.getValue();
+						Mota weakType=entry.getKey();
+						
+						sysOut=sysOut + "\n" + weakType.toString() + ": x" + weakValue;
+					}		
+					success=true;
+				}
+				catch(Exception e){
+					sysOut="ez da mota aurkitu";
+				}
+				
+			}
 		}
 
 		//update
