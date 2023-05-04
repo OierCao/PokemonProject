@@ -19,19 +19,16 @@ public class JokalariFactory {
 		if (type==1) {
 			j = new Pertsona(pJokNum,pPokKop);
 		}
-		else {
+		else { 
 			
-			if (subType==1) {
-				Easy e= new Easy();
-				j = new Bot(pJokNum,pPokKop,e);
+			if (subType==1) { //easy
+				j = new Bot(pJokNum,pPokKop,1);
 			}
-			else if (subType==2) {
-				Medium m= new Medium();
-				j = new Bot(pJokNum,pPokKop,m);
+			else if (subType==2) { //medium
+				j = new Bot(pJokNum,pPokKop,2);
 			}
-			else {
-				Hard h= new Hard();
-				j = new Bot(pJokNum,pPokKop,h);
+			else { //hard
+				j = new Bot(pJokNum,pPokKop,3);
 			}
 
 		}

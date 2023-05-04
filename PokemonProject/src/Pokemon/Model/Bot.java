@@ -3,15 +3,14 @@ package Pokemon.Model;
 import java.util.ArrayList;
 
 public class Bot extends Jokalari {
-	
-	AIPortaera aiPortaera; 
+	private int IAmaila; 
 	
 	
 	//Eraikitzaile
-	public Bot(int pJokNum,int pPokKop,AIPortaera pPortaera) {
+	public Bot(int pJokNum,int pPokKop,int pAI) {
 		super(pPokKop);
 		izena = "Bot" + pJokNum;
-		aiPortaera=pPortaera;
+		IAmaila=pAI;
 	}
 	
 	//Getter
@@ -34,7 +33,7 @@ public class Bot extends Jokalari {
 		for (Pokemon p : getPokemonak().getEzAhulduak().getLista()) {
 			if (irabazlea==null) {
 				
-				ArrayList<Object> mugimendua=this.aiPortaera.mugimenduaPentsatu(p, this);
+				ArrayList<Object> mugimendua=InteligentziaArtifiziala.getIA().mugimenduHoberena(p, this, IAmaila); //IA deia
 				
 				Mota erasoMota = (Mota)mugimendua.get(0);
 				Jokalari erasoJ = (Jokalari)mugimendua.get(1);
