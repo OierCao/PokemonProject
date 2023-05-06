@@ -5,7 +5,13 @@ import java.util.Arrays;
 
 public class Eboluzio2 implements Eboluzioa{
 
+	private int atk=7;
+	private int def=5;
+	
 	public Eboluzio2(Pokemon pPok) {
+
+		pPok.gehituAtributuak(7, 5);
+
 		
 		if( (pPok.getMota1().equals(Mota.Fire) && (pPok.getId()==14)) || 
 			(pPok.getMota1().equals(Mota.Grass) && (pPok.getId()==17)) || 

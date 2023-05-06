@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 public class Eboluzio0 implements Eboluzioa{
 	
-	private int atk=5;
-	private int def=3;
 	
 	public Eboluzio0(Pokemon pPok) {
 		
@@ -159,7 +157,6 @@ public class Eboluzio0 implements Eboluzioa{
 	@Override
 	public void eboluzionatu(Pokemon pPok) {
 		pPok.setEboluzio(new Eboluzio1(pPok));
-		pPok.gehituAtributuak(atk, def);
 	}
 
 }

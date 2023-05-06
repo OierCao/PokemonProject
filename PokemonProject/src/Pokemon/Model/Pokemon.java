@@ -28,7 +28,7 @@ public class Pokemon extends Observable{
 		estatistikakKalkulatu();
 		this.ahulduta=false;
 		eboluzioa = new Eboluzio0(this);
-		egoera = new EgoeraNormal();
+		egoera = new EgoeraNormal(this, true);
 	}
 	
 	//Setter eta getter
