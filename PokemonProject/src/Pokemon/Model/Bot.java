@@ -13,15 +13,6 @@ public class Bot extends Jokalari {
 		IAmaila=pAI;
 	}
 	
-	//Getter
-	private Jokalari getJokalaria(JokalariZerrenda pJZ) {
-		return pJZ.getBesteRandomBizirik(this);
-	}
-	
-	private Pokemon getAtkPok(PokemonZerrenda pZ) {
-		return pZ.getRandomEzAhulduta();
-	}
-	
 	//Beste metodoak
 	public void jolastu() {
 		System.out.println("Nire izena " + izena + " da eta erasotzeari ekin egingo diot");

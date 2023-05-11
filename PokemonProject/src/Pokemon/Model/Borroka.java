@@ -99,11 +99,11 @@ public class Borroka extends Observable{
 		timer.scheduleAtFixedRate(txandaJolastu, l, (long)millis);
 	}
 	
-	public void timerAmaitu() {
+	private void timerAmaitu() {
 		timer.cancel();
 	}
 	
-	public void txandaJolastu() {
+	private void txandaJolastu() {
 		JokalariKatalogoa.getJK().getLista().setGuztienTxandaFalse();
 		Jokalari oraingoJ = null;
 		

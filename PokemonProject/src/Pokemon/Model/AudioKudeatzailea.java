@@ -1,6 +1,5 @@
 package Pokemon.Model;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -12,6 +11,7 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+@SuppressWarnings("unused")
 public class AudioKudeatzailea {
 	private static AudioKudeatzailea nAK=null;
 	private Long oraingoms;
@@ -42,6 +42,7 @@ public class AudioKudeatzailea {
 	
 	
 	//Eraikitzailea
+	@SuppressWarnings("unchecked")
 	private AudioKudeatzailea() {
 		musikaAukeraLista.add("blackwhite");
 		musikaAukeraLista.add("oras");

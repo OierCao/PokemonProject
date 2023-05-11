@@ -1,13 +1,9 @@
 package Pokemon.Model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Eboluzio2 implements Eboluzioa{
 
-	private int atk=7;
-	private int def=5;
-	
 	public Eboluzio2(Pokemon pPok) {
 
 		pPok.gehituAtributuak(7, 5);

@@ -10,6 +10,8 @@ public class InteligentziaArtifiziala {
 	private static InteligentziaArtifiziala nIA=null;
 	
 	//Singleton patroia
+	private InteligentziaArtifiziala() {}
+	
 	public static InteligentziaArtifiziala getIA() {
 		if (nIA == null) {
 			nIA = new InteligentziaArtifiziala();

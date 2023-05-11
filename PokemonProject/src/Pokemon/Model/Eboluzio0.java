@@ -1,6 +1,5 @@
 package Pokemon.Model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Eboluzio0 implements Eboluzioa{

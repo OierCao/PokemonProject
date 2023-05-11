@@ -1,6 +1,5 @@
 package Pokemon.Model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -17,16 +16,6 @@ public class ConsoleKudeatzailea extends Observable{
 		}
 		return nCK;
 	}
-	
-	
-	private void setTxt(String txt) {
-		this.txt=txt;
-	}
-	
-	private void addTxt(String addTxt) {
-		this.txt=txt + addTxt;
-	}
-	
 	
 	public String runCommand(String pCommand) {
 		String sysOut="Comandoa ez da aurkitu";
@@ -176,6 +165,7 @@ public class ConsoleKudeatzailea extends Observable{
 	
 	private boolean zenbakiaDa(String pStr) {
 		try {
+			@SuppressWarnings("unused")
 			int balioa=Integer.parseInt(pStr);
 			return true;
 		}

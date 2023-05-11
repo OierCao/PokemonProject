@@ -16,12 +16,6 @@ public class PokemonZerrenda {
 	//SET/GET
 	public ArrayList<Pokemon> getLista(){return this.lista;}
 	
-	private Iterator<Pokemon> getIter() {return lista.iterator();}
-	
-	public int getPos(Pokemon pPok) {//pPok Pokemonaren posizioa buletatu
-		return lista.indexOf(pPok);
-	}
-	
 	public PokemonZerrenda getXRandom(int pKop) {
 		PokemonZerrenda pArray = new PokemonZerrenda();
 		int i=0;

@@ -61,13 +61,14 @@ public class Pokemon extends Observable{
 	
 	public int getId() {return id;}
 	
+	public String getIzena() {return this.izena;}
+
 	public int getAtk(){return this.atk;}
 	
 	public int getDef(){return this.def;}
 	
 	public int getHP(){return this.hp;}
 	
-	public String getIzena() {return this.izena;}
 	public void setIzena(String pIzena) {this.izena=pIzena;}
 	
 	public Mota getMota1(){return this.mota.get(0);}

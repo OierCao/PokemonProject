@@ -33,11 +33,12 @@ public class Jokalari extends Observable{
 	public PokemonZerrenda getPokemonak() {
 		return this.talde;
 	}
-	public ArrayList<Pokemon> getTalde() {
-		return this.talde.getLista();
-	}
 	public String getIzena() {
 		return izena;
+	}
+
+	public ArrayList<Pokemon> getTalde() {
+		return this.talde.getLista();
 	}
 	public boolean getTxanda() {
 		return this.txanda;
